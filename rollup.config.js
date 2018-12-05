@@ -17,7 +17,7 @@ const plugins = [
   html({ include: 'lib/*.html' }),
   postcss({
     minimize: { preset: 'default' },
-    plugins: [autoprefixer({ browsers: '> 0.1%' })],
+    plugins: [autoprefixer({ browsers: ['last 1 version', '> .1%', 'ie 9-11'] })],
     inject: false
   }),
   resolve({ browser: true }),
