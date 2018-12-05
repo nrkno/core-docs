@@ -1,0 +1,8 @@
+.DS_Store
+.npm
+/node_modules
+/npm-debug*
+**/*.min.js
+**/*.js.map
+**/*.cjs.js
+lib/core-docs*
