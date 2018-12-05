@@ -7,7 +7,7 @@ Core documentation system
 
 Create a new file called `index.html` and put this into it:
 
-```
+```html
 <title>My documentation</title>
 <ul>
   <li><a href="?docs.md">My documentation</a></li>
