@@ -6,7 +6,6 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "node bin/build",
     "publish:patch": "npm version patch -m 'Release patch %s' && npm run push",
     "publish:minor": "npm version minor -m 'Release minor %s' && npm run push",
     "publish:major": "npm version major -m 'Release major %s' && npm run push",
@@ -19,15 +18,8 @@
     "url": "git+https://github.com/nrkno/core-docs.git"
   },
   "devDependencies": {
-    "@nrk/core-css": "^1.10.1",
-    "@nrk/core-fonts": "^2.0.0",
     "autoprefixer": "9.4.0",
-    "buble": "^0.19.6",
-    "code-prettify": "^0.1.0",
     "http-server": "0.11.1",
-    "marked": "^0.5.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
     "rollup": "0.66.2",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-buble": "0.19.2",
@@ -39,5 +31,13 @@
     "rollup-plugin-serve": "0.6.0",
     "rollup-plugin-uglify": "6.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@nrk/core-css": "^1.10.1",
+    "@nrk/core-fonts": "^2.0.0",
+    "marked": "^0.5.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "buble": "^0.19.6",
+    "code-prettify": "^0.1.0"
+  }
 }
