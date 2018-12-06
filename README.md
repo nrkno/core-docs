@@ -10,11 +10,11 @@ Create a new file called `index.html` and put this into it:
 ```html
 <title>My documentation</title>
 <ul>
-  <li><a href="?docs.md">My documentation</a></li>
+  <li><a href="?readme.md">My documentation</a></li>
   <li><a href="..."><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg"> View on Github</a></li>
   <li><a href="..."><img src="https://rawgit.com/nrkno/core-icons/master/lib/nrk-poll.svg"> View changelog</a></li>
 </ul>
-<script src="https://static.nrk.no/core-docs/latest/core-docs.js"></script>
+<script src="https://static.nrk.no/core-docs/latest/core-docs.js" charset="utf-8" defer></script>
 ```
 
 ## Local development

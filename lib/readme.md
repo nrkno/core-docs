@@ -1,6 +1,6 @@
 # Core Input
 
-## `@nrk/core-input` enhances `<input>` fields with keyboard accessible functionality for autocomplete suggestions, search results and smart select box abilities.
+> `@nrk/core-input` enhances `<input>` fields with keyboard accessible functionality for autocomplete suggestions, search results and smart select box abilities.
 
 ---
 
@@ -17,8 +17,8 @@ import CoreInput from '@nrk/core-input/jsx' // ...or React/Preact compatible JSX
 ---
 
 <!--demo
-<script src="core-input/core-input.min.js"></script>
-<script src="core-input/core-input.jsx.js"></script>
+<script src="https://static.nrk.no/core-components/latest/core-input/core-input.min.js"></script>
+<script src="https://static.nrk.no/core-components/latest/core-input/core-input.jsx.js"></script>
 <style>li button:focus {outline: 3px solid rgb(94, 158, 215)}</style>
 demo-->
 

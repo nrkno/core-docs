@@ -10,10 +10,9 @@ import { uglify } from 'rollup-plugin-uglify'
 import pkg from './package.json'
 
 const banner = `/*! @nrk/core-docs v${pkg.version} - Copyright (c) 2018-${new Date().getFullYear()} NRK */`
+const minify = process.env.ROLLUP_WATCH ? [] : uglify({ output: { comments: /^!/ } })
 const plugins = [
-  replace({
-    'process.env.NODE_ENV': JSON.stringify('production')
-  }),
+  replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
   html({ include: 'lib/*.html' }),
   postcss({
     minimize: { preset: 'default' },
@@ -21,21 +20,17 @@ const plugins = [
     inject: false
   }),
   resolve({ browser: true }),
-  commonjs({
-    exclude: ['node_modules/buble/**']
-  }),
-  buble({
-    transforms: { dangerousForOf: true, dangerousTaggedTemplateString: true }
-  }),
+  commonjs({ exclude: ['node_modules/buble/**'] }),
+  buble({ transforms: { dangerousForOf: true } }),
   !process.env.ROLLUP_WATCH || serve('lib')
 ]
 
 export default [{
   input: 'lib/index.js', // Minified for browsers
   output: { file: 'lib/core-docs.min.js', format: 'iife', sourcemap: true, banner },
-  plugins: plugins.concat(uglify({ output: { comments: /^!/ } }))
+  plugins: plugins.concat(minify)
 }, {
   input: 'lib/index.js', // Full source for browsers
-  output: { file: 'lib/core-docs.js', format: 'iife', sourcemap: true, banner },
+  output: { file: 'lib/core-docs.js', format: 'iife', banner },
   plugins
 }]
