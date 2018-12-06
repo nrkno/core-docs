@@ -1,9 +1,11 @@
-# Core Docs
+# @nrk/core-docs
 
 > `@nrk/core-docs` makes it easy to write documentation for your project in [markdown](https://github.com/markedjs/marked) and 
 render it beautifully.
 
----
+## Examples
+
+TODO add example here
 
 ## Installation
 
