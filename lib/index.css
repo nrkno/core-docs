@@ -2,8 +2,8 @@ html { font: 100%/1.6 'LFT Etica',sans-serif; color: #26292a; scroll-behavior: s
 pre, code { overflow: auto; background: #f0f5fe } pre { padding: 1em }
 a { color: #0059b3 }
 
-.doc-menu { margin: 0; padding: 0 30px; font-size: 14px; line-height: 30px }
-.doc-menu svg { margin: 40px 0; font-size: 10px }
+.doc-menu { margin: 0; padding: 30px; font-size: 14px; line-height: 30px }
+.doc-menu svg { font-size: 10px; position: fixed; top: 30px; right: 30px; }
 .doc-menu ul { list-style: none; margin: 0; padding: 0; }
 .doc-menu ul ul { padding: 0 30px; }
 .doc-menu ul ul a { overflow: hidden; max-height: 30px; animation: fadeIn .5s backwards }
@@ -12,7 +12,7 @@ a { color: #0059b3 }
 
 .doc-main:empty { min-height: 9000px; opacity: 0 } /* Allow remember scroll position */
 .doc-main { overflow: hidden; padding: 4rem 7vw; transition: 1s }
-.doc-main > p { max-width: 700px; margin-top: 0; font-size: 1.1rem }
+.doc-main > p { max-width: 45em; margin-top: 0; font-size: 1.1rem }
 .doc-main > h1 { font-weight: 300; font-size: 3rem; line-height: 1; margin: 0 }
 .doc-main > blockquote,
 .doc-main > h2 { font-weight: 300; font-size: 1.5em; line-height: 1.5; margin: .5em 0; max-width: 650px }
