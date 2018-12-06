@@ -3,28 +3,9 @@
 > `@nrk/core-docs` makes it easy to write documentation for your project in [markdown](https://github.com/markedjs/marked) and 
 render it beautifully.
 
-## Examples
+## Usage 
 
-TODO add example here
-
-## Installation
-
-Create an `index.html` file in your project with a `<title>`, `<ul>` and `<script>` tag like this:
-
-```html
-<title>Core Docs</title>
-<ul>
-  <li><a href="?readme.md">Core Docs</a></li>
-  <li><a href="https://github.com/nrkno/core-docs"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" width="15"> View on Github</a></li>
-  <li><a href="https://github.com/nrkno/core-docs/releases"><img src="https://rawgit.com/nrkno/core-icons/master/lib/nrk-poll.svg" width="15"> View changelog</a></li>
-</ul>
-<script src="https://static.nrk.no/core-docs/latest/core-docs.js" charset="utf-8" defer></script>
-```
-
-Then change the title and menu heading to your desired name, add links to repo, changelog and other useful places for your project.
-The script will parse the menu and render the `readme.md` linked to from there and render links to each subsection in the menu.
-
-Use a question mark in the link when pointing to files (`?readme.md`) and use a hash symbol when pointing to file sections (`?readme.md#more`)
+Read usage in the [docs](https://static.nrk.no/core-docs/latest/index.html).
 
 ## Local development
 First clone `@nrk/core-docs` and install its dependencies:
