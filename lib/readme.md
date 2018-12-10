@@ -1,27 +1,33 @@
 # Core Docs
 
-> `@nrk/core-docs` makes it easy to write documentation for your project in [markdown](https://github.com/markedjs/marked) and 
+> `@nrk/core-docs` makes it easy to write documentation for your project in [markdown](https://github.com/markedjs/marked) and
 render it beautifully.
 
 ---
 
-## Installation
+## Getting started
+
+Copy the following into
+
+```
+
+```
 
 To get started, create an `index.html` file in your project with a `<ul>` and `<script>` tag:
 
 ```html
 <ul>
   <li><a href="?readme.md"></a></li>
-  <li><a href="https://github.com/nrkno/core-docs"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" width="15"> View on Github</a></li>
-  <li><a href="https://github.com/nrkno/core-docs/releases"><img src="https://rawgit.com/nrkno/core-icons/master/lib/nrk-poll.svg" width="15"> View changelog</a></li>
+  <li><a href="https://github.com/nrkno/core-docs">View on Github</a></li>
+  <li><a href="https://github.com/nrkno/core-docs/releases">View changelog</a></li>
 </ul>
 <script src="https://static.nrk.no/core-docs/latest/core-docs.js" charset="utf-8" defer></script>
 ```
 
-Feel free to add links to code repo, changelog and other useful places for your project. 
+Feel free to add links to code repo, changelog and other useful places for your project.
 Use a question mark in the link when pointing to files (`?readme.md`) and use a hash symbol when pointing to file sections (`?readme.md#more`).
 
-Now create a simple `readme.md` in the same directory and open the `index.html` file. 
+Now create a simple `readme.md` in the same directory and open the `index.html` file.
 The script will parse the menu and fetch the first `readme.md` linked to from there and render menu links to each subsection in the markdown.
 Use level 1 and level 2 headings in your markdown to control this sectioning.
 
