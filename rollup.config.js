@@ -7,7 +7,15 @@ import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import serve from 'rollup-plugin-serve'
 import { uglify } from 'rollup-plugin-uglify'
+import path from 'path'
+import fs from 'fs'
 import pkg from './package.json'
+
+if (!process.env.ROLLUP_WATCH) {
+  const readme = String(fs.readFileSync(path.join('lib', 'readme.md')))
+  const versioned = readme.replace(/\/major\/\d+/, `/major/${pkg.version.match(/\d+/)}`)
+  fs.writeFileSync(path.join('lib', 'readme.md'), versioned)
+}
 
 const banner = `/*! @nrk/core-docs v${pkg.version} - Copyright (c) 2018-${new Date().getFullYear()} NRK */`
 const minify = process.env.ROLLUP_WATCH ? [] : uglify({ output: { comments: /^!/ } })

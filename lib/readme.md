@@ -18,7 +18,7 @@ render it beautifully.
   <li><a href="https://github.com/nrkno/core-docs/releases">View changelog</a></li>
   <li><a href="#" download>Download example</a></li>
 </ul>
-<script src="core-docs.min.js" charset="utf-8" defer></script>
+<script src="https://static.nrk.no/core-docs/major/1/core-docs.min.js" charset="utf-8" defer></script>
 ```
 
 
@@ -94,6 +94,12 @@ Example:
   <li><button>Safari</button></li>
   <li><button>Microsoft Edge</button></li>
 </ul>
+<script>
+  document.addEventListener('click', event => {
+    if (event.target.nodeName === 'BUTTON')
+      alert(event.target.textContent)
+  })
+</script>
 ``````
 
 becomes:
@@ -108,5 +114,11 @@ becomes:
   <li><button>Safari</button></li>
   <li><button>Microsoft Edge</button></li>
 </ul>
+<script>
+  document.addEventListener('click', event => {
+    if (event.target.nodeName === 'BUTTON')
+      alert(event.target.textContent)
+  })
+</script>
 ```
 
