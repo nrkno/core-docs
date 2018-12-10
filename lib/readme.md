@@ -7,36 +7,43 @@ render it beautifully.
 
 ## Getting started
 
-Copy the following into
-
-```
-
-```
-
-To get started, create an `index.html` file in your project with a `<ul>` and `<script>` tag:
+`@nrk/core-docs` can parse and render all [markdown](https://github.com/markedjs/marked) files you put in your repository. The only requirement, is a `index.html` which declares the menu as a `<ul>` and loads `@nrk/core-docs`. Link to your markdown files using their relative path, prepended with `?`. Example:
 
 ```html
 <ul>
-  <li><a href="?readme.md"></a></li>
+  <li><a href="?readme.md">Core Docs</a></li>
+  <li><a href="?example/readme.md">Nested</a></li>
+  <li><a href="?example/thing.md">More Docs</a></li>
   <li><a href="https://github.com/nrkno/core-docs">View on Github</a></li>
   <li><a href="https://github.com/nrkno/core-docs/releases">View changelog</a></li>
+  <li><a href="#" download>Download example</a></li>
 </ul>
-<script src="https://static.nrk.no/core-docs/latest/core-docs.js" charset="utf-8" defer></script>
+<script src="core-docs.min.js" charset="utf-8" defer></script>
 ```
 
-Feel free to add links to code repo, changelog and other useful places for your project.
-Use a question mark in the link when pointing to files (`?readme.md`) and use a hash symbol when pointing to file sections (`?readme.md#more`).
 
-Now create a simple `readme.md` in the same directory and open the `index.html` file.
-The script will parse the menu and fetch the first `readme.md` linked to from there and render menu links to each subsection in the markdown.
-Use level 1 and level 2 headings in your markdown to control this sectioning.
+### Example structure
 
+
+```
+├── example
+│   ├── readme.md
+│   └── thing.md
+├── index.html
+└── readme.md
+```
+
+
+### External links
+
+Add links to code repo, changelog and other useful places for your project to make the documentation a central go-to place for your project.
+Links containing `github.com` will get a GitHub icon and links with the `download` attribute will get a download icon.
 
 ---
 
 ## Syntax highlighting
 
-Your code can be automatically hightlighted by prefixing code blocks with the language extension,
+Your markdown code can be automatically hightlighted by prefixing code blocks with the language extension,
 like we do with <code>```html</code>. The docs uses [code-prettify](https://github.com/google/code-prettify) underneath,
 so check if your language is supported.
 
@@ -73,13 +80,9 @@ to get HTML highlighting colors:
 
 ## Inline demos
 
-
-You can write an inline demo in your markdown, have it be rendered with
-its raw code under it. Prepend code blocks with `<!-- demo -->` to activate
-this for a code block.
-
-
-For instance this markdown:
+You can write an inline demo in your markdown by prepending
+the code block with `<!-- demo -->`. Demos supports HTML, CSS and JavaScript (ES5, ES6 and JSX).
+Example:
 
 ```
 ```html
@@ -93,7 +96,7 @@ For instance this markdown:
 </ul>
 ``````
 
- is rendered as follows:
+becomes:
 
 
 ```html
@@ -107,5 +110,3 @@ For instance this markdown:
 </ul>
 ```
 
-This is very useful for creating code examples and at the same
-time look at how the example is actually rendered.
