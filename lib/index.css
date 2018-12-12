@@ -88,13 +88,15 @@ pre, code { overflow: auto; background: #f0f5fe }
   max-width: 650px;
 }
 
-.docs-main > h2::before {
+.docs-main > h2::before,
+.docs-main > hr {
   content: '';
   position: relative;
   display: block;
   width: 100vw;
-  border-top: 1px solid #eee;
   margin: 4rem -7vw;
+  border: 0;
+  border-top: 1px solid #eee;
 }
 
 .docs-main h3 {
@@ -102,13 +104,6 @@ pre, code { overflow: auto; background: #f0f5fe }
   font-size: 12px;
   margin: 2em 0 .5em;
   text-transform: uppercase;
-}
-
-.docs-main > hr {
-  border: 0;
-  border-top: 1px solid #eee;
-  margin: 4rem -7vw;
-  width: calc(100% + 14vw);
 }
 
 .docs-main > ul {
@@ -159,9 +154,9 @@ pre, code { overflow: auto; background: #f0f5fe }
 @media(min-width:700px) {
   .docs-menu svg { margin-top: 0; }
   .docs-menu {
-    float: left;
+    overflow: auto;
     box-sizing: border-box;
-    position: sticky;
+    position: fixed;
     top: 0;
     padding: 70px 30px;
     width: 270px;
