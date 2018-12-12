@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@nrk/core-css": "1.11.1",
-    "@nrk/core-fonts": "2.0.0",
+    "@nrk/core-icons": "5.1.0",
     "buble": "0.19.6",
     "code-prettify": "0.1.0",
     "core-js": "2.6.0",

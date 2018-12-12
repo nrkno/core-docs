@@ -19,6 +19,7 @@ pre, code { overflow: auto; background: #f0f5fe }
 
 .docs-logo {
   position: fixed;
+  color: inherit;
   top: 30px;
   right: 30px;
   font-size: 12px;
