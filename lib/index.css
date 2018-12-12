@@ -22,6 +22,7 @@ pre, code { overflow: auto; background: #f0f5fe }
   top: 30px;
   right: 30px;
   font-size: 12px;
+  z-index: 2;
 }
 
 .docs-menu a { display: block; background: 100% 50%/15px no-repeat }
