@@ -53,7 +53,6 @@ For instance you write:
 
 ```
 ```html
-<input type="text" class="my-input" placeholder="Type &quot;C&quot;...">
 <ul>
   <li><button>Chrome</button></li>
   <li><button>Firefox</button></li>
@@ -83,22 +82,19 @@ to get HTML highlighting colors:
 
 You can write an inline demo in your markdown by prepending
 the code block with `<!-- demo -->`. Demos supports HTML, CSS and JavaScript (ES5, ES6 and JSX).
-Internet Explorer only supports ES5 syntax. Example:
+Example:
 
 ```
 ```html
 <!-- demo -->
-<ul>
-  <li><button>Chrome</button></li>
-  <li><button>Firefox</button></li>
-  <li><button>Opera</button></li>
-  <li><button>Safari</button></li>
-  <li><button>Microsoft Edge</button></li>
-</ul>
+<style>
+  #press-button { padding: .3em; font-size: inherit; }
+</style>
+<button id="press-button">Press me</button>
 <script>
-document.addEventListener('click', function (event) {
+  document.addEventListener('click', event => {
     if (event.target.nodeName === 'BUTTON')
-      alert(event.target.textContent)
+      alert('You pressed me')
   })
 </script>
 ``````
@@ -108,17 +104,14 @@ becomes:
 
 ```html
 <!-- demo -->
-<ul>
-  <li><button>Chrome</button></li>
-  <li><button>Firefox</button></li>
-  <li><button>Opera</button></li>
-  <li><button>Safari</button></li>
-  <li><button>Microsoft Edge</button></li>
-</ul>
+<style>
+  #press-button { padding: .3em; font-size: inherit; }
+</style>
+<button id="press-button">Press me</button>
 <script>
-document.addEventListener('click', function (event) {
+  document.addEventListener('click', event => {
     if (event.target.nodeName === 'BUTTON')
-      alert(event.target.textContent)
+      alert('You pressed me')
   })
 </script>
 ```
