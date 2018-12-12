@@ -92,9 +92,9 @@ pre, code { overflow: auto; background: #f0f5fe }
   content: '';
   position: relative;
   display: block;
-  width: calc(100vw - 270px);
+  width: 100vw;
   border-top: 1px solid #eee;
-  margin: 4rem 0 4rem -7vw;
+  margin: 4rem -7vw;
 }
 
 .docs-main h3 {
