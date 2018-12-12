@@ -10,6 +10,7 @@ render it beautifully.
 `@nrk/core-docs` can parse and render all [markdown](https://github.com/markedjs/marked) files you put in your repository. The only requirement, is a `index.html` which declares the menu as a `<ul>` and loads `@nrk/core-docs`. Link to your markdown files using their relative path, prepended with `?`. Example:
 
 ```html
+<!doctype html>
 <ul>
   <li><a href="?readme.md">Core Docs</a></li>
   <li><a href="?example/readme.md">Nested</a></li>
@@ -82,7 +83,7 @@ to get HTML highlighting colors:
 
 You can write an inline demo in your markdown by prepending
 the code block with `<!-- demo -->`. Demos supports HTML, CSS and JavaScript (ES5, ES6 and JSX).
-Example:
+Internet Explorer only supports ES5 syntax. Example:
 
 ```
 ```html
@@ -95,7 +96,7 @@ Example:
   <li><button>Microsoft Edge</button></li>
 </ul>
 <script>
-  document.addEventListener('click', event => {
+document.addEventListener('click', function (event) {
     if (event.target.nodeName === 'BUTTON')
       alert(event.target.textContent)
   })
@@ -115,10 +116,9 @@ becomes:
   <li><button>Microsoft Edge</button></li>
 </ul>
 <script>
-  document.addEventListener('click', event => {
+document.addEventListener('click', function (event) {
     if (event.target.nodeName === 'BUTTON')
       alert(event.target.textContent)
   })
 </script>
 ```
-

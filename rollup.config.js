@@ -27,10 +27,13 @@ const plugins = [
     plugins: [autoprefixer({ browsers: ['last 1 version', '> .1%', 'ie 9-11'] })],
     inject: false
   }),
-  resolve({ browser: true }),
-  commonjs({ exclude: ['node_modules/buble/**'] }),
+  resolve(),
+  commonjs(),
   buble({ transforms: { dangerousForOf: true } }),
-  !process.env.ROLLUP_WATCH || serve('lib')
+  !process.env.ROLLUP_WATCH || serve({
+    contentBase: 'lib',
+    headers: { 'X-UA-Compatible': 'IE=edge' }
+  })
 ]
 
 export default [{
