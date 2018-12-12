@@ -5,7 +5,7 @@ render it beautifully.
 
 ## Usage 
 
-Read usage in the [docs](https://static.nrk.no/core-docs/1.0.0/index.html).
+Read usage in the [docs](https://static.nrk.no/core-docs/latest/index.html).
 
 ## Local development
 First clone `@nrk/core-docs` and install its dependencies:

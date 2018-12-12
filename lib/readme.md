@@ -76,7 +76,7 @@ to get HTML highlighting colors:
 ## Inline demos
 
 You can write an inline demo in your markdown by prepending
-the code block with `<!-- demo -->`. Demos supports HTML, CSS and JavaScript (ES5, ES6 and JSX).
+the code block with `<!-- demo -->`. Demos supports HTML, CSS and JavaScript (ES5, ES6 and JSX) all the way back to IE9!
 Example:
 
 ```
