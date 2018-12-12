@@ -88,6 +88,15 @@ pre, code { overflow: auto; background: #f0f5fe }
   max-width: 650px;
 }
 
+.docs-main > h2::before {
+  content: '';
+  position: relative;
+  display: block;
+  width: calc(100vw - 270px);
+  border-top: 1px solid #eee;
+  margin: 4rem 0 4rem -7vw;
+}
+
 .docs-main > h3 {
   font-weight: 600;
   font-size: 12px;

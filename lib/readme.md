@@ -3,8 +3,6 @@
 > `@nrk/core-docs` makes it easy to write documentation for your project in [markdown](https://github.com/markedjs/marked) and
 render it beautifully.
 
----
-
 ## Getting started
 
 `@nrk/core-docs` can parse and render all [markdown](https://github.com/markedjs/marked) files you put in your repository. The only requirement, is a `index.html` which declares the menu as a `<ul>` and loads `@nrk/core-docs`. Link to your markdown files using their relative path, prepended with `?`. Example:
@@ -40,7 +38,6 @@ render it beautifully.
 Add links to code repo, changelog and other useful places for your project to make the documentation a central go-to place for your project.
 Links containing `github.com` will get a GitHub icon and links with the `download` attribute will get a download icon.
 
----
 
 ## Syntax highlighting
 
@@ -75,8 +72,6 @@ to get HTML highlighting colors:
 </ul>
 
 ```
-
----
 
 ## Inline demos
 
