@@ -97,7 +97,7 @@ pre, code { overflow: auto; background: #f0f5fe }
   margin: 4rem 0 4rem -7vw;
 }
 
-.docs-main > h3 {
+.docs-main h3 {
   font-weight: 600;
   font-size: 12px;
   margin: 2em 0 .5em;
