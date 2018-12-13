@@ -5,7 +5,8 @@ render it beautifully.
 
 ## Usage 
 
-Read usage in the [docs](https://static.nrk.no/core-docs/latest/index.html).
+Read usage in the [docs](https://static.nrk.no/core-docs/latest/index.html). 
+See other live examples [here](https://static.nrk.no/core-analytics/latest/index.html) and [here](https://static.nrk.no/core-icons/latest/index.html).
 
 ## Local development
 First clone `@nrk/core-docs` and install its dependencies:
