@@ -4,6 +4,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body { background: #fff; color: #141517 } /* Ensure Firefox darkmode does not get black background */
 
 a { color: #0059b3 }
 pre { padding: 1em }
