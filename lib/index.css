@@ -1,10 +1,10 @@
 html {
   font: 100%/1.6 'LFT Etica',sans-serif;
-  color: #26292a;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body { background: #fff; color: #141517 } /* Ensure Firefox darkmode does not get black background */
 
 a { color: #0059b3 }
 pre { padding: 1em }
@@ -129,6 +129,7 @@ pre, code { overflow: auto; background: #f0f5fe }
 }
 
 .docs-main > table {
+  table-layout: fixed;
   width: 100%;
   margin: 2rem 0;
 }
