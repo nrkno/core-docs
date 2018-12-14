@@ -73,9 +73,9 @@ pre, code { overflow: auto; background: #f0f5fe }
 }
 
 .docs-main > p {
-  max-width: 45em;
+  max-width: 45rem;
   margin-top: 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .docs-main > h1 {
@@ -91,7 +91,7 @@ pre, code { overflow: auto; background: #f0f5fe }
   font-size: 1.5em;
   line-height: 1.5;
   margin: .5em 0;
-  max-width: 650px;
+  max-width: 45rem;
 }
 
 .docs-main > h2::before,
