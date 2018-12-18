@@ -159,7 +159,10 @@ pre, code { overflow: auto; background: #f0f5fe }
 }
 
 @media(min-width:700px) {
-  .docs-main { margin-left: 270px }
+  .docs-main {
+    display: block;
+    margin-left: 270px;
+  }
   .docs-menu {
     overflow: auto;
     box-sizing: border-box;
