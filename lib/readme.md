@@ -17,7 +17,7 @@ render it beautifully.
   <li><a href="https://github.com/nrkno/core-docs/releases">View changelog</a></li>
   <li><a href="#" download>Download example</a></li>
 </ul>
-<script src="https://static.nrk.no/core-docs/major/1/core-docs.min.js" charset="utf-8" defer></script>
+<script src="https://static.nrk.no/core-docs/major/1/core-docs.min.js" charset="utf-8"></script>
 ```
 
 
