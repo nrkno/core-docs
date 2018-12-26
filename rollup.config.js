@@ -23,7 +23,7 @@ const plugins = [
   replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
   html({ include: 'lib/*.html' }),
   postcss({
-    minimize: { preset: 'default', discardUnused: { fontFace: false } },
+    minimize: { preset: 'default', discardUnused: { fontFace: false }, reduceIdents: { keyframes: false } },
     plugins: [autoprefixer({ browsers: ['last 1 version', '> .1%', 'ie 9-11'] })],
     inject: false
   }),
