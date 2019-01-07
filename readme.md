@@ -3,10 +3,8 @@
 > `@nrk/core-docs` makes it easy to write documentation for your project in [markdown](https://github.com/markedjs/marked) and 
 render it beautifully.
 
-## Usage 
-
-Read usage in the [docs](https://static.nrk.no/core-docs/latest/index.html). 
-See other live examples at [`@nrkno/core-css`](https://static.nrk.no/core-css/latest/index.html), 
+For installation and usage read the [documentation](https://static.nrk.no/core-docs/latest/index.html). 
+Check out live examples at [`@nrkno/core-css`](https://static.nrk.no/core-css/latest/index.html), 
 [`@nrkno/core-analytics`](https://static.nrk.no/core-analytics/latest/index.html) 
 and [`@nrkno/core-icons`](https://static.nrk.no/core-icons/latest/index.html).
 
