@@ -13,6 +13,7 @@ body {
 a { color: #0059b3 }
 pre { padding: 1em }
 pre, code { overflow: auto; background: #f0f5fe }
+strong, b { font-weight: 600 } /* LFT Etica 700 is a bit too bold */
 
 .docs-menu {
   margin: 0;
