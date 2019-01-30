@@ -4,6 +4,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 body {
   margin: 0;
   background: #fff; /* Ensure Firefox darkmode does not get black background */
@@ -14,6 +15,7 @@ a { color: #0059b3 }
 pre { padding: 1em }
 pre, code { overflow: auto; background: #f0f5fe }
 strong, b { font-weight: 600 } /* LFT Etica 700 is a bit too bold */
+img, video { max-width: 100% }
 
 .docs-menu {
   margin: 0;
