@@ -38,7 +38,7 @@ strong, b { font-weight: 600 } /* LFT Etica 700 is a bit too bold */
 .docs-menu ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 0 30px;
 }
 
 .docs-menu ul ul { padding: 0 30px; }
@@ -167,6 +167,7 @@ strong, b { font-weight: 600 } /* LFT Etica 700 is a bit too bold */
     box-sizing: border-box;
     position: fixed;
     top: 0;
+    bottom: 0;
     padding: 70px 30px;
     width: 270px;
     min-height: 100vh;
