@@ -21,7 +21,8 @@ img, video { max-width: 100% }
   margin: 0;
   padding: 30px;
   font-size: 14px;
-  line-height: 30px
+  line-height: 30px;
+  background: #fff;
 }
 
 .docs-logo {
@@ -171,8 +172,9 @@ img, video { max-width: 100% }
     top: 0;
     bottom: 0;
     padding: 70px 30px;
-    width: 270px;
+    min-width: 270px;
     min-height: 100vh;
     border-right: 1px solid #eee;
+    z-index: 1;
   }
 }
