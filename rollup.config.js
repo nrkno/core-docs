@@ -22,7 +22,6 @@ if (isBuild) {
 }
 
 const banner = `/*! @nrk/core-docs v${pkg.version} - Copyright (c) 2018-${new Date().getFullYear()} NRK */`
-const minify = !isBuild ? [] : uglify({ output: { comments: /^!/ } })
 const plugins = [
   replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
   html({ include: 'lib/*.html' }),
@@ -43,7 +42,7 @@ const plugins = [
 export default [{
   input: 'lib/index.js', // Minified for browsers
   output: { file: 'lib/core-docs.min.js', format: 'iife', sourcemap: true, banner },
-  plugins: plugins.concat(minify)
+  plugins: plugins.concat(isBuild && uglify({ output: { comments: /^!/ } }))
 }, {
   input: 'lib/index.js', // Full source for browsers
   output: { file: 'lib/core-docs.js', format: 'iife', banner },
