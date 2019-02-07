@@ -5,11 +5,11 @@ render it beautifully.
 
 ## Documentation
 
-https://static.nrk.no/core-docs/latest/index.html
+https://static.nrk.no/core-docs/latest/
 
 ## Getting started
 
-core-docs can parse and render all [markdown](https://github.com/markedjs/marked) files you put in your repository. The only requirement is an `index.html` file which declares the menu as a `<ul>` and loads the core-docs script. Link to your markdown files using their relative path, prepended with `?`. Example:
+core-docs can parse and render all markdown files you put in your repository. The only requirement is an `index.html` file which declares the menu as a `<ul>` and loads the core-docs script. Link to your markdown files using their relative path, prepended with `?`. Example:
 
 ```html
 <!doctype html>

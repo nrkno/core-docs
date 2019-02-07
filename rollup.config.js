@@ -11,14 +11,18 @@ import path from 'path'
 import fs from 'fs'
 import pkg from './package.json'
 
-if (!process.env.ROLLUP_WATCH) {
-  const readme = String(fs.readFileSync(path.join('lib', 'readme.md')))
-  const versioned = readme.replace(/\/major\/\d+/, `/major/${pkg.version.match(/\d+/)}`)
-  fs.writeFileSync(path.join('lib', 'readme.md'), versioned)
+const isBuild = !process.env.ROLLUP_WATCH
+
+if (isBuild) {
+  const readmes = ['readme.md', path.join('lib', 'readme.md')]
+  readmes.map((readme) => [readme, String(fs.readFileSync(readme))]).forEach(([path, readme]) => {
+    const versioned = readme.replace(/core-docs\/major\/\d+/, `core-docs/major/${pkg.version.match(/\d+/)}`)
+    fs.writeFileSync(path, versioned)
+  })
 }
 
 const banner = `/*! @nrk/core-docs v${pkg.version} - Copyright (c) 2018-${new Date().getFullYear()} NRK */`
-const minify = process.env.ROLLUP_WATCH ? [] : uglify({ output: { comments: /^!/ } })
+const minify = !isBuild ? [] : uglify({ output: { comments: /^!/ } })
 const plugins = [
   replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
   html({ include: 'lib/*.html' }),
@@ -30,7 +34,7 @@ const plugins = [
   resolve(),
   commonjs(),
   buble({ transforms: { dangerousForOf: true } }),
-  !process.env.ROLLUP_WATCH || serve({
+  isBuild || serve({
     contentBase: 'lib',
     headers: { 'X-UA-Compatible': 'IE=edge' }
   })
