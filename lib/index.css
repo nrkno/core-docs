@@ -51,7 +51,6 @@ img, video { max-width: 100% }
   text-decoration: none;
   line-height: 1.5;
   padding: .3em 0;
-  animation: fadeIn .5s backwards;
 }
 
  /* Allow remember scroll position */
@@ -153,10 +152,6 @@ img, video { max-width: 100% }
 }
 
 .docs-demo > details { margin: 1rem -1rem -1rem; }
-
-@keyframes fadeIn {
-  from { max-height: 0; }
-}
 
 @media(min-width:700px) {
   .docs-main { margin-left: 270px }
