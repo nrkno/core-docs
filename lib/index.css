@@ -83,7 +83,7 @@ img, video { max-width: 100% }
   font-size: 1.2rem;
 }
 
-.docs-main > h1 {
+.docs-main h1 {
   font-weight: 300;
   font-size: 3rem;
   line-height: 1;
@@ -91,7 +91,7 @@ img, video { max-width: 100% }
 }
 
 .docs-main > blockquote,
-.docs-main > h2 {
+.docs-main h2 {
   font-weight: 300;
   font-size: 1.5em;
   line-height: 1.5;
@@ -99,7 +99,7 @@ img, video { max-width: 100% }
   max-width: 45rem;
 }
 
-.docs-main > h2::before,
+.docs-main h2::before,
 .docs-main > hr {
   content: '';
   position: relative;
