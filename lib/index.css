@@ -106,12 +106,12 @@ img, video { max-width: 100% }
   text-transform: uppercase;
 }
 
-.docs-main > h1 a,
-.docs-main > h2 a,
-.docs-main > h3 a,
-.docs-main > h4 a {
+.docs-main h1 a,
+.docs-main h2 a,
+.docs-main h3 a,
+.docs-main h4 a {
   text-decoration: none;
-  color: currentColor;
+  color: inherit;
 }
 
 .docs-main > ul {
