@@ -62,7 +62,7 @@ img, video { max-width: 100% }
 .docs-main {
   display: block;
   overflow: hidden;
-  padding: 4rem 7vw;
+  padding: 4rem 7vw 8rem;
   transition: 1s;
 }
 
@@ -146,7 +146,7 @@ img, video { max-width: 100% }
 }
 
 .docs-demo {
-  background: #f0f5fe;
+  border: 3px solid #f0f5fe;
   padding: 1rem;
   margin: 1rem 0;
 }
@@ -158,8 +158,41 @@ img, video { max-width: 100% }
   font-size: 12px;
   border-top: 2px solid #fff;
 }
+.docs-demo > details {
+  background: #f0f5fe;
+  margin: 1rem -1rem -1rem;
+}
+.docs-demo > details::after {
+  content: '';
+  display: table; /* Fix margin collapse */
+}
 
-.docs-demo > details { margin: 1rem -1rem -1rem; }
+.docs-tabs { overflow: hidden }
+.docs-tabs::after {
+  content: '';
+  box-sizing: border-box;
+  overflow: hidden; /* Triggers hasLayout */
+  display: block;
+  height: 40px;
+  border-bottom: 1px solid #ddd;
+}
+.docs-tabs > a {
+  float: left;
+  box-sizing: border-box;
+  text-decoration: none;
+  padding: 0 1em;
+  border: 1px solid transparent;
+  border-bottom-color: #ddd;
+  border-radius: 3px 3px 0 0;
+  outline-offset: -7px;
+  color: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 40px;
+  height: 40px;
+}
+.docs-tabs > a[aria-selected="true"] { border-color:  #ddd #ddd transparent }
+.docs-tabs ~ div { outline: 0 } /* Hide outline from panels */
 
 @media(min-width:700px) {
   .docs-main { margin-left: 270px }
