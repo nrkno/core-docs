@@ -41,7 +41,7 @@ Links containing `github.com` will get a GitHub icon and links with the `downloa
 
 ## Syntax highlighting
 
-Your markdown code can be automatically hightlighted by prefixing code blocks with the language extension,
+Your markdown code can be automatically highlighted by prefixing code blocks with the language extension,
 like we do with <code>```html</code>. The docs uses [code-prettify](https://github.com/google/code-prettify) underneath,
 so check if your language is supported.
 
@@ -57,7 +57,7 @@ For instance you write:
   <li><button>Safari</button></li>
   <li><button>Microsoft Edge</button></li>
 </ul>
-``````
+```
 
 to get HTML highlighting colors:
 
@@ -73,7 +73,7 @@ to get HTML highlighting colors:
 
 ```
 
-## Inline demos
+## Demos
 
 You can write an inline demo in your markdown by prepending
 your `html` code block with `<!-- demo -->`. Demos supports HTML, CSS and JavaScript (ES5, ES6 and JSX) all the way back to IE9!
@@ -87,7 +87,7 @@ Example:
 <button id="press-button">Press me</button>
 <script>
   document.addEventListener('click', event => {
-    if (event.target.nodeName === 'BUTTON')
+    if (event.target.id === 'press-button')
       alert('You pressed me')
   })
 </script>
@@ -104,8 +104,37 @@ becomes:
 <button id="press-button">Press me</button>
 <script>
   document.addEventListener('click', event => {
-    if (event.target.nodeName === 'BUTTON')
+    if (event.target.id === 'press-button')
       alert('You pressed me')
   })
 </script>
 ```
+
+
+## Tabs
+
+`@nrk/core-docs` automatically converts all headings level 4 to tabs. Content after a heading level 4 will be put in the correlating tab panel, unless it is a heading level 1, heading level 2, horizontal ruler, or new heading level 4. Example:
+
+```
+#### Tab example 1
+
+Tab content 1
+
+#### Tab example 2
+
+Tab content 2
+
+### Nested heading 3
+```
+
+becomes:
+
+#### Tab example 1
+
+Tab content 1
+
+#### Tab example 2
+
+Tab content 2
+
+### Nested heading level 3
