@@ -184,7 +184,6 @@ img, video { max-width: 100% }
   padding: 0 1em;
   border: 1px solid transparent;
   border-bottom-color: #ddd;
-  border-radius: 3px 3px 0 0;
   outline-offset: -7px;
   color: inherit;
   font-weight: 600;
