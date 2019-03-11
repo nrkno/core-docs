@@ -65,7 +65,7 @@ img, video { max-width: 100% }
   transition: 1s;
 }
 
-.docs-main .docs-paragraph {
+.docs-p {
   max-width: 45rem;
   margin-top: 0;
   font-size: 1.2rem;
@@ -117,8 +117,6 @@ img, video { max-width: 100% }
 
 .docs-code {
   padding: 1em;
-  overflow: auto;
-  background: #f4f4f4;
 }
 
 .docs-table th {
