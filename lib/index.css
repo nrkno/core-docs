@@ -166,6 +166,7 @@ img, video { max-width: 100% }
   content: '';
   display: table; /* Fix margin collapse */
 }
+.docs-demo pre { margin: 0 }
 
 .docs-tabs { overflow: hidden }
 .docs-tabs::after {
