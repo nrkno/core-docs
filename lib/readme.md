@@ -5,7 +5,7 @@ render it beautifully.
 
 ## Getting started
 
-`@nrk/core-docs` can parse and render all [markdown](https://github.com/markedjs/marked) files you put in your repository. The only requirement, is a `index.html` which declares the menu as a `<ul>` and loads `@nrk/core-docs`. Link to your markdown files using their relative path, prepended with `?`. Example:
+Core Docs can parse and render all [markdown](https://github.com/markedjs/marked) files you put in your directory. The only requirement, is a `index.html` which declares the menu as a `<ul>` and loads `@nrk/core-docs`. Link to your markdown files using their relative path, prepended with `?`. Example:
 
 ```html
 <!doctype html>
@@ -113,28 +113,40 @@ becomes:
 
 ## Tabs
 
-`@nrk/core-docs` automatically converts all headings level 4 to tabs. Content after a heading level 4 will be put in the correlating tab panel, unless it is a heading level 1, heading level 2, horizontal ruler, or new heading level 4. Example:
+All level 4 headings are automatically converted to tabs. Content after a heading level 4 will be put in the correlating tab panel, unless it is a heading level 1, heading level 2, horizontal ruler, or new heading level 4. Example:
 
-```
-#### Tab example 1
+```md
+#### Introduction
 
-Tab content 1
+Let me introduce you to this thing.
 
-#### Tab example 2
+#### Details
 
-Tab content 2
+Here are the nitty gritty details.
 
-### Nested heading 3
+### More
+
+More details under heading
+
+#### Discussions
+
+Here be discussions.
 ```
 
 becomes:
 
-#### Tab example 1
+#### Introduction
 
-Tab content 1
+This is the introduction. It contains some text.
 
-#### Tab example 2
+#### Details
 
-Tab content 2
+Here are the nitty gritty details.
 
-### Nested heading level 3
+### More
+
+More details under heading
+
+#### Discussions
+
+Here be discussions.

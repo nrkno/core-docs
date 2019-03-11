@@ -12,8 +12,7 @@ body {
 }
 
 a { color: #0059b3 }
-pre { padding: 1em }
-pre, code { overflow: auto; background: #f0f5fe }
+pre, code { overflow: auto; background: #f4f4f4; }
 strong, b { font-weight: 600 } /* LFT Etica 700 is a bit too bold */
 img, video { max-width: 100% }
 
@@ -66,13 +65,13 @@ img, video { max-width: 100% }
   transition: 1s;
 }
 
-.docs-main > p {
+.docs-main .docs-paragraph {
   max-width: 45rem;
   margin-top: 0;
   font-size: 1.2rem;
 }
 
-.docs-main > h1 {
+.docs-heading--1 {
   font-weight: 300;
   font-size: 3rem;
   line-height: 1;
@@ -80,7 +79,7 @@ img, video { max-width: 100% }
 }
 
 .docs-main > blockquote,
-.docs-main > h2 {
+.docs-heading--2 {
   font-weight: 300;
   font-size: 1.5em;
   line-height: 1.5;
@@ -88,8 +87,8 @@ img, video { max-width: 100% }
   max-width: 45rem;
 }
 
-.docs-main > h2::before,
-.docs-main > hr {
+.docs-heading--2::before,
+.docs-ruler {
   content: '';
   position: relative;
   display: block;
@@ -99,33 +98,36 @@ img, video { max-width: 100% }
   border-top: 1px solid #eee;
 }
 
-.docs-main h3 {
+.docs-heading--3 {
   font-weight: 600;
   font-size: 12px;
   margin: 2em 0 .5em;
   text-transform: uppercase;
 }
 
-.docs-main h1 a,
-.docs-main h2 a,
-.docs-main h3 a,
-.docs-main h4 a {
+.docs-heading a {
   text-decoration: none;
   color: inherit;
 }
 
-.docs-main > ul {
+.docs-list {
   padding-left: 25px;
   list-style: url("data:image/svg+xml,%3Csvg width='25' height='10' viewBox='0 0 7 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4-4 4' stroke='%23ccc' stroke-width='2' fill='none'/%3E%3C/svg%3E");
 }
 
-.docs-main > table th {
+.docs-code {
+  padding: 1em;
+  overflow: auto;
+  background: #f4f4f4;
+}
+
+.docs-table th {
   font-weight: 600;
   font-size: 12px;
   text-transform: uppercase;
 }
 
-.docs-main > table td {
+.docs-table td {
   min-width: 140px;
   font-size: 14px;
   line-height: 1.5;
@@ -134,7 +136,7 @@ img, video { max-width: 100% }
   vertical-align: top;
 }
 
-.docs-main > table {
+.docs-table {
   table-layout: fixed;
   width: 100%;
   margin: 2rem 0;
@@ -146,7 +148,7 @@ img, video { max-width: 100% }
 }
 
 .docs-demo {
-  border: 3px solid #f0f5fe;
+  border: 3px solid #f4f4f4;
   padding: 1rem;
   margin: 1rem 0;
 }
@@ -159,7 +161,7 @@ img, video { max-width: 100% }
   border-top: 2px solid #fff;
 }
 .docs-demo > details {
-  background: #f0f5fe;
+  background: #f4f4f4;
   margin: 1rem -1rem -1rem;
 }
 .docs-demo > details::after {
@@ -168,7 +170,10 @@ img, video { max-width: 100% }
 }
 .docs-demo pre { margin: 0 }
 
-.docs-tabs { overflow: hidden }
+.docs-tabs {
+  overflow: hidden;
+  margin: 1em 0;
+}
 .docs-tabs::after {
   content: '';
   box-sizing: border-box;
