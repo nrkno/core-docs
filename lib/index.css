@@ -155,12 +155,12 @@ img, video { max-width: 100% }
   cursor: pointer;
   padding: 5px 1rem;
   font-weight: 600;
-  font-size: 12px;
-  border-top: 2px solid #fff;
+  font-size: 13px;
+  text-transform: capitalize;
 }
 .docs-demo > details {
   background: #f4f4f4;
-  margin: 1rem -1rem -1rem;
+  margin: 1rem calc(-1rem - 3px) calc(-1rem - 3px);
 }
 .docs-demo > details::after {
   content: '';
