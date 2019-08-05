@@ -27,13 +27,13 @@ const plugins = [
   html({ include: 'lib/*.html' }),
   postcss({
     minimize: { preset: 'default', discardUnused: { fontFace: false }, reduceIdents: { keyframes: false } },
-    plugins: [autoprefixer({ browsers: ['last 1 version', '> .1%', 'ie 9-11'] })],
+    plugins: [autoprefixer()],
     inject: false
   }),
   resolve(),
   commonjs(),
   buble({ transforms: { dangerousForOf: true } }),
-  isBuild || serve({
+  !isBuild && serve({
     contentBase: 'lib',
     headers: { 'X-UA-Compatible': 'IE=edge' }
   })
