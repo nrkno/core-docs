@@ -12,7 +12,8 @@
     "publish:major": "npm version major -m 'Release major %s'",
     "postversion": "npm run build && git push && git push --tags && npm publish",
     "start": "rollup --config --watch",
-    "static-publish": "npm run build && static-publish --directory=lib --latest --major --account=nrk-core"
+    "static-publish": "npm run build && static-publish --directory=lib --latest --major --account=nrk-core",
+    "test": "standard -v"
   },
   "repository": {
     "type": "git",

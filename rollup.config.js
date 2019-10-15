@@ -1,3 +1,4 @@
+import fs from 'fs'
 import autoprefixer from 'autoprefixer'
 import buble from 'rollup-plugin-buble'
 import commonjs from 'rollup-plugin-commonjs'
@@ -7,20 +8,9 @@ import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import serve from 'rollup-plugin-serve'
 import { uglify } from 'rollup-plugin-uglify'
-import path from 'path'
-import fs from 'fs'
 import pkg from './package.json'
 
 const isBuild = !process.env.ROLLUP_WATCH
-
-if (isBuild) {
-  const readmes = ['readme.md', path.join('lib', 'readme.md')]
-  readmes.map((readme) => [readme, String(fs.readFileSync(readme))]).forEach(([path, readme]) => {
-    const versioned = readme.replace(/core-docs\/major\/\d+/, `core-docs/major/${pkg.version.match(/\d+/)}`)
-    fs.writeFileSync(path, versioned)
-  })
-}
-
 const banner = `/*! @nrk/core-docs v${pkg.version} - Copyright (c) 2018-${new Date().getFullYear()} NRK */`
 const plugins = [
   replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
@@ -38,6 +28,13 @@ const plugins = [
     headers: { 'X-UA-Compatible': 'IE=edge' }
   })
 ]
+
+if (isBuild) {
+  for (const file of ['readme.md', 'lib/readme.md']) {
+    const readme = fs.readFileSync(file, 'utf-8')
+    fs.writeFileSync(file, readme.replace(/\/major\/\d+/, `/major/${pkg.version.match(/\d+/)}`))
+  }
+}
 
 export default [{
   input: 'lib/index.js', // Minified for browsers
