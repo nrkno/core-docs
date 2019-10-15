@@ -150,3 +150,17 @@ More details under heading
 #### Discussions
 
 Here be discussions.
+
+
+## Options
+
+### Tabs
+
+To disable automatic tabs and render normal `<h4>` headings, set `data-tabs="false"` in the `index.html` containing the menu:
+
+```html
+<ul data-tabs="false">
+...
+</ul>
+
+```

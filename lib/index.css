@@ -113,6 +113,12 @@ img, video { max-width: 100% }
   text-transform: uppercase;
 }
 
+.docs-heading--4 {
+  font-size: 10px;
+  font-weight: 600;
+  margin: 2em 0 .5em;
+}
+
 .docs-heading a {
   text-decoration: none;
   color: inherit;
