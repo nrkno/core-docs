@@ -112,24 +112,40 @@ becomes:
 
 ## Tabs
 
-All level 4 headings are automatically converted to tabs. Content after a heading level 4 will be put in the correlating tab panel, unless it is a heading level 1, heading level 2, horizontal ruler, or new heading level 4. Example:
+To render all `<h4>` headings as tabs, set the `tabs` option to `true` in the `index.html` containing the menu:
+
+```html
+<ul>
+...
+</ul>
+<script>
+  window.coreDocs = {
+    tabs: true   // Enable automatic tabs
+  }
+</script>
+<script src="https://static.nrk.no/core-docs/major/1/core-docs.min.js" charset="utf-8"></script>
+```
+
+All level 4 headings are then automatically converted to tabs. Content after a heading level 4 will be put in the correlating tab panel, unless it is a heading level 1, heading level 2, horizontal ruler, or new heading level 4. For example this:
 
 ```md
 #### Introduction
 
-Let me introduce you to this thing.
+This is the introduction. It contains some text.
 
 #### Details
 
-Here are the nitty gritty details.
+Here are the details.
 
 ### More
 
-More details under heading
+More details
 
-#### Discussions
 
-Here be discussions.
+#### Last
+
+The end
+
 ```
 
 becomes:
@@ -140,31 +156,13 @@ This is the introduction. It contains some text.
 
 #### Details
 
-Here are the nitty gritty details.
+Here are the details.
 
 ### More
 
-More details under heading
-
-#### Discussions
-
-Here be discussions.
+More details
 
 
-## Options
+#### Last
 
-### Tabs
-
-To disable automatic tabs and render normal `<h4>` headings, set the `tabs` option to `false` in the `index.html` containing the menu:
-
-```html
-<ul>
-...
-</ul>
-<script>
-  window.coreDocs = {
-    tabs: false   // Disable automatic tabs
-  }
-</script>
-<script src="https://static.nrk.no/core-docs/major/1/core-docs.min.js" charset="utf-8"></script>
-```
+The end
