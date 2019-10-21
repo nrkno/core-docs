@@ -32,7 +32,6 @@ Core Docs can parse and render all [markdown](https://github.com/markedjs/marked
 └── readme.md
 ```
 
-
 ### External links
 
 Add links to code repo, changelog and other useful places for your project to make the documentation a central go-to place for your project.
@@ -156,11 +155,16 @@ Here be discussions.
 
 ### Tabs
 
-To disable automatic tabs and render normal `<h4>` headings, set `data-tabs="false"` in the `index.html` containing the menu:
+To disable automatic tabs and render normal `<h4>` headings, set the `tabs` option to `false` in the `index.html` containing the menu:
 
 ```html
-<ul data-tabs="false">
+<ul>
 ...
 </ul>
-
+<script>
+  window.coreDocs = {
+    tabs: false   // Disable automatic tabs
+  }
+</script>
+<script src="https://static.nrk.no/core-docs/major/1/core-docs.min.js" charset="utf-8"></script>
 ```
