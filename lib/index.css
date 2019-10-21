@@ -108,13 +108,12 @@ img, video { max-width: 100% }
 
 .docs-heading--3 {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 16px;
   margin: 2em 0 .5em;
-  text-transform: uppercase;
 }
 
 .docs-heading--4 {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   margin: 2em 0 .5em;
   text-transform: uppercase;
