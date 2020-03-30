@@ -36,7 +36,7 @@
     "@nrk/core-fonts": "^2.4.0",
     "@nrk/core-icons": "^9.0.2",
     "@nrk/core-tabs": "^1.1.12",
-    "buble": "^0.19.8",
+    "buble": "^0.20.0",
     "code-prettify": "^0.1.0",
     "core-js": "^3.4.8",
     "marked": "^0.8.0",
