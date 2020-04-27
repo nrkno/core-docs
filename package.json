@@ -39,7 +39,7 @@
     "buble": "^0.20.0",
     "code-prettify": "^0.1.0",
     "core-js": "^3.4.8",
-    "marked": "^0.8.0",
+    "marked": "^1.0.0",
     "prop-types": "^15.7.2",
     "raf": "^3.4.1",
     "react": "^16.12.0",
