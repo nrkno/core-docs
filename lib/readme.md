@@ -166,3 +166,20 @@ More details
 #### Last
 
 The end
+
+
+## React
+
+You can also use React and to render demos out of the box.
+
+<script src="https://static.nrk.no/core-components/latest/core-toggle/core-toggle.jsx.js"></script>
+```html
+<!--demo-->
+<div id="jsx-toggle-default"></div>
+<script type="text/jsx">
+  ReactDOM.render(<>
+    <button>Toggle JSX</button>
+    <CoreToggle hidden onToggle={console.log}>Content</CoreToggle>
+  </>, document.getElementById('jsx-toggle-default'))
+</script>
+```
