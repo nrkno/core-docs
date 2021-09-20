@@ -170,7 +170,7 @@ The end
 
 ## React
 
-You can also use React and to render demos out of the box.
+You can also use React to render demos out of the box.
 
 <script src="https://static.nrk.no/core-components/latest/core-toggle/core-toggle.jsx.js"></script>
 ```html
