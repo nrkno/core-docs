@@ -199,6 +199,7 @@ img, video { max-width: 100% }
 }
 .docs-tabs > a[aria-selected="true"] { border-color:  #ddd #ddd transparent }
 .docs-tabs ~ div { outline: 0 } /* Hide outline from panels */
+[role="tabpanel"] { margin-top: 1em }
 
 @media(min-width:700px) {
   .docs-main { margin-left: 270px }
