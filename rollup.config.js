@@ -33,7 +33,8 @@ const plugins = [
   }),
   !isBuild && serve({
     contentBase: 'lib',
-    headers: { 'X-UA-Compatible': 'IE=edge' }
+    headers: { 'X-UA-Compatible': 'IE=edge' },
+    port: 10002
   })
 ]
 
