@@ -94,7 +94,6 @@ Example:
 
 becomes:
 
-
 ```html
 <!-- demo -->
 <style>
@@ -176,7 +175,7 @@ You can also use React to render demos out of the box.
 ```html
 <!--demo-->
 <div id="jsx-toggle-default"></div>
-<script type="text/jsx">
+<script type="text/javascript">
   ReactDOM.render(<>
     <button>Toggle JSX</button>
     <CoreToggle hidden onToggle={console.log}>Content</CoreToggle>
