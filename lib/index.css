@@ -6,13 +6,87 @@ html {
 }
 
 body {
-  margin: 0;
-  background: #fff; /* Ensure Firefox darkmode does not get black background */
-  color: #141517;
+  --docs-color-background: #fff;
+  --docs-color-background-code: #f4f4f4;
+  --docs-color-text: #141517;
+  --docs-color-link: #0059b3;
+  --docs-color-border: #eee;
+  --docs-color-shadow: #00b9f2;
+
+  /* Custom properties for prettify.js */
+  --docs-prettify-color-plaintext: #000;
+  --docs-prettify-color-string: #070;
+  --docs-prettify-color-keyword: #008;
+  --docs-prettify-color-comment: #800;
+  --docs-prettify-color-typename: #606;
+  --docs-prettify-color-literal: #066;
+  --docs-prettify-color-punctuation: #660;
+  --docs-prettify-color-tag: #008;
+  --docs-prettify-color-attributename: #606;
+  --docs-prettify-color-attributevalue: #070;
+  --docs-prettify-color-declaration: #606;
+  --docs-prettify-color-function: red;
+
+  --docs-prettify-color-prettyprint--background: #fff;
+  --docs-prettify-color-prettyprint--border: #888;
+  --docs-prettify-color-lineshading: #eee;
+
+  --docs-prettify-print-color-string: #060;
+  --docs-prettify-print-color-keyword: #006;
+  --docs-prettify-print-color-comment: #600;
+  --docs-prettify-print-color-typename: #404;
+  --docs-prettify-print-color-literal: #044;
+  --docs-prettify-print-color-punctuation: #440;
+  --docs-prettify-print-color-tag: #006;
+  --docs-prettify-print-color-attributename: #404;
+  --docs-prettify-print-color-attributevalue: #060;
 }
 
-a { color: #0059b3 }
-pre, code { overflow: auto; background: #f4f4f4; }
+body.docs-dark-mode {
+  --docs-color-background: #36363b; /* NRK Gray 800 */
+  --docs-color-background-code: #1d1d21; /* NRK Gray 900 */
+  --docs-color-text: #f7f4f2; /* NRK Gray 50 */
+  --docs-color-link: #b2cff5; /* NRK Core Blue 200 */
+  --docs-color-border: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
+  --docs-color-shadow: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
+
+  /* Dark theme for prettify.js */
+  --docs-prettify-color-plaintext: #ebe7e6; /* NRK Gray 100 */
+  --docs-prettify-color-string: #ffea05; /* NRK Yellow 400 */
+  --docs-prettify-color-keyword: #efb4ed; /* NRK Cool Pink 200 */
+  --docs-prettify-color-comment: #fec864; /* NRK Cool Orange 300 */
+  --docs-prettify-color-typename: #efb4ed; /* NRK Cool Pink 200 */
+  --docs-prettify-color-literal: #9951ea; /* NRK Purple 500 */
+  --docs-prettify-color-punctuation: #00d5e9; /* NRK Cool Mint 300 */
+  --docs-prettify-color-tag: #efb4ed; /* NRK Cool Pink 200 */
+  --docs-prettify-color-attributename: #83d499; /* NRK Cool Green 300 */
+  --docs-prettify-color-attributevalue: #ffea05; /* NRK Yellow 400 */
+  --docs-prettify-color-declaration: #efb4ed; /* NRK Cool Pink 200 */
+  --docs-prettify-color-function: #ff5555;
+
+  --docs-prettify-color-prettyprint--background: #282a36;
+  --docs-prettify-color-prettyprint--border: #888;
+  --docs-prettify-color-lineshading: #fec864; /* NRK Cool Orange 300 */
+
+  --docs-prettify-print-color-string: #ffea05; /* NRK Yellow 400 */
+  --docs-prettify-print-color-keyword: #efb4ed; /* NRK Cool Pink 200 */
+  --docs-prettify-print-color-comment: #fec864; /* NRK Cool Orange 300 */
+  --docs-prettify-print-color-typename: #404;
+  --docs-prettify-print-color-literal: #9951ea; /* NRK Purple 500 */
+  --docs-prettify-print-color-punctuation: #00d5e9; /* NRK Cool Mint 300 */
+  --docs-prettify-print-color-tag: #efb4ed; /* NRK Cool Pink 200 */
+  --docs-prettify-print-color-attributename: #83d499; /* NRK Cool Green 300 */
+  --docs-prettify-print-color-attributevalue: #ffea05; /* NRK Yellow 400 */
+}
+
+body {
+  margin: 0;
+  background: var(--docs-color-background); /* Ensure Firefox darkmode does not get black background */
+  color: var(--docs-color-text);
+}
+
+a { color: var(--docs-color-link) }
+pre, code { overflow: auto; background: var(--docs-color-background-code); }
 strong, b { font-weight: 600 } /* LFT Etica 700 is a bit too bold */
 img, video { max-width: 100% }
 
@@ -94,7 +168,7 @@ img, video { max-width: 100% }
   width: 100vw;
   margin: 4rem -7vw;
   border: 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--docs-color-border);
 }
 
 .docs-heading--3 {
@@ -133,7 +207,7 @@ img, video { max-width: 100% }
   font-size: 14px;
   line-height: 1.5;
   padding: 9px 2em 9px 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--docs-color-border);
   vertical-align: top;
 }
 
@@ -149,7 +223,7 @@ img, video { max-width: 100% }
 }
 
 .docs-demo {
-  border: 3px solid #f4f4f4;
+  border: 3px solid var(--docs-color-border);
   padding: 1rem;
   margin: 1rem 0;
 }
@@ -162,7 +236,7 @@ img, video { max-width: 100% }
   text-transform: capitalize;
 }
 .docs-demo > details {
-  background: #f4f4f4;
+  background: var(--docs-color-background-code);
   margin: 1rem calc(-1rem - 3px) calc(-1rem - 3px);
 }
 .docs-demo > details::after {
@@ -181,7 +255,7 @@ img, video { max-width: 100% }
   overflow: hidden; /* Triggers hasLayout */
   display: block;
   height: 40px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--docs-color-border);
 }
 .docs-tabs > a {
   float: left;
@@ -189,7 +263,7 @@ img, video { max-width: 100% }
   text-decoration: none;
   padding: 0 1em;
   border: 1px solid transparent;
-  border-bottom-color: #ddd;
+  border-bottom-color: var(--docs-color-border);
   outline-offset: -7px;
   color: inherit;
   font-weight: 600;
@@ -197,7 +271,7 @@ img, video { max-width: 100% }
   line-height: 40px;
   height: 40px;
 }
-.docs-tabs > a[aria-selected="true"] { border-color:  #ddd #ddd transparent }
+.docs-tabs > a[aria-selected="true"] { border-color:  var(--docs-color-border) var(--docs-color-border) transparent }
 .docs-tabs ~ div { outline: 0 } /* Hide outline from panels */
 [role="tabpanel"] { margin-top: 1em }
 
@@ -212,7 +286,7 @@ img, video { max-width: 100% }
     padding: 70px 30px;
     width: 270px;
     min-height: 100vh;
-    border-right: 1px solid #eee;
+    border-right: 1px solid var(--docs-color-border);
     z-index: 1;
   }
 }
