@@ -5,7 +5,7 @@
 .pln { color: var(--docs-prettify-color-plaintext, #000) }  /* plain text */
 
 @media screen {
-  .str { color: var(--docs-prettify-color-string, #080) }  /* string content */
+  .str { color: var(--docs-prettify-color-string, #070) }  /* string content */
   .kwd { color: var(--docs-prettify-color-keyword, #008) }  /* a keyword */
   .com { color: var(--docs-prettify-color-comment, #800) }  /* a comment */
   .typ { color: var(--docs-prettify-color-typename, #606) }  /* a type name */
@@ -14,7 +14,7 @@
   .pun, .opn, .clo { color: var(--docs-prettify-color-punctuation, #660) }
   .tag { color: var(--docs-prettify-color-tag, #008) }  /* a markup tag name */
   .atn { color: var(--docs-prettify-color-attributename, #606) }  /* a markup attribute name */
-  .atv { color: var(--docs-prettify-color-attributevalue, #080) }  /* a markup attribute value */
+  .atv { color: var(--docs-prettify-color-attributevalue, #070) }  /* a markup attribute value */
   .dec, .var { color: var(--docs-prettify-color-declaration, #606) }  /* a declaration; a variable name */
   .fun { color: var(--docs-prettify-color-function, red) }  /* a function name */
 }
