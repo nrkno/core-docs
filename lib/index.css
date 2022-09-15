@@ -275,6 +275,55 @@ img, video { max-width: 100% }
 .docs-tabs ~ div { outline: 0 } /* Hide outline from panels */
 [role="tabpanel"] { margin-top: 1em }
 
+.docs-switch-label {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.docs-switch {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  vertical-align: middle;
+  background: transparent;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  background: -webkit-radial-gradient(25%, circle, transparent 25%, currentColor 27.5%, currentColor);
+  background: radial-gradient(circle at 25%, transparent 25%, currentColor 27.5%, currentColor);
+  border-radius: 50px;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  width: 3em;
+  height: 1.5em;
+  opacity: .5;
+  -webkit-transition: background-position .2s;
+  transition: background-position .2s;
+}
+.docs-switch::-ms-check {
+  display: none;
+}
+.docs-switch:disabled {
+  opacity: .2;
+  cursor: not-allowed!important;
+}
+.docs-switch:focus {
+  box-shadow: 0 0 2px 1px var(--docs-color-shadow);
+}
+.docs-switch:active:hover {
+  background-position-x: .3em;
+}
+.docs-switch:checked {
+  opacity: 1;
+  background-position-x: 1.5em;
+}
+.docs-switch:checked:active:hover {
+  background-position-x: 1.2em;
+}
+
 @media(min-width:700px) {
   .docs-main { margin-left: 270px }
   .docs-menu {
