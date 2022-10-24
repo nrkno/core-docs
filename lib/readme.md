@@ -158,6 +158,23 @@ More details
 
 The end
 
+## Theme
+
+To turn on dark mode theme, set the `theme` option to `true` in the `index.html` containing the menu:
+
+```html
+<ul>
+  ...
+</ul>
+<script>
+  window.coreDocs = {
+    theme: true, // Enable themes for dark mode support
+    themeLabel: 'Mørkt tema', // Override default theme toggle label
+  }
+</script>
+<script src="https://static.nrk.no/core-docs/latest/core-docs.min.js" charset="utf-8"></script>
+```
+
 ## React
 
 You can also use React to render demos out of the box.
