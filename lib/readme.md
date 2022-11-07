@@ -38,8 +38,10 @@ Links containing `github.com` will get a GitHub icon and links with the `downloa
 ## Syntax highlighting
 
 Your markdown code can be automatically highlighted by prefixing code blocks with the language extension,
-like we do with <code>```html</code>. The docs uses [code-prettify](https://github.com/google/code-prettify) underneath,
-so check if your language is supported.
+like we do with <code>```html</code>. The docs uses [hljs (highlight.js)](https://highlightjs.org) under the hood.
+Language detection and other options can be configured by setting `window.coreDocs.hljsOptions` in the
+[same fashion](https://highlightjs.readthedocs.io/en/latest/api.html#configure) originally supported by hljs.
+See list of [supported languages](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md).
 
 For instance you write:
 
