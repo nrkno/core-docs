@@ -1,5 +1,6 @@
 .DS_Store
 .npm
+.vscode
 /node_modules
 /npm-debug*
 lib/core-docs*
