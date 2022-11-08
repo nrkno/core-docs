@@ -44,7 +44,6 @@ Language detection and other options can be configured by setting `window.coreDo
 See list of [supported languages](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md).
 
 For instance you write:
-
 ````
 ```html
 <ul>
@@ -124,7 +123,7 @@ To render all `<h4>` headings as tabs, set the `tabs` option to `true` in the `i
 
 All level 4 headings are then automatically converted to tabs. Content after a heading level 4 will be put in the correlating tab panel, unless it is a heading level 1, heading level 2, horizontal ruler, or new heading level 4. For example this:
 
-```md
+```
 #### Introduction
 
 This is the introduction. It contains some text.
@@ -175,50 +174,6 @@ To turn on dark mode theme, set the `theme` option to `true` in the `index.html`
   }
 </script>
 <script src="https://static.nrk.no/core-docs/latest/core-docs.min.js" charset="utf-8"></script>
-```
-
-The following CSS custom properties may be used to control themes:
-
-```CSS
-/* Default light theme */
-body {...}
-/* Core docs dark-mode */
-body.docs-dark-mode {
-  --docs-color-background: #36363b; /* NRK Gray 800 */
-  --docs-color-background-code: #1d1d21; /* NRK Gray 900 */
-  --docs-color-text: #f7f4f2; /* NRK Gray 50 */
-  --docs-color-link: #b2cff5; /* NRK Core Blue 200 */
-  --docs-color-border: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
-  --docs-color-shadow: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
-
-  /* Dark theme for prettify.js */
-  --docs-prettify-color-plaintext: #ebe7e6; /* NRK Gray 100 */
-  --docs-prettify-color-string: #ffea05; /* NRK Yellow 400 */
-  --docs-prettify-color-keyword: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-color-comment: #fec864; /* NRK Cool Orange 300 */
-  --docs-prettify-color-typename: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-color-literal: #9951ea; /* NRK Purple 500 */
-  --docs-prettify-color-punctuation: #00d5e9; /* NRK Cool Mint 300 */
-  --docs-prettify-color-tag: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-color-attributename: #83d499; /* NRK Cool Green 300 */
-  --docs-prettify-color-attributevalue: #ffea05; /* NRK Yellow 400 */
-  --docs-prettify-color-declaration: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-color-function: #ff7461; /* NRK Red 400 */
-
-  --docs-prettify-color-prettyprint--background: #282a36;
-  --docs-prettify-color-prettyprint--border: #888;
-  --docs-prettify-color-lineshading: #fec864; /* NRK Cool Orange 300 */
-
-  --docs-prettify-print-color-string: #ffea05; /* NRK Yellow 400 */
-  --docs-prettify-print-color-keyword: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-print-color-comment: #fec864; /* NRK Cool Orange 300 */
-  --docs-prettify-print-color-typename: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-print-color-literal: #9951ea; /* NRK Purple 500 */
-  --docs-prettify-print-color-punctuation: #00d5e9; /* NRK Cool Mint 300 */
-  --docs-prettify-print-color-tag: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-print-color-attributename: #83d499; /* NRK Cool Green 300 */
-  --docs-prettify-print-color-attributevalue: #ffea05; /* NRK Yellow 400 */
-}
 ```
 
 ## React
