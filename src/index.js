@@ -3,11 +3,9 @@ import '@webcomponents/custom-elements' // Polyfill CustomElements
 import 'core-js/features/map' // Fixes React
 import 'core-js/features/set' // Fixes React
 import hljs from 'highlight.js'
-import coreFonts from '@nrk/core-fonts/core-fonts.min.css'
 import CoreTabs from '@nrk/core-tabs'
-import docsCss from './index.css'
+import docsCss from './index.scss'
 import { marked } from 'marked'
-import highlightStyles from 'highlight.js/styles/a11y-dark.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
@@ -39,7 +37,7 @@ viewport.name = 'viewport'
 viewport.content = 'width=device-width, initial-scale=1'
 favicon.rel = 'icon'
 favicon.href = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAADFBMVEVHcEwAAAAAAAAAAAALttw0AAAABHRSTlMAo072UomwAQAAACtJREFUeAFjwAlCVUNVGf6v/2/H8Dt3fQnD77f8JQyf7/LbMXy8x6+LUxcABsAM/pO2f6gAAAAASUVORK5CYII='
-style.textContent = `${coreFonts}${highlightStyles}${docsCss}${styles}`
+style.textContent = `${docsCss}${styles}`
 
 head.appendChild(viewport)
 head.appendChild(favicon)
