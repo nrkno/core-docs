@@ -1,6 +1,4 @@
 import fs from 'fs'
-import autoprefixer from 'autoprefixer'
-import sass from 'rollup-plugin-sass';
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
@@ -9,7 +7,8 @@ import serve from 'rollup-plugin-serve'
 import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json'
 import copy from 'rollup-plugin-copy'
-import postcss from 'postcss'
+import postcss from 'rollup-plugin-postcss'
+import autoprefixer from 'autoprefixer'
 
 const isBuild = !process.env.ROLLUP_WATCH
 const banner = `/*! @nrk/core-docs v${pkg.version} - Copyright (c) 2018-${new Date().getFullYear()} NRK */`
@@ -24,10 +23,13 @@ const plugins = [
       { src: 'src/readme.md', dest: 'lib/' }
     ]
   }),
-  sass({
-    processor: (css) => postcss([autoprefixer])
-      .process(css, { from: 'src' })
-      .then((result) => result.css)
+  postcss({
+    extract: false,
+    modules: false,
+    use: [
+      ['sass', { includePaths: ['./src', './node_modules'] }]
+    ],
+    plugins: [autoprefixer]
   }),
   resolve(),
   commonjs(),
