@@ -12,34 +12,6 @@ body {
   --docs-color-link: #0059b3;
   --docs-color-border: #eee;
   --docs-color-shadow: #00b9f2;
-
-  /* Custom properties for prettify.js */
-  --docs-prettify-color-plaintext: #000;
-  --docs-prettify-color-string: #070;
-  --docs-prettify-color-keyword: #008;
-  --docs-prettify-color-comment: #800;
-  --docs-prettify-color-typename: #606;
-  --docs-prettify-color-literal: #066;
-  --docs-prettify-color-punctuation: #660;
-  --docs-prettify-color-tag: #008;
-  --docs-prettify-color-attributename: #606;
-  --docs-prettify-color-attributevalue: #070;
-  --docs-prettify-color-declaration: #606;
-  --docs-prettify-color-function: red;
-
-  --docs-prettify-color-prettyprint--background: #fff;
-  --docs-prettify-color-prettyprint--border: #888;
-  --docs-prettify-color-lineshading: #eee;
-
-  --docs-prettify-print-color-string: #060;
-  --docs-prettify-print-color-keyword: #006;
-  --docs-prettify-print-color-comment: #600;
-  --docs-prettify-print-color-typename: #404;
-  --docs-prettify-print-color-literal: #044;
-  --docs-prettify-print-color-punctuation: #440;
-  --docs-prettify-print-color-tag: #006;
-  --docs-prettify-print-color-attributename: #404;
-  --docs-prettify-print-color-attributevalue: #060;
 }
 
 body.docs-dark-mode {
@@ -49,34 +21,6 @@ body.docs-dark-mode {
   --docs-color-link: #b2cff5; /* NRK Core Blue 200 */
   --docs-color-border: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
   --docs-color-shadow: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
-
-  /* Dark theme for prettify.js */
-  --docs-prettify-color-plaintext: #ebe7e6; /* NRK Gray 100 */
-  --docs-prettify-color-string: #ffea05; /* NRK Yellow 400 */
-  --docs-prettify-color-keyword: #efb4ed; /* NRK Cosol Pink 200 */
-  --docs-prettify-color-comment: #fec864; /* NRK Cool Orange 300 */
-  --docs-prettify-color-typename: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-color-literal: #9951ea; /* NRK Purple 500 */
-  --docs-prettify-color-punctuation: #00d5e9; /* NRK Cool Mint 300 */
-  --docs-prettify-color-tag: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-color-attributename: #83d499; /* NRK Cool Green 300 */
-  --docs-prettify-color-attributevalue: #ffea05; /* NRK Yellow 400 */
-  --docs-prettify-color-declaration: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-color-function: #ff7461; /* NRK Red 400 */
-
-  --docs-prettify-color-prettyprint--background: #282a36;
-  --docs-prettify-color-prettyprint--border: #888;
-  --docs-prettify-color-lineshading: #fec864; /* NRK Cool Orange 300 */
-
-  --docs-prettify-print-color-string: #ffea05; /* NRK Yellow 400 */
-  --docs-prettify-print-color-keyword: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-print-color-comment: #fec864; /* NRK Cool Orange 300 */
-  --docs-prettify-print-color-typename: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-print-color-literal: #9951ea; /* NRK Purple 500 */
-  --docs-prettify-print-color-punctuation: #00d5e9; /* NRK Cool Mint 300 */
-  --docs-prettify-print-color-tag: #efb4ed; /* NRK Cool Pink 200 */
-  --docs-prettify-print-color-attributename: #83d499; /* NRK Cool Green 300 */
-  --docs-prettify-print-color-attributevalue: #ffea05; /* NRK Yellow 400 */
 }
 
 body {
