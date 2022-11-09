@@ -4,7 +4,7 @@ import 'core-js/features/map' // Fixes React
 import 'core-js/features/set' // Fixes React
 import hljs from 'highlight.js'
 import CoreTabs from '@nrk/core-tabs'
-import docsCss from './index.scss'
+import docStyles from './index.scss'
 import { marked } from 'marked'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -23,7 +23,7 @@ document.createElement('main')
 document.createElement('detail')
 document.createElement('summary')
 
-const styles = queryAll('style').map(style => style.textContent).join('')
+const inlineStyles = queryAll('style').map(style => style.textContent).join('')
 const menu = document.querySelector('ul')
 const options = (window.coreDocs || {})
 const head = document.head || document.documentElement.appendChild(document.createElement('head'))
@@ -37,11 +37,9 @@ viewport.name = 'viewport'
 viewport.content = 'width=device-width, initial-scale=1'
 favicon.rel = 'icon'
 favicon.href = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAADFBMVEVHcEwAAAAAAAAAAAALttw0AAAABHRSTlMAo072UomwAQAAACtJREFUeAFjwAlCVUNVGf6v/2/H8Dt3fQnD77f8JQyf7/LbMXy8x6+LUxcABsAM/pO2f6gAAAAASUVORK5CYII='
-style.textContent = `${docsCss}${styles}`
 
 head.appendChild(viewport)
 head.appendChild(favicon)
-head.appendChild(style)
 
 body.innerHTML = `
   <header class="docs-menu">
@@ -194,8 +192,9 @@ function preventScrollOnTabs (event) {
 
 function renderPage (event) {
   const markdown = event.target.responseText.replace(/<!--\s*demo\n|\ndemo\s*-->/g, '')
-  const html = marked(markdown, { renderer: mark, gfm: true })
-  main.innerHTML = options.tabs === true ? generateTabs(html) : html
+  const markdownHtml = marked(markdown, { renderer: mark, gfm: true })
+  main.innerHTML = options.tabs === true ? generateTabs(markdownHtml) : markdownHtml
+  const htmlElement = document.querySelector('html')
 
   if (options.theme) {
     const header = document.querySelector('.docs-menu')
@@ -205,17 +204,17 @@ function renderPage (event) {
       // Use system default if present
       const prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)').matches
       themeSwitch.checked = prefersColorSchemeDark
-      body.classList.toggle('docs-dark-mode', prefersColorSchemeDark)
+      htmlElement.setAttribute('data-theme', prefersColorSchemeDark ? 'dark' : 'light')
 
       // Listen to system changes
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
         themeSwitch.checked = event.matches
-        body.classList.toggle('docs-dark-mode', event.matches)
+        htmlElement.setAttribute('data-theme', event.matches ? 'dark' : 'light')
       })
     }
     // React to user input
     themeSwitch.addEventListener('change', event => {
-      body.classList.toggle('docs-dark-mode', event.target.checked)
+      htmlElement.setAttribute('data-theme', event.target.checked ? 'dark' : 'light')
     })
   }
 

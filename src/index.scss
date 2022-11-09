@@ -1,26 +1,10 @@
+@use "sass:meta";
+
 html {
   font: 100%/1.6 "LFT Etica", sans-serif;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  --docs-color-background: #fff;
-  --docs-color-background-code: #f4f4f4;
-  --docs-color-text: #141517;
-  --docs-color-link: #0059b3;
-  --docs-color-border: #eee;
-  --docs-color-shadow: #00b9f2;
-}
-
-body.docs-dark-mode {
-  --docs-color-background: #36363b; /* NRK Gray 800 */
-  --docs-color-background-code: #1d1d21; /* NRK Gray 900 */
-  --docs-color-text: #f7f4f2; /* NRK Gray 50 */
-  --docs-color-link: #b2cff5; /* NRK Core Blue 200 */
-  --docs-color-border: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
-  --docs-color-shadow: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
 }
 
 body {
@@ -327,5 +311,31 @@ video {
     min-height: 100vh;
     border-right: 1px solid var(--docs-color-border);
     z-index: 1;
+  }
+}
+
+html[data-theme="light"] {
+  @include meta.load-css("highlight.js/styles/a11y-light");
+
+  body {
+    --docs-color-background: #fff;
+    --docs-color-background-code: #f4f4f4;
+    --docs-color-text: #141517;
+    --docs-color-link: #0059b3;
+    --docs-color-border: #eee;
+    --docs-color-shadow: #00b9f2;
+  }
+}
+
+html[data-theme="dark"] {
+  @include meta.load-css("highlight.js/styles/a11y-dark");
+
+  body {
+    --docs-color-background: #36363b; /* NRK Gray 800 */
+    --docs-color-background-code: #1d1d21; /* NRK Gray 900 */
+    --docs-color-text: #f7f4f2; /* NRK Gray 50 */
+    --docs-color-link: #b2cff5; /* NRK Core Blue 200 */
+    --docs-color-border: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
+    --docs-color-shadow: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
   }
 }
