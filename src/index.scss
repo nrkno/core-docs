@@ -325,6 +325,10 @@ html[data-theme="light"] {
     --docs-color-border: #eee;
     --docs-color-shadow: #00b9f2;
   }
+
+  .hljs {
+    background-color: unset;
+  }
 }
 
 html[data-theme="dark"] {
@@ -337,5 +341,9 @@ html[data-theme="dark"] {
     --docs-color-link: #b2cff5; /* NRK Core Blue 200 */
     --docs-color-border: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
     --docs-color-shadow: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
+  }
+
+  .hljs {
+    background-color: unset;
   }
 }
