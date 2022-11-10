@@ -325,10 +325,6 @@ html[data-theme="light"] {
     --docs-color-border: #eee;
     --docs-color-shadow: #00b9f2;
   }
-
-  .hljs {
-    background-color: unset;
-  }
 }
 
 html[data-theme="dark"] {
@@ -339,10 +335,12 @@ html[data-theme="dark"] {
     --docs-color-background-code: #1d1d21; /* NRK Gray 900 */
     --docs-color-text: #f7f4f2; /* NRK Gray 50 */
     --docs-color-link: #b2cff5; /* NRK Core Blue 200 */
-    --docs-color-border: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
+    --docs-color-border: #1d1d21; /* Origo shade 2 */
     --docs-color-shadow: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
   }
+}
 
+html[data-theme] {
   .hljs {
     background-color: unset;
   }
