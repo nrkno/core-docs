@@ -146,17 +146,22 @@ function generateTabs (html) {
 }
 
 function insertThemeSwitch (headerElement) {
-  const DEFAULT_THEME_SWITCH_LABEL = 'Toggle theme'
-  const themeLabel = options.themeLabel || DEFAULT_THEME_SWITCH_LABEL
+  const DEFAULT_THEME_SWITCH_LABEL = 'toggle theme'
+  const themeLabel = options.theme.label || DEFAULT_THEME_SWITCH_LABEL
   const themeSwitch = document.createElement('input')
   const themeSwitchLabel = document.createElement('label')
+  const lightIcon = document.createElement('span')
+  lightIcon.innerHTML = '☼'
+  const darkIcon = document.createElement('span')
+  darkIcon.innerHTML = '☾'
 
   themeSwitch.type = 'checkbox'
   themeSwitch.className = 'docs-switch'
   themeSwitch.ariaLabel = themeLabel
   themeSwitchLabel.className = 'docs-switch-label'
-  themeSwitchLabel.textContent = themeLabel
+  themeSwitchLabel.appendChild(lightIcon)
   themeSwitchLabel.appendChild(themeSwitch)
+  themeSwitchLabel.appendChild(darkIcon)
 
   headerElement.insertAdjacentElement('afterbegin', themeSwitchLabel)
 }
@@ -196,7 +201,7 @@ function renderPage (event) {
   main.innerHTML = options.tabs === true ? generateTabs(markdownHtml) : markdownHtml
   const htmlElement = document.querySelector('html')
 
-  if (options.theme) {
+  if (options.theme.enabled) {
     const header = document.querySelector('.docs-menu')
     insertThemeSwitch(header)
     const themeSwitch = header.querySelector('input.docs-switch')
