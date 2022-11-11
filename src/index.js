@@ -207,9 +207,10 @@ function renderPage (event) {
     const themeSwitch = header.querySelector('input.docs-switch')
     if (window.matchMedia) {
       // Use system default if present
+      const themeUserState = window.sessionStorage.getItem('theme-user-state')
       const prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      themeSwitch.checked = prefersColorSchemeDark
-      htmlElement.setAttribute('data-theme', prefersColorSchemeDark ? 'dark' : 'light')
+      themeSwitch.checked = themeUserState ? themeUserState === 'dark' : prefersColorSchemeDark
+      htmlElement.setAttribute('data-theme', themeSwitch.checked ? 'dark' : 'light')
 
       // Listen to system changes
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
@@ -220,6 +221,7 @@ function renderPage (event) {
     // React to user input
     themeSwitch.addEventListener('change', event => {
       htmlElement.setAttribute('data-theme', event.target.checked ? 'dark' : 'light')
+      window.sessionStorage.setItem('theme-user-state', event.target.checked ? 'dark' : 'light')
     })
   }
 
