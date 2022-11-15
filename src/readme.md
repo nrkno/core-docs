@@ -123,7 +123,7 @@ To render all `<h4>` headings as tabs, set the `tabs` option to `true` in the `i
 
 All level 4 headings are then automatically converted to tabs. Content after a heading level 4 will be put in the correlating tab panel, unless it is a heading level 1, heading level 2, horizontal ruler, or new heading level 4. For example this:
 
-```
+```markdown
 #### Introduction
 
 This is the introduction. It contains some text.
