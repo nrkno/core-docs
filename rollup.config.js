@@ -9,6 +9,7 @@ import pkg from './package.json'
 import copy from 'rollup-plugin-copy'
 import postcss from 'rollup-plugin-postcss'
 import autoprefixer from 'autoprefixer'
+import path from 'path'
 
 const isBuild = !process.env.ROLLUP_WATCH
 const banner = `/*! @nrk/core-docs v${pkg.version} - Copyright (c) 2018-${new Date().getFullYear()} NRK */`
@@ -17,6 +18,13 @@ const plugins = [
     values: { 'process.env.NODE_ENV': JSON.stringify('production') },
     preventAssignment: true
   }),
+  {
+    name: 'watch-external',
+    buildStart () {
+      this.addWatchFile(path.resolve('src', 'index.html'))
+      this.addWatchFile(path.resolve('src', 'readme.md'))
+    }
+  },
   copy({
     targets: [
       { src: 'src/index.html', dest: 'lib/' },
@@ -54,7 +62,8 @@ if (isBuild) {
 export default [{
   input: 'src/index.js', // Minified for browsers
   output: { file: 'lib/core-docs.min.js', format: 'iife', sourcemap: true, banner },
-  plugins: plugins.concat(isBuild && terser({ format: { comments: /^!/ } }))
+  plugins: plugins.concat(isBuild && terser({ format: { comments: /^!/ } })),
+  watch: { include: 'src/**' }
 }, {
   input: 'src/index.js', // Full source for browsers
   output: { file: 'lib/core-docs.js', format: 'iife', banner },
