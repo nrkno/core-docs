@@ -156,6 +156,7 @@ function insertThemeSwitch (headerElement) {
 
   themeSwitch.type = 'checkbox'
   themeSwitch.className = 'docs-switch'
+  themeSwitch.id = 'core-docs-theme-switch'
   themeSwitch.ariaLabel = themeLabel
   themeSwitchLabel.className = 'docs-switch-label'
   themeSwitchLabel.appendChild(lightIcon)
