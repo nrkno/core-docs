@@ -2,7 +2,7 @@ import 'raf/polyfill' // Fixes React
 import '@webcomponents/custom-elements' // Polyfill CustomElements
 import 'core-js/features/map' // Fixes React
 import 'core-js/features/set' // Fixes React
-import hljs from 'highlight.js'
+import hljs from 'highlight.js/lib/common'
 import CoreTabs from '@nrk/core-tabs'
 import docStyles from './index.scss'
 import { marked } from 'marked'
@@ -57,8 +57,8 @@ const mark = new marked.Renderer()
 
 mark.code = function (code, lang) {
   const raw = lang === 'html' ? code.replace(/<!--\s*demo\s*-->\n*/i, '') : code
-  const esc = raw.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-  const pre = '<pre><code>' + esc + '</code></pre>'
+  const highlighted = (lang ? hljs.highlight(raw, { language: lang }) : hljs.highlightAuto(raw)).value
+  const pre = '<pre class="docs-code"><code>' + highlighted + '</code></pre>'
   return raw === code ? pre : '<div class="docs-demo">' + raw + '<details><summary>source</summary>' + pre + '</details></div>'
 }
 mark.heading = function (text, level) {
@@ -105,7 +105,6 @@ function exec (scripts, transform, callback) {
     }
     source.parentNode.replaceChild(target, source) // Replacing html with node causes script eval
     if (!source.src) onload() // Inline script is loaded instantly
-    hljs.highlightAll()
   }, 16) // Let parser finish before next script eval
 }
 
