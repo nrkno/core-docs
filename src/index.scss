@@ -316,7 +316,7 @@ video {
 }
 
 html[data-theme="light"] {
-  @include meta.load-css("highlight.js/styles/a11y-light");
+  @include meta.load-css("~highlight.js/styles/a11y-light");
 
   body {
     --docs-color-background: #fff;
@@ -329,7 +329,7 @@ html[data-theme="light"] {
 }
 
 html[data-theme="dark"] {
-  @include meta.load-css("highlight.js/styles/a11y-dark");
+  @include meta.load-css("~highlight.js/styles/a11y-dark");
 
   body {
     --docs-color-background: #36363b; /* NRK Gray 800 */

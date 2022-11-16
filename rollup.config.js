@@ -7,8 +7,7 @@ import serve from 'rollup-plugin-serve'
 import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json'
 import copy from 'rollup-plugin-copy'
-import postcss from 'rollup-plugin-postcss'
-import autoprefixer from 'autoprefixer'
+import styles from 'rollup-plugin-styles'
 import path from 'path'
 
 const isBuild = !process.env.ROLLUP_WATCH
@@ -27,17 +26,9 @@ const plugins = [
   },
   copy({
     targets: [
-      { src: 'src/index.html', dest: 'lib/' },
-      { src: 'src/readme.md', dest: 'lib/' }
+      { src: 'src/index.html', dest: 'lib' },
+      { src: 'src/readme.md', dest: 'lib' }
     ]
-  }),
-  postcss({
-    extract: false,
-    modules: false,
-    use: [
-      ['sass', { includePaths: ['./src', './node_modules'] }]
-    ],
-    plugins: [autoprefixer]
   }),
   resolve(),
   commonjs(),
@@ -62,10 +53,18 @@ if (isBuild) {
 export default [{
   input: 'src/index.js', // Minified for browsers
   output: { file: 'lib/core-docs.min.js', format: 'iife', sourcemap: true, banner },
-  plugins: plugins.concat(isBuild && terser({ format: { comments: /^!/ } })),
-  watch: { include: 'src/**' }
+  plugins: plugins.concat(isBuild && terser({ format: { comments: /^!/ } }))
 }, {
   input: 'src/index.js', // Full source for browsers
   output: { file: 'lib/core-docs.js', format: 'iife', banner },
   plugins
+}, {
+  input: 'src/index.scss',
+  output: { dir: 'lib', assetFileNames: '[name][extname]', format: 'iife' },
+  plugins: [
+    styles({
+      mode: ['extract', 'core-docs.css'],
+      use: ['sass']
+    })
+  ]
 }]

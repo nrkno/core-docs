@@ -4,7 +4,6 @@ import 'core-js/features/map' // Fixes React
 import 'core-js/features/set' // Fixes React
 import hljs from 'highlight.js/lib/common'
 import CoreTabs from '@nrk/core-tabs'
-import docStyles from './index.scss'
 import { marked } from 'marked'
 import React from 'react'
 import ReactDOM from 'react-dom'
