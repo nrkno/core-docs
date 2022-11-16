@@ -11,6 +11,8 @@ import PropTypes from 'prop-types'
 
 hljs.configure(window.coreDocs.hljsOptions)
 
+const SESSION_STORAGE_SELECTED_THEME_KEY = 'theme-user-state'
+
 // Setup globals
 window.React = React
 window.ReactDOM = ReactDOM
@@ -206,21 +208,20 @@ function renderPage (event) {
     const themeSwitch = header.querySelector('input.docs-switch')
     if (window.matchMedia) {
       // Use system default if present
-      const themeUserState = window.sessionStorage.getItem('theme-user-state')
-      const prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      themeSwitch.checked = themeUserState ? themeUserState === 'dark' : prefersColorSchemeDark
-      htmlElement.setAttribute('data-theme', themeSwitch.checked ? 'dark' : 'light')
+      const isSystemSchemeDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
+      const isSelectedSchemeDark = () => window.sessionStorage.getItem(SESSION_STORAGE_SELECTED_THEME_KEY) === 'dark'
+      themeSwitch.checked = isSelectedSchemeDark() || isSystemSchemeDark()
 
       // Listen to system changes
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        themeSwitch.checked = event.matches
-        htmlElement.setAttribute('data-theme', event.matches ? 'dark' : 'light')
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
+        themeSwitch.checked = matches
+        htmlElement.setAttribute('data-theme', matches ? 'dark' : 'light')
       })
     }
     // React to user input
-    themeSwitch.addEventListener('change', event => {
-      htmlElement.setAttribute('data-theme', event.target.checked ? 'dark' : 'light')
-      window.sessionStorage.setItem('theme-user-state', event.target.checked ? 'dark' : 'light')
+    themeSwitch.addEventListener('change', ({ target }) => {
+      htmlElement.setAttribute('data-theme', target.checked ? 'dark' : 'light')
+      window.sessionStorage.setItem(SESSION_STORAGE_SELECTED_THEME_KEY, target.checked ? 'dark' : 'light')
     })
   }
 

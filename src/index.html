@@ -2,6 +2,21 @@
 <html data-theme="light">
   <head>
     <meta charset="utf-8">
+    <script>
+      /*
+        Sets theme state early to avoid light mode flicker in dark mode.
+      */
+      const selectedTheme = window.sessionStorage.getItem('theme-user-state')
+      if (selectedTheme) {
+        // user has toggled switch for this session
+        document.documentElement.setAttribute('data-theme', selectedTheme)
+      } else {
+        // current system settings
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark')
+        }
+      }
+    </script>
     <link rel="stylesheet" href="core-docs.css"
   </head>
   <body>
