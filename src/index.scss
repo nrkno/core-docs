@@ -346,3 +346,13 @@ html[data-theme] {
     background-color: unset;
   }
 }
+
+.docs-codespan {
+	padding: .2em .4em;
+	margin: 0;
+	font-size: 85%;
+	background-color: var(--docs-color-background-code);
+	border-radius: 6px;
+}
+
+

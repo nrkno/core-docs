@@ -77,6 +77,7 @@ mark.table = (thead, tbody) => `<table class="docs-table"><thead>${thead}</thead
 mark.blockquote = (text) => `<blockquote class="docs-quote">${text}</blockquote>`
 mark.paragraph = (text) => `<p class="docs-p">${text}</p>`
 mark.list = (body) => `<ul class="docs-list">${body}</ul>`
+mark.codespan = (text) => `<code class="docs-codespan">${text}</code>`
 
 function queryAll (selector, context = document) {
   return [].slice.call(typeof selector === 'string' ? context.querySelectorAll(selector) : selector)
