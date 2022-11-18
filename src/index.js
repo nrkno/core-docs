@@ -56,11 +56,15 @@ const main = document.querySelector('.docs-main')
 const ajax = new window.XMLHttpRequest()
 const mark = new marked.Renderer()
 
+const isDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark'
+
 mark.code = function (code, lang) {
   const raw = lang === 'html' ? code.replace(/<!--\s*demo\s*-->\n*/i, '') : code
-  const highlighted = (lang ? hljs.highlight(raw, { language: lang }) : hljs.highlightAuto(raw)).value
+  const themeClassConditionRegex = /(?<condition>{{\s*'(?<light>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)'\s*:\s*'(?<dark>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)'\s*}})/ig
+  const rawWithTheme = raw.replaceAll(themeClassConditionRegex, (classCondition) => classCondition.replace(themeClassConditionRegex, isDarkMode() ? '$<dark>' : '$<light>'))
+  const highlighted = (lang ? hljs.highlight(rawWithTheme, { language: lang }) : hljs.highlightAuto(rawWithTheme)).value
   const pre = '<pre class="docs-code"><code>' + highlighted + '</code></pre>'
-  return raw === code ? pre : '<div class="docs-demo">' + raw + '<details><summary>source</summary>' + pre + '</details></div>'
+  return raw === code ? pre : '<div class="docs-demo">' + rawWithTheme + '<details><summary>source</summary>' + pre + '</details></div>'
 }
 mark.heading = function (text, level) {
   const heading = text.toLowerCase().replace(/\W+/g, '-')
@@ -196,11 +200,14 @@ function preventScrollOnTabs (event) {
   }
 }
 
-function renderPage (event) {
-  const markdown = event.target.responseText.replace(/<!--\s*demo\n|\ndemo\s*-->/g, '')
+function renderMarkdown (raw) {
+  const markdown = raw.replace(/<!--\s*demo\n|\ndemo\s*-->/g, '')
   const markdownHtml = marked(markdown, { renderer: mark, gfm: true })
   main.innerHTML = options.tabs === true ? generateTabs(markdownHtml) : markdownHtml
-  const htmlElement = document.querySelector('html')
+}
+
+function renderPage (event) {
+  renderMarkdown(event.target.responseText)
 
   if (options.theme.enabled) {
     const header = document.querySelector('.docs-menu')
@@ -215,13 +222,14 @@ function renderPage (event) {
       // Listen to system changes
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
         themeSwitch.checked = matches
-        htmlElement.setAttribute('data-theme', matches ? 'dark' : 'light')
+        document.documentElement.setAttribute('data-theme', matches ? 'dark' : 'light')
       })
     }
     // React to user input
     themeSwitch.addEventListener('change', ({ target }) => {
-      htmlElement.setAttribute('data-theme', target.checked ? 'dark' : 'light')
+      document.documentElement.setAttribute('data-theme', target.checked ? 'dark' : 'light')
       window.sessionStorage.setItem(SESSION_STORAGE_SELECTED_THEME_KEY, target.checked ? 'dark' : 'light')
+      renderMarkdown(event.target.responseText)
     })
   }
 
