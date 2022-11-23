@@ -9,9 +9,28 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-hljs.configure(window.coreDocs.hljsOptions)
-
 const SESSION_STORAGE_SELECTED_THEME_KEY = 'theme-user-state'
+const DEFAULT_THEME_SWITCH_LABEL = 'toggle theme'
+
+const options = (window.coreDocs || {})
+
+hljs.configure(options.hljsOptions)
+
+/*
+Sets theme state early to avoid light mode flicker in dark mode.
+*/
+if (options.theme.enabled) {
+  const selectedTheme = window.sessionStorage.getItem(SESSION_STORAGE_SELECTED_THEME_KEY)
+  if (selectedTheme) {
+    // user has toggled switch for this session
+    document.documentElement.setAttribute('data-theme', selectedTheme)
+  } else {
+    // current system settings
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark')
+    }
+  }
+}
 
 // Setup globals
 window.React = React
@@ -24,14 +43,11 @@ document.createElement('main')
 document.createElement('detail')
 document.createElement('summary')
 
-const inlineStyles = queryAll('style').map(style => style.textContent).join('')
 const menu = document.querySelector('ul')
-const options = (window.coreDocs || {})
 const head = document.head || document.documentElement.appendChild(document.createElement('head'))
 const body = document.body || document.documentElement.appendChild(document.createElement('body'))
 const viewport = document.createElement('meta')
 const favicon = document.createElement('link')
-const style = document.createElement('style')
 const headingCount = {}
 
 viewport.name = 'viewport'
@@ -42,8 +58,19 @@ favicon.href = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinR
 head.appendChild(viewport)
 head.appendChild(favicon)
 
-body.innerHTML = `
+const themeSwitch = // html
+`
+  <label class="docs-switch-label" aria-label=${options.theme.label || DEFAULT_THEME_SWITCH_LABEL}>
+    <span>☼</span>
+    <input type="checkbox" class="docs-switch" id="core-docs-theme-switch">
+    <span>☾</span>
+  </label>
+`
+
+body.innerHTML = // html
+`
   <header class="docs-menu">
+    ${options.theme.enabled ? themeSwitch : ''}
     <nav>${menu.outerHTML}</nav>
   </header>
   <main class="docs-main"></main>
@@ -72,12 +99,18 @@ mark.heading = function (text, level) {
   const id = headingCount[heading] > 1 ? `${heading}-${headingCount[heading]}` : heading
   return `<h${level} class="docs-heading docs-heading--${level}"><a id="${id}" href="#${id}">${text}</a></h${level}>`
 }
+
 mark.hr = () => '<hr class="docs-ruler" aria-hidden="true">'
 mark.table = (thead, tbody) => `<table class="docs-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table>`
 mark.blockquote = (text) => `<blockquote class="docs-quote">${text}</blockquote>`
 mark.paragraph = (text) => `<p class="docs-p">${text}</p>`
 mark.list = (body) => `<ul class="docs-list">${body}</ul>`
 mark.codespan = (text) => `<code class="docs-codespan">${text}</code>`
+mark.html = (raw) => {
+  const themeClassConditionRegex = /(?<condition>{{\s*'(?<light>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)'\s*:\s*'(?<dark>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)'\s*}})/ig
+  const html = raw.replaceAll(themeClassConditionRegex, (classCondition) => classCondition.replace(themeClassConditionRegex, isDarkMode() ? '$<dark>' : '$<light>'))
+  return html
+}
 
 function queryAll (selector, context = document) {
   return [].slice.call(typeof selector === 'string' ? context.querySelectorAll(selector) : selector)
@@ -150,28 +183,6 @@ function generateTabs (html) {
   return dom.innerHTML
 }
 
-function insertThemeSwitch (headerElement) {
-  const DEFAULT_THEME_SWITCH_LABEL = 'toggle theme'
-  const themeLabel = options.theme.label || DEFAULT_THEME_SWITCH_LABEL
-  const themeSwitch = document.createElement('input')
-  const themeSwitchLabel = document.createElement('label')
-  const lightIcon = document.createElement('span')
-  lightIcon.innerHTML = '☼'
-  const darkIcon = document.createElement('span')
-  darkIcon.innerHTML = '☾'
-
-  themeSwitch.type = 'checkbox'
-  themeSwitch.className = 'docs-switch'
-  themeSwitch.id = 'core-docs-theme-switch'
-  themeSwitch.ariaLabel = themeLabel
-  themeSwitchLabel.className = 'docs-switch-label'
-  themeSwitchLabel.appendChild(lightIcon)
-  themeSwitchLabel.appendChild(themeSwitch)
-  themeSwitchLabel.appendChild(darkIcon)
-
-  headerElement.insertAdjacentElement('afterbegin', themeSwitchLabel)
-}
-
 function isInViewport (elem) {
   const { top, left, bottom, right } = elem.getBoundingClientRect()
   return top >= 0 && left >= 0 && bottom <= window.innerHeight && right <= window.innerWidth
@@ -209,11 +220,9 @@ function renderMarkdown (raw) {
 
 function renderPage (event) {
   renderMarkdown(event.target.responseText)
-
   if (options.theme.enabled) {
     const header = document.querySelector('.docs-menu')
-    insertThemeSwitch(header)
-    const themeSwitch = header.querySelector('input.docs-switch')
+    const themeSwitch = header.querySelector('input#core-docs-theme-switch')
     if (window.matchMedia) {
       // Use system default if present
       const isSystemSchemeDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -230,7 +239,7 @@ function renderPage (event) {
     themeSwitch.addEventListener('change', ({ target }) => {
       document.documentElement.setAttribute('data-theme', target.checked ? 'dark' : 'light')
       window.sessionStorage.setItem(SESSION_STORAGE_SELECTED_THEME_KEY, target.checked ? 'dark' : 'light')
-      renderMarkdown(event.target.responseText)
+      window.location.reload(false)
     })
   }
 

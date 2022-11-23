@@ -238,10 +238,10 @@ video {
 
 .docs-switch-label {
   gap: 7px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: flex-end;
   cursor: pointer;
-  float: right;
 }
 
 .docs-switch {
@@ -275,26 +275,32 @@ video {
   opacity: 0.5;
   -webkit-transition: background-position 0.2s;
   transition: background-position 0.2s;
-}
-.docs-switch::-ms-check {
-  display: none;
-}
-.docs-switch:disabled {
-  opacity: 0.2;
-  cursor: not-allowed !important;
-}
-.docs-switch:focus {
-  box-shadow: 0 0 2px 1px var(--docs-color-shadow);
-}
-.docs-switch:active:hover {
-  background-position-x: 0.3em;
-}
-.docs-switch:checked {
-  opacity: 1;
-  background-position-x: 1.5em;
-}
-.docs-switch:checked:active:hover {
-  background-position-x: 1.2em;
+
+  &::-ms-check {
+    display: none;
+  }
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: not-allowed !important;
+  }
+
+  &:focus {
+    box-shadow: 0 0 2px 1px var(--docs-color-shadow);
+  }
+  
+  &:active:hover {
+    background-position-x: 0.3em;
+  }
+
+  &:checked {
+    opacity: 1;
+    background-position-x: 1.5em;
+  }
+
+  &:checked:active:hover {
+    background-position-x: 1.2em;
+  }
 }
 
 @media (min-width: 700px) {
@@ -315,8 +321,11 @@ video {
   }
 }
 
-html[data-theme="light"] {
-  @include meta.load-css("~highlight.js/styles/a11y-light");
+html, html[data-theme="light"] {
+
+  code {
+    @include meta.load-css("~highlight.js/styles/a11y-light");
+  }
 
   body {
     --docs-color-background: #fff;
@@ -329,7 +338,10 @@ html[data-theme="light"] {
 }
 
 html[data-theme="dark"] {
-  @include meta.load-css("~highlight.js/styles/a11y-dark");
+  
+  code {
+    @include meta.load-css("~highlight.js/styles/a11y-dark");
+  }
 
   body {
     --docs-color-background: #36363b; /* NRK Gray 800 */
@@ -342,6 +354,7 @@ html[data-theme="dark"] {
 }
 
 html[data-theme] {
+  .docs-code .hljs {
   .hljs {
     background-color: unset;
   }
@@ -354,5 +367,3 @@ html[data-theme] {
 	background-color: var(--docs-color-background-code);
 	border-radius: 6px;
 }
-
-
