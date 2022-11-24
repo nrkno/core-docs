@@ -19,7 +19,7 @@ hljs.configure(options.hljsOptions)
 /*
 Sets theme state early to avoid light mode flicker in dark mode.
 */
-if (options.theme && options.theme.enabled) {
+if (options.theme) {
   const selectedTheme = window.sessionStorage.getItem(SESSION_STORAGE_SELECTED_THEME_KEY)
   if (selectedTheme) {
     // user has toggled switch for this session
@@ -58,19 +58,19 @@ favicon.href = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinR
 head.appendChild(viewport)
 head.appendChild(favicon)
 
-const themeSwitch = // html
+const themeSwitch =
 `
-  <label class="docs-switch-label" aria-label=${options.theme.label || DEFAULT_THEME_SWITCH_LABEL}>
+  <label class="docs-switch-label" aria-label="${options.theme.label || DEFAULT_THEME_SWITCH_LABEL}">
     <span>☼</span>
     <input type="checkbox" class="docs-switch" id="core-docs-theme-switch">
     <span>☾</span>
   </label>
 `
 
-body.innerHTML = // html
+body.innerHTML =
 `
   <header class="docs-menu">
-    ${options.theme.enabled ? themeSwitch : ''}
+    ${options.theme ? themeSwitch : ''}
     <nav>${menu.outerHTML}</nav>
   </header>
   <main class="docs-main"></main>
@@ -223,7 +223,7 @@ function renderMarkdown (raw) {
 
 function renderPage (event) {
   renderMarkdown(event.target.responseText)
-  if (options.theme.enabled) {
+  if (options.theme) {
     const header = document.querySelector('.docs-menu')
     const themeSwitch = header.querySelector('input#core-docs-theme-switch')
     if (window.matchMedia) {
