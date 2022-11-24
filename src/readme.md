@@ -161,7 +161,7 @@ The end
 
 ## Theme
 
-To turn on dark mode theme, set the `theme` option to `true` in the `index.html` containing the menu:
+To turn on theme switching, set the `theme` option to `true` or assign an object to override default options:
 
 ```html
 <ul>
@@ -169,11 +169,36 @@ To turn on dark mode theme, set the `theme` option to `true` in the `index.html`
 </ul>
 <script>
   window.coreDocs = {
-    theme: true, // Enable themes for dark mode support
-    themeLabel: 'Mørkt tema', // Override default theme toggle label
+    theme: { 
+      label: 'dark mode',   // theme switch label (default: 'dark mode')
+      prefers: true         // use system settings for light or dark mode (default: true)
+    }
   }
 </script>
 <script src="https://static.nrk.no/core-docs/latest/core-docs.min.js" charset="utf-8"></script>
+```
+
+Use theme conditioned classes `{{ 'button-light' : 'button-dark' }}` to apply custom theme styles:
+
+
+```
+<!-- demo -->
+<style>
+  #press-button { padding: .3em; font-size: inherit; }
+</style>
+<button
+  type='button'
+  id="press-button"
+  class="{{ 'button-light' : 'button-dark' }}"
+>
+  Press me
+</button>
+<script>
+  document.addEventListener('click', event => {
+    if (event.target.id === 'press-button')
+      alert('You pressed me')
+  })
+</script>
 ```
 
 ## React
