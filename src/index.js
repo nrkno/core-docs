@@ -25,7 +25,9 @@ const defaultOptions = {
 const isBoolean = val => typeof val === 'boolean'
 
 const resolveOptions = () => ({
-  tabs: configuredOptions.tabs || defaultOptions.tabs,
+  tabs: isBoolean(configuredOptions.tabs)
+    ? configuredOptions.tabs
+    : defaultOptions.tabs,
   theme: (configuredOptions.theme)
     ? Object.assign(isBoolean(configuredOptions.theme)
         ? {}
