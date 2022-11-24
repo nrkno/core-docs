@@ -85,13 +85,21 @@ const mark = new marked.Renderer()
 
 const isDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark'
 
-mark.code = function (code, lang) {
-  const raw = lang === 'html' ? code.replace(/<!--\s*demo\s*-->\n*/i, '') : code
+// resolve custom core-docs html conditons based on current theme, e.g: class="{{ 'light' : 'dark' }}"
+const resolveThemeConditions = (html) => {
   const themeClassConditionRegex = /(?<condition>{{\s*'(?<light>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)'\s*:\s*'(?<dark>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)'\s*}})/ig
-  const rawWithTheme = raw.replaceAll(themeClassConditionRegex, (classCondition) => classCondition.replace(themeClassConditionRegex, isDarkMode() ? '$<dark>' : '$<light>'))
-  const highlighted = (lang ? hljs.highlight(rawWithTheme, { language: lang }) : hljs.highlightAuto(rawWithTheme)).value
+  return html.replaceAll(themeClassConditionRegex, (classCondition) => classCondition.replace(themeClassConditionRegex, isDarkMode() ? '$<dark>' : '$<light>'))
+}
+
+const stripDemoFlag = (html) => html.replace(/<!--\s*demo\s*-->\n*/i, '')
+
+const parseHtml = (html) => resolveThemeConditions(stripDemoFlag(html))
+
+mark.code = function (raw, lang) {
+  const code = lang === 'html' ? parseHtml(raw) : raw
+  const highlighted = (lang ? hljs.highlight(code, { language: lang }) : hljs.highlightAuto(code)).value
   const pre = '<pre class="docs-code"><code>' + highlighted + '</code></pre>'
-  return raw === code ? pre : '<div class="docs-demo">' + rawWithTheme + '<details><summary>source</summary>' + pre + '</details></div>'
+  return code === raw ? pre : '<div class="docs-demo">' + code + '<details><summary>source</summary>' + pre + '</details></div>'
 }
 mark.heading = function (text, level) {
   const heading = text.toLowerCase().replace(/\W+/g, '-')
@@ -99,18 +107,13 @@ mark.heading = function (text, level) {
   const id = headingCount[heading] > 1 ? `${heading}-${headingCount[heading]}` : heading
   return `<h${level} class="docs-heading docs-heading--${level}"><a id="${id}" href="#${id}">${text}</a></h${level}>`
 }
-
 mark.hr = () => '<hr class="docs-ruler" aria-hidden="true">'
 mark.table = (thead, tbody) => `<table class="docs-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table>`
 mark.blockquote = (text) => `<blockquote class="docs-quote">${text}</blockquote>`
 mark.paragraph = (text) => `<p class="docs-p">${text}</p>`
 mark.list = (body) => `<ul class="docs-list">${body}</ul>`
 mark.codespan = (text) => `<code class="docs-codespan">${text}</code>`
-mark.html = (raw) => {
-  const themeClassConditionRegex = /(?<condition>{{\s*'(?<light>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)'\s*:\s*'(?<dark>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)'\s*}})/ig
-  const html = raw.replaceAll(themeClassConditionRegex, (classCondition) => classCondition.replace(themeClassConditionRegex, isDarkMode() ? '$<dark>' : '$<light>'))
-  return html
-}
+mark.html = (raw) => parseHtml(raw)
 
 function queryAll (selector, context = document) {
   return [].slice.call(typeof selector === 'string' ? context.querySelectorAll(selector) : selector)
