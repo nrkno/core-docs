@@ -113,7 +113,7 @@ const resolveThemeConditions = (html) => {
 
 const stripDemoFlag = (html) => html.replace(/<!--\s*demo\s*-->\n*/i, '')
 
-const parseHtml = (html) => resolveThemeConditions(stripDemoFlag(html))
+const parseHtml = (html) => options.theme ? resolveThemeConditions(stripDemoFlag(html)) : stripDemoFlag(html)
 
 mark.code = function (raw, lang) {
   const code = lang === 'html' ? parseHtml(raw) : raw
