@@ -12,9 +12,29 @@ import PropTypes from 'prop-types'
 const SESSION_STORAGE_SELECTED_THEME_KEY = 'theme-user-state'
 const DEFAULT_THEME_SWITCH_LABEL = 'toggle theme'
 
-const options = (window.coreDocs || {})
+const configuredOptions = window.coreDocs || {}
 
-hljs.configure(options.hljsOptions)
+const defaultOptions = {
+  tabs: true,
+  theme: {
+    label: DEFAULT_THEME_SWITCH_LABEL,
+    prefers: true
+  }
+}
+
+const isBoolean = val => typeof val === 'boolean'
+
+const resolveOptions = () => ({
+  tabs: configuredOptions.tabs || defaultOptions.tabs,
+  theme: (configuredOptions.theme)
+    ? Object.assign(isBoolean(configuredOptions.theme)
+        ? {}
+        : configuredOptions.theme,
+      defaultOptions.theme)
+    : false
+})
+
+const options = resolveOptions()
 
 /*
 Sets theme state early to avoid light mode flicker in dark mode.
@@ -26,7 +46,7 @@ if (options.theme) {
     document.documentElement.setAttribute('data-theme', selectedTheme)
   } else {
     // current system settings
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (options.prefers && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.setAttribute('data-theme', 'dark')
     }
   }
