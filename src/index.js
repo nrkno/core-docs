@@ -109,7 +109,7 @@ const isDarkMode = () => document.documentElement.getAttribute('data-theme') ===
 
 // resolve custom core-docs html conditons based on current theme, e.g: class="{{ 'light' : 'dark' }}"
 const resolveThemeConditions = (html) => {
-  const themeClassConditionRegex = /(?<condition>{{\s*'(?<light>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)'\s*:\s*'(?<dark>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)'\s*}})/ig
+  const themeClassConditionRegex = /(?<condition>{{\s*['"](?<light>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*:\s*['"](?<dark>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*}})/ig
   return html.replaceAll(themeClassConditionRegex, (classCondition) => classCondition.replace(themeClassConditionRegex, isDarkMode() ? '$<dark>' : '$<light>'))
 }
 
