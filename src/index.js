@@ -19,7 +19,7 @@ hljs.configure(options.hljsOptions)
 /*
 Sets theme state early to avoid light mode flicker in dark mode.
 */
-if (options.theme.enabled) {
+if (options.theme && options.theme.enabled) {
   const selectedTheme = window.sessionStorage.getItem(SESSION_STORAGE_SELECTED_THEME_KEY)
   if (selectedTheme) {
     // user has toggled switch for this session
