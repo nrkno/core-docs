@@ -325,6 +325,10 @@ html, html[data-theme="light"] {
 
   code {
     @include meta.load-css("~highlight.js/styles/a11y-light");
+
+    .hljs {
+      background-color: unset;
+    }
   }
 
   body {
@@ -350,13 +354,6 @@ html[data-theme="dark"] {
     --docs-color-link: #b2cff5; /* NRK Core Blue 200 */
     --docs-color-border: #1d1d21; /* Origo shade 2 */
     --docs-color-shadow: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
-  }
-}
-
-html[data-theme] {
-  .docs-code .hljs {
-  .hljs {
-    background-color: unset;
   }
 }
 
