@@ -39,7 +39,6 @@
     "standard": "16.0.4"
   },
   "dependencies": {
-    "@nrk/core-fonts": "2.4.1",
     "@webcomponents/custom-elements": "1.5.0",
     "core-js": "3.20.3",
     "highlight.js": "11.6.0",
