@@ -1,7 +1,9 @@
 @use "sass:meta";
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400;1,600;1,800&display=swap');
+
 html {
-  font: 100%/1.6 "LFT Etica", sans-serif;
+  font: 100%/1.6 "Open Sans", sans-serif;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,7 +28,6 @@ code {
 strong,
 b {
   font-weight: 600;
-} /* LFT Etica 700 is a bit too bold */
 img,
 video {
   max-width: 100%;
