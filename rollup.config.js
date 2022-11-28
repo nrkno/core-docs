@@ -7,8 +7,8 @@ import serve from 'rollup-plugin-serve'
 import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json'
 import copy from 'rollup-plugin-copy'
-import styles from 'rollup-plugin-styles'
 import path from 'path'
+import postcss from 'rollup-plugin-postcss'
 
 const isBuild = !process.env.ROLLUP_WATCH
 const banner = `/*! @nrk/core-docs v${pkg.version} - Copyright (c) 2018-${new Date().getFullYear()} NRK */`
@@ -29,6 +29,11 @@ const plugins = [
       { src: 'src/index.html', dest: 'lib' },
       { src: 'src/readme.md', dest: 'lib' }
     ]
+  }),
+  postcss({
+    inject: false,
+    minimize: true,
+    use: ['sass']
   }),
   resolve(),
   commonjs(),
@@ -58,13 +63,4 @@ export default [{
   input: 'src/index.js', // Full source for browsers
   output: { file: 'lib/core-docs.js', format: 'iife', banner },
   plugins
-}, {
-  input: 'src/index.scss',
-  output: { dir: 'lib', assetFileNames: '[name][extname]', format: 'iife' },
-  plugins: [
-    styles({
-      mode: ['extract', 'core-docs.css'],
-      use: ['sass']
-    })
-  ]
 }]

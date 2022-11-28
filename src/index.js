@@ -8,6 +8,7 @@ import { marked } from 'marked'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import styles from './index.scss'
 
 const SESSION_STORAGE_SELECTED_THEME_KEY = 'theme-user-state'
 const DEFAULT_THEME_SWITCH_LABEL = 'toggle theme'
@@ -104,6 +105,11 @@ const link = document.querySelector('.docs-menu a[href*="' + file + '"]')
 const main = document.querySelector('.docs-main')
 const ajax = new window.XMLHttpRequest()
 const mark = new marked.Renderer()
+
+const style = document.createElement('style')
+style.textContent = styles
+style.title = 'Core Docs'
+head.appendChild(style)
 
 const isDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark'
 
