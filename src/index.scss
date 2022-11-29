@@ -247,8 +247,6 @@ video {
 }
 
 .docs-switch {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   vertical-align: middle;
   background: transparent;
@@ -275,7 +273,6 @@ video {
   width: 3em;
   height: 1.5em;
   opacity: 0.5;
-  -webkit-transition: background-position 0.2s;
   transition: background-position 0.2s;
 
   &::-ms-check {
