@@ -1,7 +1,7 @@
-@use "sass:meta";
+@use 'sass:meta';
 
 html {
-  font: 100%/1.6 "Open Sans", sans-serif;
+  font: 100%/1.6 'Open Sans', sans-serif;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,9 +9,7 @@ html {
 
 body {
   margin: 0;
-  background: var(
-    --docs-color-background
-  ); /* Ensure Firefox darkmode does not get black background */
+  background: var(--docs-color-background); /* Ensure Firefox darkmode does not get black background */
   color: var(--docs-color-text);
 }
 
@@ -44,14 +42,14 @@ video {
   display: block;
   background: 100% 50%/15px no-repeat;
 }
-.docs-menu a[href*="github.com"] {
+.docs-menu a[href*='github.com'] {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16' width='20'%3E%3Cpath d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z'%2F%3E%3C%2Fsvg%3E");
 }
 .docs-menu a[download] {
   background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15'%3E%3Cpath stroke='currentColor' fill='none' stroke-linecap='round' d='M1.5 13.5h12M3.5 8l4 4 4-4m-4-5.5v9'/%3E%3C/svg%3E");
 }
 .docs-menu a[target] {
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20d%3D%22M17.4%2011a.6.6%200%200%200-.601.601V15.4c0%20.772-.628%201.4-1.399%201.4H4.599A1.401%201.401%200%200%201%203.2%2015.4V4.601c0-.773.628-1.401%201.399-1.401H8.4a.6.6%200%201%200%200-1.2H4.599A2.603%202.603%200%200%200%202%204.601V15.4C2%2016.834%203.166%2018%204.599%2018H15.4c1.434%200%202.6-1.166%202.6-2.6v-3.799a.6.6%200%200%200-.6-.601zm.6-9v7l-2.792-2.792-4.516%204.517-.008-.008a.99.99%200%200%201-1.138.177%201%201%200%200%201-.437-1.346c.046-.09.113-.157.18-.227l-.011-.01%204.516-4.517L11%202h7z%22%2F%3E%3C%2Fsvg%3E");
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20d%3D%22M17.4%2011a.6.6%200%200%200-.601.601V15.4c0%20.772-.628%201.4-1.399%201.4H4.599A1.401%201.401%200%200%201%203.2%2015.4V4.601c0-.773.628-1.401%201.399-1.401H8.4a.6.6%200%201%200%200-1.2H4.599A2.603%202.603%200%200%200%202%204.601V15.4C2%2016.834%203.166%2018%204.599%2018H15.4c1.434%200%202.6-1.166%202.6-2.6v-3.799a.6.6%200%200%200-.6-.601zm.6-9v7l-2.792-2.792-4.516%204.517-.008-.008a.99.99%200%200%201-1.138.177%201%201%200%200%201-.437-1.346c.046-.09.113-.157.18-.227l-.011-.01%204.516-4.517L11%202h7z%22%2F%3E%3C%2Fsvg%3E');
 }
 
 .docs-menu ul {
@@ -119,7 +117,7 @@ video {
 
 .docs-heading--2::before,
 .docs-ruler {
-  content: "";
+  content: '';
   position: relative;
   display: block;
   width: 100vw;
@@ -197,7 +195,7 @@ video {
   margin: 1rem calc(-1rem - 3px) calc(-1rem - 3px);
 }
 .docs-demo > details::after {
-  content: "";
+  content: '';
   display: table; /* Fix margin collapse */
 }
 .docs-demo pre {
@@ -209,7 +207,7 @@ video {
   margin: 1em 0;
 }
 .docs-tabs::after {
-  content: "";
+  content: '';
   box-sizing: border-box;
   overflow: hidden; /* Triggers hasLayout */
   display: block;
@@ -230,13 +228,13 @@ video {
   line-height: 40px;
   height: 40px;
 }
-.docs-tabs > a[aria-selected="true"] {
+.docs-tabs > a[aria-selected='true'] {
   border-color: var(--docs-color-border) var(--docs-color-border) transparent;
 }
 .docs-tabs ~ div {
   outline: 0;
 } /* Hide outline from panels */
-[role="tabpanel"] {
+[role='tabpanel'] {
   margin-top: 1em;
 }
 
@@ -265,52 +263,46 @@ video {
     width: $size;
     border-radius: 3em;
 
-    html[data-theme="light"] &, html & {
-      border: 1px solid hsla(210, 15%, 50%, 0.4);;
+    html[data-theme='light'] &,
+    html & {
+      border: 1px solid hsla(210, 15%, 50%, 0.4);
       box-shadow: 0 0 0 3px hsla(210, 15%, 50%, 0.2);
-      
+
       &:hover {
-        
-        box-shadow:
-          0 0 0 3px hsla(210, 15%, 50%, 0.2),
-          inset 0 0 0 6px hsla(210, 15%, 50%, 0.1),
+        box-shadow: 0 0 0 3px hsla(210, 15%, 50%, 0.2), inset 0 0 0 6px hsla(210, 15%, 50%, 0.1),
           inset 0 0 0 2px hsla(210, 15%, 50%, 0.2);
       }
     }
-    
-    html[data-theme="dark"] & {
-      box-shadow: 
-      0 0 0 1px hsla(210, 15%, 50%, 0.4),
-      0 0 0 10px hsla(210, 15%, 50%, 0.1);
+
+    html[data-theme='dark'] & {
+      box-shadow: 0 0 0 1px hsla(210, 15%, 50%, 0.4), 0 0 0 10px hsla(210, 15%, 50%, 0.1);
 
       &:hover {
-        box-shadow:
-          0 0 0 1px hsla(210, 15%, 50%, 0.4),
-          0 0 0 10px hsla(210, 15%, 50%, 0.1),
+        box-shadow: 0 0 0 1px hsla(210, 15%, 50%, 0.4), 0 0 0 10px hsla(210, 15%, 50%, 0.1),
           inset 0 0 0 2px hsla(208, 76%, 97%, 0.1);
       }
     }
 
-    &:focus-within, &:focus-visible {
+    &:focus-within,
+    &:focus-visible {
       outline: 5px auto Highlight;
       outline: 5px auto -webkit-focus-ring-color;
     }
 
     &:hover {
-      box-shadow: 
-        inset 0 0 0 6px hsla(210, 15%, 50%, 0.1),
-        inset 0 0 0 2px hsla(210, 15%, 50%, 0.3);
+      box-shadow: inset 0 0 0 6px hsla(210, 15%, 50%, 0.1), inset 0 0 0 2px hsla(210, 15%, 50%, 0.3);
     }
   }
 
-  html[data-theme="dark"] & {
+  html[data-theme='dark'] & {
     mask-image: url("data:image/svg+xml,%3Csvg width='21' height='21' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3Edark mode%3C/title%3E%3Cpath d='m-5.59175,-0.45294zm17.28125,0.9375l-1.65625,0.0625c-5.34375,0.19141 -9.625,4.57813 -9.625,9.96875c0,5.51172 4.48828,10 10,10c5.39063,0 9.77734,-4.28125 9.96875,-9.625l0.0625,-1.625l-1.46875,0.6875c-0.78125,0.37109 -1.64844,0.5625 -2.5625,0.5625c-3.32422,0 -6,-2.67578 -6,-6c0,-0.91406 0.22266,-1.75 0.59375,-2.53125l0.6875,-1.5zm-2.90625,2.375c-0.125,0.55469 -0.375,1.0625 -0.375,1.65625c0,4.40625 3.59375,8 8,8c0.60547,0 1.12109,-0.24609 1.6875,-0.375c-0.76172,3.625 -3.82812,6.375 -7.6875,6.375c-4.42969,0 -8,-3.57031 -8,-8c0,-3.85156 2.75781,-6.88672 6.375,-7.65625z' id='svg_1'/%3E%3C/svg%3E");
     mask-repeat: no-repeat;
     mask-position: center;
     mask-size: 1rem;
   }
 
-  html[data-theme="light"] &, html & {
+  html[data-theme='light'] &,
+  html & {
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='black' d='M 15 3 L 15 8 L 17 8 L 17 3 Z M 7.5 6.09375 L 6.09375 7.5 L 9.625 11.0625 L 11.0625 9.625 Z M 24.5 6.09375 L 20.9375 9.625 L 22.375 11.0625 L 25.90625 7.5 Z M 16 9 C 12.144531 9 9 12.144531 9 16 C 9 19.855469 12.144531 23 16 23 C 19.855469 23 23 19.855469 23 16 C 23 12.144531 19.855469 9 16 9 Z M 16 11 C 18.773438 11 21 13.226563 21 16 C 21 18.773438 18.773438 21 16 21 C 13.226563 21 11 18.773438 11 16 C 11 13.226563 13.226563 11 16 11 Z M 3 15 L 3 17 L 8 17 L 8 15 Z M 24 15 L 24 17 L 29 17 L 29 15 Z M 9.625 20.9375 L 6.09375 24.5 L 7.5 25.90625 L 11.0625 22.375 Z M 22.375 20.9375 L 20.9375 22.375 L 24.5 25.90625 L 25.90625 24.5 Z M 15 24 L 15 29 L 17 29 L 17 24 Z'/%3E%3C/svg%3E");
     mask-repeat: no-repeat;
     mask-position: 50% 50%;
@@ -336,10 +328,10 @@ video {
   }
 }
 
-html, html[data-theme="light"] {
-
+html,
+html[data-theme='light'] {
   code {
-    @include meta.load-css("~highlight.js/styles/a11y-light");
+    @include meta.load-css('~highlight.js/styles/a11y-light');
 
     .hljs {
       background-color: unset;
@@ -356,10 +348,9 @@ html, html[data-theme="light"] {
   }
 }
 
-html[data-theme="dark"] {
-  
+html[data-theme='dark'] {
   code {
-    @include meta.load-css("~highlight.js/styles/a11y-dark");
+    @include meta.load-css('~highlight.js/styles/a11y-dark');
   }
 
   body {
@@ -373,9 +364,9 @@ html[data-theme="dark"] {
 }
 
 .docs-codespan {
-	padding: .2em .4em;
-	margin: 0;
-	font-size: 85%;
-	background-color: var(--docs-color-background-code);
-	border-radius: 6px;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: var(--docs-color-background-code);
+  border-radius: 6px;
 }
