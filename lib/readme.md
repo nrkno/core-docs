@@ -186,7 +186,7 @@ You can also use React to render demos out of the box.
 
 ## Mermaid
 
-You can add [mermaid](https://mermaid-js.github.io/mermaid) support by adding this html snippet after core-docs.
+You can add [mermaid](https://mermaid-js.github.io/mermaid) support by adding this html snippet after the core-docs script tag.
 
 ```html
 <script type="module">
