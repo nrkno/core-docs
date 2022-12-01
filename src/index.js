@@ -81,19 +81,19 @@ favicon.href = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinR
 head.appendChild(viewport)
 head.appendChild(favicon)
 
-const themeSwitch =
+const themeToggle =
 `
-  <label class="docs-switch-label" aria-label="${options.theme.label || DEFAULT_THEME_SWITCH_LABEL}">
-    <span>☼</span>
-    <input type="checkbox" class="docs-switch" id="core-docs-theme-switch">
-    <span>☾</span>
+  <label class="docs-toggle-label" aria-label="${options.theme.label || DEFAULT_THEME_TOGGLE_LABEL}">
+    <div class="docs-toggle-wrapper">
+      <input type="checkbox" class="docs-toggle" id="core-docs-theme-toggle">
+    </div>
   </label>
 `
 
 body.innerHTML =
 `
   <header class="docs-menu">
-    ${options.theme ? themeSwitch : ''}
+    ${options.theme ? themeToggle : ''}
     <nav>${menu.outerHTML}</nav>
   </header>
   <main class="docs-main"></main>
@@ -253,21 +253,21 @@ function renderPage (event) {
   renderMarkdown(event.target.responseText)
   if (options.theme) {
     const header = document.querySelector('.docs-menu')
-    const themeSwitch = header.querySelector('input#core-docs-theme-switch')
+    const themeToggle = header.querySelector('input#core-docs-theme-toggle')
     if (window.matchMedia) {
       // Use system default if present
       const isSystemSchemeDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
       const isSelectedSchemeDark = () => window.sessionStorage.getItem(SESSION_STORAGE_SELECTED_THEME_KEY) === 'dark'
-      themeSwitch.checked = isSelectedSchemeDark() || isSystemSchemeDark()
+      themeToggle.checked = isSelectedSchemeDark() || isSystemSchemeDark()
 
       // Listen to system changes
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
-        themeSwitch.checked = matches
+        themeToggle.checked = matches
         document.documentElement.setAttribute('data-theme', matches ? 'dark' : 'light')
       })
     }
     // React to user input
-    themeSwitch.addEventListener('change', ({ target }) => {
+    themeToggle.addEventListener('change', ({ target }) => {
       document.documentElement.setAttribute('data-theme', target.checked ? 'dark' : 'light')
       window.sessionStorage.setItem(SESSION_STORAGE_SELECTED_THEME_KEY, target.checked ? 'dark' : 'light')
       window.location.reload(false)
