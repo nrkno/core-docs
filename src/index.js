@@ -11,14 +11,14 @@ import PropTypes from 'prop-types'
 import styles from './index.scss'
 
 const SESSION_STORAGE_SELECTED_THEME_KEY = 'theme-user-state'
-const DEFAULT_THEME_SWITCH_LABEL = 'toggle theme'
+const DEFAULT_THEME_TOGGLE_LABEL = 'toggle theme'
 
 const configuredOptions = window.coreDocs || {}
 
 const defaultOptions = {
   tabs: true,
   theme: {
-    label: DEFAULT_THEME_SWITCH_LABEL,
+    label: DEFAULT_THEME_TOGGLE_LABEL,
     prefers: true
   }
 }
@@ -45,7 +45,7 @@ Sets theme state early to avoid light mode flicker in dark mode.
 if (options.theme) {
   const selectedTheme = window.sessionStorage.getItem(SESSION_STORAGE_SELECTED_THEME_KEY)
   if (selectedTheme) {
-    // user has toggled switch for this session
+    // user has toggled theme for this session
     document.documentElement.setAttribute('data-theme', selectedTheme)
   } else {
     // current system settings
@@ -282,8 +282,9 @@ function renderPage (event) {
 if (link) {
   const pageTitle = link.textContent
   const siteTitle = document.querySelector('.docs-menu a').textContent
-
-  window.customElements.define('core-docs-tabs', CoreTabs)
+  if (!window.customElements.get('core-docs-tabs')) {
+    window.customElements.define('core-docs-tabs', CoreTabs)
+  }
   document.title = pageTitle === siteTitle ? pageTitle : `${pageTitle} - ${siteTitle}`
   document.addEventListener('click', preventScrollOnTabs)
   window.addEventListener('hashchange', onHash)
