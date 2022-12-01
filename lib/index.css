@@ -12,7 +12,7 @@ body {
 }
 
 a { color: #0059b3 }
-.docs-code, code { overflow: auto; background: #f4f4f4; }
+pre, code { overflow: auto; background: #f4f4f4; }
 strong, b { font-weight: 600 } /* LFT Etica 700 is a bit too bold */
 img, video { max-width: 100% }
 
@@ -216,3 +216,5 @@ img, video { max-width: 100% }
     z-index: 1;
   }
 }
+
+.mermaid { background: unset; }
