@@ -5,7 +5,7 @@
 
 ## Getting started
 
-Core Docs can parse and render all [markdown](https://github.com/markedjs/marked) files you put in your directory. The only requirement, is a `index.html` which declares the menu as a `<ul>` and loads `@nrk/core-docs`. Link to your markdown files using their relative path, prepended with `?`. Example:
+Core Docs can parse and render all markdown files you put in your directory. The only requirement, is an `index.html` in which you declare the menu as an `<ul>` and load `@nrk/core-docs`. Link to your markdown files using their relative path, prepended with `?`. Example:
 
 ```html
 <!DOCTYPE html>
@@ -38,13 +38,13 @@ Links containing `github.com` will get a GitHub icon and links with the `downloa
 ## Syntax highlighting
 
 Your markdown code can be automatically highlighted by prefixing code blocks with the language extension,
-like we do with <code>```html</code>. The docs uses [hljs (highlight.js)](https://highlightjs.org) under the hood.
+like we do with <code>```html</code>. Core Docs uses [hljs (highlight.js)](https://highlightjs.org) under the hood.
 Language detection and other options can be configured by setting `window.coreDocs.hljsOptions` in the
 [same fashion](https://highlightjs.readthedocs.io/en/latest/api.html#configure) originally supported by hljs.
 See list of [supported languages](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md).
 
 For instance you write:
-````
+```
 ```html
 <ul>
   <li><button>Chrome</button></li>
@@ -53,7 +53,7 @@ For instance you write:
   <li><button>Safari</button></li>
   <li><button>Microsoft Edge</button></li>
 </ul>
-````
+```
 
 to get HTML highlighting colors:
 
@@ -181,7 +181,7 @@ To turn on theme switching, set the `theme` option to `true` or assign an object
 Use theme conditioned classes `{{ 'button-light' : 'button-dark' }}` to apply custom theme styles:
 
 
-```
+```html
 <!-- demo -->
 <style>
   #press-button { padding: .3em; font-size: inherit; }
@@ -213,7 +213,7 @@ You can also use React to render demos out of the box.
 <script type="text/javascript">
   ReactDOM.render(
     <>
-      <button>Toggle JSX</button>
+      <button type="button">Toggle JSX</button>
       <CoreToggle hidden onToggle={console.log}>
         Content
       </CoreToggle>
