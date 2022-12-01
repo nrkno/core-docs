@@ -10,17 +10,43 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import styles from './index.scss'
 
-const SESSION_STORAGE_SELECTED_THEME_KEY = 'theme-user-state'
+const SESSION_STORAGE_SELECTED_THEME_KEY = 'docs-theme-user-state'
 const DEFAULT_THEME_TOGGLE_LABEL = 'toggle theme'
 
-const configuredOptions = window.coreDocs || {}
+/**
+ * @typedef {object} themeOptions
+ * @property {boolean} prefers Used to turn off check for `prefers-color-scheme: dark`
+ * @property {string} label Label for theme-toggle
+ */
 
+/**
+ * @typedef {object} coreScrollOptions
+ * @property {boolean} tabs Turn on tabs functionality
+ * @property {themeOptions | boolean} theme Turn on and/or adjust theme functionality
+ */
+
+/**
+ * Reference settings for core-docs. Used when nothing is specified in `window.coreDocs`
+ * @type {coreScrollOptions}
+ */
 const defaultOptions = {
-  tabs: true,
-  theme: {
-    label: DEFAULT_THEME_TOGGLE_LABEL,
-    prefers: true
-  }
+  tabs: false,
+  theme: false
+}
+
+/**
+ * Options defined in window.coreDocs or with fallback to defaultOptions
+ * @type {coreScrollOptions}
+ */
+const configuredOptions = (window && window.coreDocs) || defaultOptions
+
+/**
+ * Reference settings for theme, used when configuredOptions contains `true` for `theme`
+ * @type {themeOptions}
+ */
+const defaultThemeOptions = {
+  prefers: true,
+  label: DEFAULT_THEME_TOGGLE_LABEL
 }
 
 const isBoolean = val => typeof val === 'boolean'
@@ -29,14 +55,17 @@ const resolveOptions = () => ({
   tabs: isBoolean(configuredOptions.tabs)
     ? configuredOptions.tabs
     : defaultOptions.tabs,
-  theme: (configuredOptions.theme)
-    ? Object.assign(isBoolean(configuredOptions.theme)
-        ? {}
-        : configuredOptions.theme,
-      defaultOptions.theme)
-    : false
+  theme: (configuredOptions.theme
+    ? Object.assign(
+        defaultThemeOptions,
+        isBoolean(configuredOptions.theme) ? {} : configuredOptions.theme
+      )
+    : defaultOptions.theme)
 })
 
+/**
+ * @type {coreScrollOptions}
+ */
 const options = resolveOptions()
 
 /*
@@ -49,7 +78,7 @@ if (options.theme) {
     document.documentElement.setAttribute('data-theme', selectedTheme)
   } else {
     // current system settings
-    if (options.prefers && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (options.theme.prefers && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.setAttribute('data-theme', 'dark')
     }
   }
@@ -81,19 +110,32 @@ favicon.href = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinR
 head.appendChild(viewport)
 head.appendChild(favicon)
 
-const themeToggle =
-`
-  <label class="docs-toggle-label" aria-label="${options.theme.label || DEFAULT_THEME_TOGGLE_LABEL}">
-    <div class="docs-toggle-wrapper">
-      <input type="checkbox" class="docs-toggle" id="core-docs-theme-toggle">
-    </div>
-  </label>
-`
+const stripDemoFlag = (html) => html.replace(/<!--\s*demo\s*-->\n*/i, '')
+let parseHtml = (html) => stripDemoFlag(html)
+let themeToggle = ''
+console.log(options)
+if (options.theme) {
+  const isDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark'
+  themeToggle = `
+    <label class="docs-toggle-label" aria-label="${options.theme.label || DEFAULT_THEME_TOGGLE_LABEL}">
+      <div class="docs-toggle-wrapper">
+        <input type="checkbox" class="docs-toggle" id="core-docs-theme-toggle" ${isDarkMode ? 'checked' : ''}>
+      </div>
+    </label>
+  `
+  // Resolve custom core-docs html conditons based on current theme, e.g: class="{{ 'light' : 'dark' }}"
+  const resolveThemeConditions = (html) => {
+    const themeClassConditionRegex = /(?<condition>{{\s*['"](?<light>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*:\s*['"](?<dark>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*}})/ig
+    return html.replaceAll(themeClassConditionRegex, (classCondition) => classCondition.replace(themeClassConditionRegex, isDarkMode() ? '$<dark>' : '$<light>'))
+  }
 
-body.innerHTML =
-`
+  // Inject theme resolve into parseHtml
+  parseHtml = (html) => resolveThemeConditions(stripDemoFlag(html))
+}
+
+body.innerHTML = `
+  ${themeToggle}
   <header class="docs-menu">
-    ${options.theme ? themeToggle : ''}
     <nav>${menu.outerHTML}</nav>
   </header>
   <main class="docs-main"></main>
@@ -110,18 +152,6 @@ const style = document.createElement('style')
 style.textContent = styles
 style.title = 'Core Docs'
 head.appendChild(style)
-
-const isDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark'
-
-// resolve custom core-docs html conditons based on current theme, e.g: class="{{ 'light' : 'dark' }}"
-const resolveThemeConditions = (html) => {
-  const themeClassConditionRegex = /(?<condition>{{\s*['"](?<light>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*:\s*['"](?<dark>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*}})/ig
-  return html.replaceAll(themeClassConditionRegex, (classCondition) => classCondition.replace(themeClassConditionRegex, isDarkMode() ? '$<dark>' : '$<light>'))
-}
-
-const stripDemoFlag = (html) => html.replace(/<!--\s*demo\s*-->\n*/i, '')
-
-const parseHtml = (html) => options.theme ? resolveThemeConditions(stripDemoFlag(html)) : stripDemoFlag(html)
 
 mark.code = function (raw, lang) {
   const code = lang === 'html' ? parseHtml(raw) : raw
@@ -250,16 +280,20 @@ function renderMarkdown (raw) {
 }
 
 function renderPage (event) {
-  renderMarkdown(event.target.responseText)
   if (options.theme) {
-    const header = document.querySelector('.docs-menu')
-    const themeToggle = header.querySelector('input#core-docs-theme-toggle')
-    if (window.matchMedia) {
-      // Use system default if present
-      const isSystemSchemeDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
-      const isSelectedSchemeDark = () => window.sessionStorage.getItem(SESSION_STORAGE_SELECTED_THEME_KEY) === 'dark'
-      themeToggle.checked = isSelectedSchemeDark() || isSystemSchemeDark()
+    // const header = document.querySelector('.docs-menu')
+    const themeToggle = body.querySelector('input#core-docs-theme-toggle')
 
+    const sessionThemeSelection = window.sessionStorage.getItem(SESSION_STORAGE_SELECTED_THEME_KEY)
+    if (['dark', 'light'].includes(sessionThemeSelection)) {
+      const sessionThemeStatus = sessionThemeSelection === 'dark'
+      // Theme status from session and toggle element are not in sync
+      if (!themeToggle.checked === sessionThemeStatus) {
+        themeToggle.checked = sessionThemeStatus
+      }
+    } else if (window.matchMedia) {
+      const isSystemSchemeDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
+      themeToggle.checked = isSystemSchemeDark()
       // Listen to system changes
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
         themeToggle.checked = matches
@@ -273,6 +307,7 @@ function renderPage (event) {
       window.location.reload(false)
     })
   }
+  renderMarkdown(event.target.responseText)
 
   link.style.fontWeight = 600
   link.insertAdjacentHTML('afterend', generateSubmenu())
