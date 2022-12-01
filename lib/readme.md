@@ -183,3 +183,23 @@ You can also use React to render demos out of the box.
   </>, document.getElementById('jsx-toggle-default'))
 </script>
 ```
+
+## Mermaid
+
+You can add [mermaid](https://mermaid-js.github.io/mermaid) support by adding this html snippet.
+
+```html
+<script type="module">
+  import mermaid from 'https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
+<script src="https://static.nrk.no/core-docs/major/2/core-docs.min.js" charset="utf-8"></script>
+```
+
+```mermaid
+sequenceDiagram
+    Alice->John: Hello John, how are you?
+    loop Every minute
+        John-->Alice: Great!
+    end
+```
