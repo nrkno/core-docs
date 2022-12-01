@@ -113,7 +113,7 @@ head.appendChild(favicon)
 const stripDemoFlag = (html) => html.replace(/<!--\s*demo\s*-->\n*/i, '')
 let parseHtml = (html) => stripDemoFlag(html)
 let themeToggle = ''
-console.log(options)
+
 if (options.theme) {
   const isDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark'
   themeToggle = `
