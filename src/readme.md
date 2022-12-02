@@ -106,6 +106,28 @@ becomes:
 </script>
 ```
 
+## React
+
+You can also use React to render demos out of the box.
+
+<script src="https://static.nrk.no/core-components/latest/core-toggle/core-toggle.jsx.js"></script>
+
+```html
+<!--demo-->
+<div id="jsx-toggle-default"></div>
+<script type="text/javascript">
+  ReactDOM.render(
+    <>
+      <button type='button'>Toggle JSX</button>
+      <CoreToggle hidden onToggle={console.log}>
+        Content
+      </CoreToggle>
+    </>,
+    document.getElementById('jsx-toggle-default')
+  )
+</script>
+```
+
 ## Tabs
 
 To render all `<h4>` headings as tabs, set the `tabs` option to `true` in the `index.html` containing the menu:
@@ -238,35 +260,13 @@ The following CSS Custom properties are used for core-docs look and feel:
   --docs-color-shadow--light: #00b9f2;
 
   /* Values for dark theme */
-  --docs-color-background--dark: #36363b; /* NRK Gray 800 */
-  --docs-color-background-code--dark: #1d1d21; /* NRK Gray 900 */
-  --docs-color-text--dark: #f7f4f2; /* NRK Gray 50 */
-  --docs-color-link--dark: #b2cff5; /* NRK Core Blue 200 */
-  --docs-color-border--dark: #1d1d21; /* Origo shade 2 */
-  --docs-color-shadow--dark: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
+  --docs-color-background--dark: #36363b;
+  --docs-color-background-code--dark: #1d1d21;
+  --docs-color-text--dark: #f7f4f2;
+  --docs-color-link--dark: #b2cff5;
+  --docs-color-border--dark: #1d1d21;
+  --docs-color-shadow--dark: hsla(210, 15%, 50%, 0.4);
 }
 ```
 
 _Please note that overriding the `docs-code-background--light` or `docs-code-background--dark` colors will likely lead to contrast issues, and we do not recommend adjusting these._
-
-## React
-
-You can also use React to render demos out of the box.
-
-<script src="https://static.nrk.no/core-components/latest/core-toggle/core-toggle.jsx.js"></script>
-
-```html
-<!--demo-->
-<div id="jsx-toggle-default"></div>
-<script type="text/javascript">
-  ReactDOM.render(
-    <>
-      <button type='button'>Toggle JSX</button>
-      <CoreToggle hidden onToggle={console.log}>
-        Content
-      </CoreToggle>
-    </>,
-    document.getElementById('jsx-toggle-default')
-  )
-</script>
-```
