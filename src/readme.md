@@ -215,6 +215,43 @@ Use theme conditioned classes `{{ 'button-light' : 'button-dark' }}` to apply cu
 </script>
 ```
 
+### Specify your own theme
+
+If you want to give your core-docs implementation a specific look and feel, you can override the CSS custom properties after the core-docs script-tag in your `index.html`-file similar to the example below:
+
+```html
+<style>
+  /* Override theme properties after core-docs script tag */
+  :root {
+    --docs-color-background--dark: #36363b;
+  }
+</style>
+```
+
+The following CSS Custom properties are used for core-docs look and feel:
+
+```CSS
+:root {
+  /* Values for light/default theme */
+  --docs-color-background--light: #fff;
+  --docs-color-background-code--light: #fefefe;
+  --docs-color-text--light: #141517;
+  --docs-color-link--light: #0059b3;
+  --docs-color-border--light: #eee;
+  --docs-color-shadow--light: #00b9f2;
+
+  /* Values for dark theme */
+  --docs-color-background--dark: #36363b; /* NRK Gray 800 */
+  --docs-color-background-code--dark: #1d1d21; /* NRK Gray 900 */
+  --docs-color-text--dark: #f7f4f2; /* NRK Gray 50 */
+  --docs-color-link--dark: #b2cff5; /* NRK Core Blue 200 */
+  --docs-color-border--dark: #1d1d21; /* Origo shade 2 */
+  --docs-color-shadow--dark: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
+}
+```
+
+_Please note that overriding the `docs-code-background--light` or `docs-code-background--dark` colors will likely lead to contrast issues, and we do not recommend adjusting these._
+
 ## React
 
 You can also use React to render demos out of the box.

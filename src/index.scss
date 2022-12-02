@@ -1,5 +1,23 @@
 @use 'sass:meta';
 
+:root {
+  /* Values for light/default theme */
+  --docs-color-background--light: #fff;
+  --docs-color-background-code--light: #fefefe;
+  --docs-color-text--light: #141517;
+  --docs-color-link--light: #0059b3;
+  --docs-color-border--light: #eee;
+  --docs-color-shadow--light: #00b9f2;
+
+  /* Values for dark theme */
+  --docs-color-background--dark: #36363b; /* NRK Gray 800 */
+  --docs-color-background-code--dark: #1d1d21; /* NRK Gray 900 */
+  --docs-color-text--dark: #f7f4f2; /* NRK Gray 50 */
+  --docs-color-link--dark: #b2cff5; /* NRK Core Blue 200 */
+  --docs-color-border--dark: #1d1d21; /* Origo shade 2 */
+  --docs-color-shadow--dark: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
+}
+
 html {
   font: 100%/1.6 'Open Sans', sans-serif;
   scroll-behavior: smooth;
@@ -340,12 +358,12 @@ html[data-theme='light'] {
   }
 
   body {
-    --docs-color-background: #fff;
-    --docs-color-background-code: #fefefe;
-    --docs-color-text: #141517;
-    --docs-color-link: #0059b3;
-    --docs-color-border: #eee;
-    --docs-color-shadow: #00b9f2;
+    --docs-color-background: var(--docs-color-background--light);
+    --docs-color-background-code: var(--docs-color-background-code--light);
+    --docs-color-text: var(--docs-color-text--light);
+    --docs-color-link: var(--docs-color-link--light);
+    --docs-color-border: var(--docs-color-border--light);
+    --docs-color-shadow: var(--docs-color-shadow--light);
   }
 }
 
@@ -355,12 +373,12 @@ html[data-theme='dark'] {
   }
 
   body {
-    --docs-color-background: #36363b; /* NRK Gray 800 */
-    --docs-color-background-code: #1d1d21; /* NRK Gray 900 */
-    --docs-color-text: #f7f4f2; /* NRK Gray 50 */
-    --docs-color-link: #b2cff5; /* NRK Core Blue 200 */
-    --docs-color-border: #1d1d21; /* Origo shade 2 */
-    --docs-color-shadow: hsla(210, 15%, 50%, 0.4); /* Origo shade 2 */
+    --docs-color-background: var(--docs-color-background--dark);
+    --docs-color-background-code: var(--docs-color-background-code--dark);
+    --docs-color-text: var(--docs-color-text--dark);
+    --docs-color-link: var(--docs-color-link--dark);
+    --docs-color-border: var(--docs-color-border--dark);
+    --docs-color-shadow: var(--docs-color-shadow--dark);
   }
 }
 
