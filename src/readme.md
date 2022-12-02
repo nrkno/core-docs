@@ -161,6 +161,10 @@ The end
 
 ## Theme
 
+Core-docs has support for a light (default) and dark theme.
+
+### Setup
+
 To turn on theme switching, set the `theme` option to `true` or assign an object to override default options:
 
 ```html
@@ -170,13 +174,23 @@ To turn on theme switching, set the `theme` option to `true` or assign an object
 <script>
   window.coreDocs = {
     theme: { 
-      label: 'dark mode',   // theme toggle button label (default: 'dark mode')
+      label: 'Toggle color theme',   // theme toggle label (default: 'Toggle color theme')
       prefers: true         // use system settings for light or dark mode (default: true)
     }
   }
 </script>
 <script src="https://static.nrk.no/core-docs/latest/core-docs.min.js" charset="utf-8"></script>
 ```
+
+### Theme selection
+
+Core-docs defaults to the light theme.
+
+When the `theme.prefers` option is `true`, Core-docs checks for preferences in system settings to select a theme and will listen for changes in these settings and update accordingly (both user initiated or through features like the Auto Appearance in Mac OS).
+
+When a user makes a selection by pressing the toggle, that choice takes presedence for the remainder of the session and will ignore any changes to the system theme settings. The selection is stored in the browsers `sessionStorage` and will disappear when closing the window or tab.
+
+### Custom theme styles
 
 Use theme conditioned classes `{{ 'button-light' : 'button-dark' }}` to apply custom theme styles:
 
