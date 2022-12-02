@@ -44,7 +44,8 @@ Language detection and other options can be configured by setting `window.coreDo
 See list of [supported languages](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md).
 
 For instance you write:
-```
+
+````
 ```html
 <ul>
   <li><button>Chrome</button></li>
@@ -53,7 +54,7 @@ For instance you write:
   <li><button>Safari</button></li>
   <li><button>Microsoft Edge</button></li>
 </ul>
-```
+````
 
 to get HTML highlighting colors:
 
@@ -173,10 +174,10 @@ To turn on theme switching, set the `theme` option to `true` or assign an object
 </ul>
 <script>
   window.coreDocs = {
-    theme: { 
-      label: 'Toggle color theme',   // theme toggle label (default: 'Toggle color theme')
-      prefers: true         // use system settings for light or dark mode (default: true)
-    }
+    theme: {
+      label: 'Toggle color theme', // theme toggle label (default: 'Toggle color theme')
+      prefers: true, // use system settings for light or dark mode (default: true)
+    },
   }
 </script>
 <script src="https://static.nrk.no/core-docs/latest/core-docs.min.js" charset="utf-8"></script>
@@ -194,23 +195,18 @@ When a user makes a selection by pressing the toggle, that choice takes preseden
 
 Use theme conditioned classes `{{ 'button-light' : 'button-dark' }}` to apply custom theme styles:
 
-
 ```html
 <!-- demo -->
 <style>
-  #press-button { padding: .3em; font-size: inherit; }
+  #press-button {
+    padding: 0.3em;
+    font-size: inherit;
+  }
 </style>
-<button
-  type='button'
-  id="press-button"
-  class="{{ 'button-light' : 'button-dark' }}"
->
-  Press me
-</button>
+<button type="button" id="press-button" class="{{ 'button-light' : 'button-dark' }}">Press me</button>
 <script>
   document.addEventListener('click', event => {
-    if (event.target.id === 'press-button')
-      alert('You pressed me')
+    if (event.target.id === 'press-button') alert('You pressed me')
   })
 </script>
 ```
@@ -264,7 +260,7 @@ You can also use React to render demos out of the box.
 <script type="text/javascript">
   ReactDOM.render(
     <>
-      <button type="button">Toggle JSX</button>
+      <button type='button'>Toggle JSX</button>
       <CoreToggle hidden onToggle={console.log}>
         Content
       </CoreToggle>
