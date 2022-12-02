@@ -216,6 +216,7 @@ Use theme conditioned classes `{{ 'button-light' : 'button-dark' }}` to apply cu
 If you want to give your core-docs implementation a specific look and feel, you can override the CSS custom properties after the core-docs script-tag in your `index.html`-file similar to the example below:
 
 ```html
+<script src="https://static.nrk.no/core-docs/latest/core-docs.min.js" charset="utf-8"></script>
 <style>
   /* Override theme properties after core-docs script tag */
   :root {
