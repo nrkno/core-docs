@@ -154,11 +154,13 @@ style.title = 'Core Docs'
 head.appendChild(style)
 
 mark.code = function (raw, lang) {
+  if (lang === 'mermaid') return '<div class="mermaid">' + raw + '</div>'
   const code = lang === 'html' ? parseHtml(raw) : raw
   const highlighted = (lang ? hljs.highlight(code, { language: lang }) : hljs.highlightAuto(code)).value
   const pre = '<pre class="docs-code"><code>' + highlighted + '</code></pre>'
   return code === raw ? pre : '<div class="docs-demo">' + code + '<details><summary>source</summary>' + pre + '</details></div>'
 }
+
 mark.heading = function (text, level) {
   const heading = text.toLowerCase().replace(/\W+/g, '-')
   headingCount[heading] = headingCount[heading] === undefined ? 1 : headingCount[heading] + 1
