@@ -6,7 +6,7 @@ import postcss from 'rollup-plugin-postcss'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import serve from 'rollup-plugin-serve'
-import { terser } from 'rollup-plugin-terser'
+import terser from '@rollup/plugin-terser'
 import pkg from './package.json'
 
 const isBuild = !process.env.ROLLUP_WATCH
