@@ -31,7 +31,7 @@
     "autoprefixer": "10.4.13",
     "rollup": "2.64.0",
     "rollup-plugin-postcss": "4.0.2",
-    "rollup-plugin-serve": "1.1.0",
+    "rollup-plugin-serve": "2.0.2",
     "standard": "17.0.0"
   },
   "dependencies": {
