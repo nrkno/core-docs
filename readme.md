@@ -15,7 +15,6 @@ core-docs can parse and render all markdown files you put in your repository. Th
 <!doctype html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://static.nrk.no/core-docs/major/2/core-docs.css"/>
 </head>
 <ul>
   <li><a href="?readme.md">Core Docs</a></li>
