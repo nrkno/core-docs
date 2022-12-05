@@ -3,7 +3,7 @@
 :root {
   /* Values for light/default theme */
   --docs-color-background--light: #fff;
-  --docs-color-background-code--light: #fefefe;
+  --docs-color-background-code--light: #f4f4f4;
   --docs-color-text--light: #141517;
   --docs-color-link--light: #0059b3;
   --docs-color-border--light: #eee;
@@ -351,9 +351,32 @@ html,
 html[data-theme='light'] {
   code {
     @include meta.load-css('~highlight.js/styles/a11y-light');
-
     .hljs {
       background-color: unset;
+
+      /* 
+        color constrast adjustment for:
+          --docs-color-background-code--light: #f4f4f4;
+      */
+      &-section,
+      &-title {
+        color: #00779E;
+      }
+      
+      /* 
+        color constrast adjustment for:
+          --docs-color-background-code--light: #f4f4f4;
+      */
+      &-attribute,
+      &-built_in,
+      &-link,
+      &-literal,
+      &-meta,
+      &-number,
+      &-params,
+      &-type {
+        color: #A85D00;
+      }
     }
   }
 
