@@ -153,12 +153,20 @@ style.textContent = styles
 style.title = 'Core Docs'
 head.appendChild(style)
 
-mark.code = function (raw, lang) {
-  if (lang === 'mermaid') return '<div class="mermaid">' + raw + '</div>'
-  const code = lang === 'html' ? parseHtml(raw) : raw
-  const highlighted = (lang ? hljs.highlight(code, { language: lang }) : hljs.highlightAuto(code)).value
-  const pre = '<pre class="docs-code"><code>' + highlighted + '</code></pre>'
-  return code === raw ? pre : '<div class="docs-demo">' + code + '<details><summary>source</summary>' + pre + '</details></div>'
+mark.code = (raw, lang) => { 
+  const applyHighlighting = (code, lang) => `<pre class="docs-code"><code>${(hljs.getLanguage(lang) ? hljs.highlight(code, { language: lang }) : hljs.highlightAuto(code)).value}</code></pre>`
+  const applyDemoBlock = (code, highlighted) => '<div class="docs-demo">' + code + '<details><summary>source</summary>' + highlighted + '</details></div>'
+  switch (lang) {
+    case 'html':
+      const code = parseHtml(raw)
+      return code === raw
+        ? applyHighlighting(code, lang)
+        : applyDemoBlock(code, applyHighlighting(code, lang))
+    case 'mermaid':
+      return '<div class="mermaid">' + raw + '</div>'
+    default:
+      return applyHighlighting(raw, lang)
+  }
 }
 
 mark.heading = function (text, level) {
