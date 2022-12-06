@@ -13,7 +13,7 @@ Core Docs can parse and render all markdown files you put in your directory. The
   <li><a href="?readme.md">Core Docs</a></li>
   <li><a href="?example/readme.md">Nested</a></li>
   <li><a href="?example/thing.md">More Docs</a></li>
-  <li><br /><a href="https://github.com/nrkno/core-docs">View on Github</a></li>
+  <li class="docs-menu-break"><a href="https://github.com/nrkno/core-docs">View on Github</a></li>
   <li><a href="https://github.com/nrkno/core-docs/releases">View changelog</a></li>
   <li><a href="#" download>Download example</a></li>
 </ul>
