@@ -266,7 +266,8 @@ The following CSS Custom properties are used for core-docs look and feel:
 }
 ```
 
-_Please note that overriding the `docs-code-background--light` or `docs-code-background--dark` colors will likely lead to contrast issues, and we do not recommend adjusting these._
+_Please note that overriding the `docs-code-background--light` or `docs-code-background--dark` colors will likely lead to contrast issues, and we do not recommend adjusting these. Minor adjustments to hljs theme [A 11 Y Light](https://highlightjs.org/static/demo/) was necessary to be WCAG compliant with `docs-code-background--light`. Thus hljs colors deviate from what is presented in native docs._
+
 
 ## Mermaid
 
