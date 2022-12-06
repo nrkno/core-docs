@@ -250,7 +250,7 @@ The following CSS Custom properties are used for core-docs look and feel:
 :root {
   /* Values for light/default theme */
   --docs-color-background--light: #fff;
-  --docs-color-background-code--light: #fefefe;
+  --docs-color-background-code--light: #f4f4f4;
   --docs-color-text--light: #141517;
   --docs-color-link--light: #0059b3;
   --docs-color-border--light: #eee;
