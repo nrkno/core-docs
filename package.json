@@ -20,6 +20,15 @@
     "type": "git",
     "url": "git+https://github.com/nrkno/core-docs.git"
   },
+  "main": "lib/core-docs.min.js",
+  "files": [
+    ".github",
+    "lib/core-docs.js",
+    "lib/core-docs.min.js",
+    "lib/core-docs.min.js.map",
+    "lib/index.html",
+    "lib/readme.md"
+  ],
   "devDependencies": {
     "@babel/core": "7.20.5",
     "@babel/preset-env": "7.20.2",
