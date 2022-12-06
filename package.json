@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git+https://github.com/nrkno/core-docs.git"
   },
-  "main": "lib/core-docs.min.js",
+  "browser": "lib/core-docs.min.js",
   "files": [
     ".github",
     "lib/core-docs.js",
