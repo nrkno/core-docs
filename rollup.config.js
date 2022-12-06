@@ -1,13 +1,14 @@
 import fs from 'fs'
-import autoprefixer from 'autoprefixer'
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
-import postcss from 'rollup-plugin-postcss'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import serve from 'rollup-plugin-serve'
 import terser from '@rollup/plugin-terser'
 import pkg from './package.json'
+import copy from 'rollup-plugin-copy'
+import path from 'path'
+import postcss from 'rollup-plugin-postcss'
 
 const isBuild = !process.env.ROLLUP_WATCH
 const banner = `/*! @nrk/core-docs v${pkg.version} - Copyright (c) 2018-${new Date().getFullYear()} NRK */`
@@ -16,14 +17,23 @@ const plugins = [
     values: { 'process.env.NODE_ENV': JSON.stringify('production') },
     preventAssignment: true
   }),
-  postcss({
-    plugins: [autoprefixer()],
-    inject: false,
-    minimize: {
-      preset: 'default',
-      discardUnused: { fontFace: false },
-      reduceIdents: { keyframes: false }
+  {
+    name: 'watch-external',
+    buildStart () {
+      this.addWatchFile(path.resolve('src', 'index.html'))
+      this.addWatchFile(path.resolve('src', 'readme.md'))
     }
+  },
+  copy({
+    targets: [
+      { src: 'src/index.html', dest: 'lib' },
+      { src: 'src/readme.md', dest: 'lib' }
+    ]
+  }),
+  postcss({
+    inject: false,
+    minimize: true,
+    use: ['sass']
   }),
   resolve(),
   commonjs(),
@@ -39,18 +49,18 @@ const plugins = [
 ]
 
 if (isBuild) {
-  for (const file of ['readme.md', 'lib/readme.md']) {
+  for (const file of ['readme.md', 'src/readme.md']) {
     const readme = fs.readFileSync(file, 'utf-8')
     fs.writeFileSync(file, readme.replace(/\/major\/\d+/, `/major/${pkg.version.match(/\d+/)}`))
   }
 }
 
 export default [{
-  input: 'lib/index.js', // Minified for browsers
+  input: 'src/index.js', // Minified for browsers
   output: { file: 'lib/core-docs.min.js', format: 'iife', sourcemap: true, banner },
   plugins: plugins.concat(isBuild && terser({ format: { comments: /^!/ } }))
 }, {
-  input: 'lib/index.js', // Full source for browsers
+  input: 'src/index.js', // Full source for browsers
   output: { file: 'lib/core-docs.js', format: 'iife', banner },
   plugins
 }]

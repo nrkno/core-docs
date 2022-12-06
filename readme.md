@@ -13,6 +13,9 @@ core-docs can parse and render all markdown files you put in your repository. Th
 
 ```html
 <!doctype html>
+<head>
+  <meta charset="utf-8">
+</head>
 <ul>
   <li><a href="?readme.md">Core Docs</a></li>
   <li><a href="?example/readme.md">Nested</a></li>

@@ -2,16 +2,87 @@ import 'raf/polyfill' // Fixes React
 import '@webcomponents/custom-elements' // Polyfill CustomElements
 import 'core-js/features/map' // Fixes React
 import 'core-js/features/set' // Fixes React
-import prettifyCss from 'code-prettify/src/prettify.css'
-import coreFonts from '@nrk/core-fonts/core-fonts.min.css'
+import hljs from 'highlight.js/lib/common'
 import CoreTabs from '@nrk/core-tabs'
-import docsCss from './index.css'
 import { marked } from 'marked'
-
-import 'code-prettify'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import styles from './index.scss'
+
+const SESSION_STORAGE_SELECTED_THEME_KEY = 'docs-theme-user-state'
+const DEFAULT_THEME_TOGGLE_LABEL = 'Toggle color theme'
+
+/**
+ * @typedef {object} themeOptions
+ * @property {boolean} prefers Used to turn off check for `prefers-color-scheme: dark`
+ * @property {string} label Label for theme-toggle
+ */
+
+/**
+ * @typedef {object} coreScrollOptions
+ * @property {boolean} tabs Turn on tabs functionality
+ * @property {themeOptions | boolean} theme Turn on and/or adjust theme functionality
+ */
+
+/**
+ * Reference settings for core-docs. Used when nothing is specified in `window.coreDocs`
+ * @type {coreScrollOptions}
+ */
+const defaultOptions = {
+  tabs: false,
+  theme: false
+}
+
+/**
+ * Options defined in window.coreDocs or with fallback to defaultOptions
+ * @type {coreScrollOptions}
+ */
+const configuredOptions = (window && window.coreDocs) || defaultOptions
+
+/**
+ * Reference settings for theme, used when configuredOptions contains `true` for `theme`
+ * @type {themeOptions}
+ */
+const defaultThemeOptions = {
+  prefers: true,
+  label: DEFAULT_THEME_TOGGLE_LABEL
+}
+
+const isBoolean = val => typeof val === 'boolean'
+
+const resolveOptions = () => ({
+  tabs: isBoolean(configuredOptions.tabs)
+    ? configuredOptions.tabs
+    : defaultOptions.tabs,
+  theme: (configuredOptions.theme
+    ? Object.assign(
+      defaultThemeOptions,
+      isBoolean(configuredOptions.theme) ? {} : configuredOptions.theme
+    )
+    : defaultOptions.theme)
+})
+
+/**
+ * @type {coreScrollOptions}
+ */
+const options = resolveOptions()
+
+/*
+Sets theme state early to avoid light mode flicker in dark mode.
+*/
+if (options.theme) {
+  const selectedTheme = window.sessionStorage.getItem(SESSION_STORAGE_SELECTED_THEME_KEY)
+  if (selectedTheme) {
+    // user has toggled theme for this session
+    document.documentElement.setAttribute('data-theme', selectedTheme)
+  } else {
+    // current system settings
+    if (options.theme.prefers && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark')
+    }
+  }
+}
 
 // Setup globals
 window.React = React
@@ -24,28 +95,49 @@ document.createElement('main')
 document.createElement('detail')
 document.createElement('summary')
 
-const styles = queryAll('style').map(style => style.textContent).join('')
 const menu = document.querySelector('ul')
-const options = (window.coreDocs || {})
 const head = document.head || document.documentElement.appendChild(document.createElement('head'))
 const body = document.body || document.documentElement.appendChild(document.createElement('body'))
 const viewport = document.createElement('meta')
 const favicon = document.createElement('link')
-const style = document.createElement('style')
 const headingCount = {}
 
 viewport.name = 'viewport'
 viewport.content = 'width=device-width, initial-scale=1'
 favicon.rel = 'icon'
 favicon.href = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAADFBMVEVHcEwAAAAAAAAAAAALttw0AAAABHRSTlMAo072UomwAQAAACtJREFUeAFjwAlCVUNVGf6v/2/H8Dt3fQnD77f8JQyf7/LbMXy8x6+LUxcABsAM/pO2f6gAAAAASUVORK5CYII='
-style.textContent = `${coreFonts}${prettifyCss}${docsCss}${styles}`
 
 head.appendChild(viewport)
 head.appendChild(favicon)
-head.appendChild(style)
+
+const stripDemoFlag = (html) => html.replace(/<!--\s*demo\s*-->\n*/i, '')
+let parseHtml = (html) => stripDemoFlag(html)
+let themeToggle = ''
+
+if (options.theme) {
+  const isDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark'
+  themeToggle = `
+    <label class="docs-toggle-label" aria-label="${options.theme.label || DEFAULT_THEME_TOGGLE_LABEL}">
+      <div class="docs-toggle-wrapper">
+        <input type="checkbox" class="docs-toggle" id="core-docs-theme-toggle" ${isDarkMode ? 'checked' : ''}>
+      </div>
+    </label>
+  `
+  // Resolve custom core-docs html conditons based on current theme, e.g: class="{{ 'light' : 'dark' }}"
+  const resolveThemeConditions = (html) => {
+    const themeClassConditionRegex = /(?<condition>{{\s*['"](?<light>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*:\s*['"](?<dark>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*}})/ig
+    return html.replaceAll(themeClassConditionRegex, (classCondition) => classCondition.replace(themeClassConditionRegex, isDarkMode() ? '$<dark>' : '$<light>'))
+  }
+
+  // Inject theme resolve into parseHtml
+  parseHtml = (html) => resolveThemeConditions(stripDemoFlag(html))
+}
 
 body.innerHTML = `
-  <nav class="docs-menu">${menu.outerHTML}</nav>
+  ${themeToggle}
+  <header class="docs-menu">
+    <nav>${menu.outerHTML}</nav>
+  </header>
   <main class="docs-main"></main>
 `
 
@@ -56,13 +148,28 @@ const main = document.querySelector('.docs-main')
 const ajax = new window.XMLHttpRequest()
 const mark = new marked.Renderer()
 
-mark.code = function (code, lang) {
-  if (lang === 'mermaid') return '<div class="mermaid">' + code + '</div>'
-  const raw = lang === 'html' ? code.replace(/<!--\s*demo\s*-->\n*/i, '') : code
-  const esc = raw.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-  const pre = '<pre class="docs-code"><code>' + window.PR.prettyPrintOne(esc, lang) + '</code></pre>'
-  return raw === code ? pre : '<div class="docs-demo">' + raw + '<details><summary>source</summary>' + pre + '</details></div>'
+const style = document.createElement('style')
+style.textContent = styles
+style.title = 'Core Docs'
+head.appendChild(style)
+
+mark.code = (raw, lang) => {
+  const applyHighlighting = (code, lang) => `<pre class="docs-code"><code>${(hljs.getLanguage(lang) ? hljs.highlight(code, { language: lang }) : hljs.highlightAuto(code)).value}</code></pre>`
+  const applyDemoBlock = (code, highlighted) => '<div class="docs-demo">' + code + '<details><summary>source</summary>' + highlighted + '</details></div>'
+  switch (lang) {
+    case 'html': {
+      const code = parseHtml(raw)
+      return code === raw
+        ? applyHighlighting(code, lang)
+        : applyDemoBlock(code, applyHighlighting(code, lang))
+    }
+    case 'mermaid':
+      return '<div class="mermaid">' + raw + '</div>'
+    default:
+      return applyHighlighting(raw, lang)
+  }
 }
+
 mark.heading = function (text, level) {
   const heading = text.toLowerCase().replace(/\W+/g, '-')
   headingCount[heading] = headingCount[heading] === undefined ? 1 : headingCount[heading] + 1
@@ -74,6 +181,8 @@ mark.table = (thead, tbody) => `<table class="docs-table"><thead>${thead}</thead
 mark.blockquote = (text) => `<blockquote class="docs-quote">${text}</blockquote>`
 mark.paragraph = (text) => `<p class="docs-p">${text}</p>`
 mark.list = (body) => `<ul class="docs-list">${body}</ul>`
+mark.codespan = (text) => `<code class="docs-codespan">${text}</code>`
+mark.html = (raw) => parseHtml(raw)
 
 function queryAll (selector, context = document) {
   return [].slice.call(typeof selector === 'string' ? context.querySelectorAll(selector) : selector)
@@ -175,10 +284,42 @@ function preventScrollOnTabs (event) {
   }
 }
 
+function renderMarkdown (raw) {
+  const markdown = raw.replace(/<!--\s*demo\n|\ndemo\s*-->/g, '')
+  const markdownHtml = marked(markdown, { renderer: mark, gfm: true })
+  main.innerHTML = options.tabs === true ? generateTabs(markdownHtml) : markdownHtml
+}
+
 function renderPage (event) {
-  const markdown = event.target.responseText.replace(/<!--\s*demo\n|\ndemo\s*-->/g, '')
-  const html = marked(markdown, { renderer: mark, gfm: true })
-  main.innerHTML = options.tabs === true ? generateTabs(html) : html
+  if (options.theme) {
+    // const header = document.querySelector('.docs-menu')
+    const themeToggle = body.querySelector('input#core-docs-theme-toggle')
+
+    const sessionThemeSelection = window.sessionStorage.getItem(SESSION_STORAGE_SELECTED_THEME_KEY)
+    if (['dark', 'light'].includes(sessionThemeSelection)) {
+      const sessionThemeStatus = sessionThemeSelection === 'dark'
+      // Theme status from session and toggle element are not in sync
+      if (!themeToggle.checked === sessionThemeStatus) {
+        themeToggle.checked = sessionThemeStatus
+      }
+    } else if (window.matchMedia) {
+      const isSystemSchemeDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
+      themeToggle.checked = isSystemSchemeDark()
+      // Listen to system changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
+        themeToggle.checked = matches
+        document.documentElement.setAttribute('data-theme', matches ? 'dark' : 'light')
+      })
+    }
+    // React to user input
+    themeToggle.addEventListener('change', ({ target }) => {
+      document.documentElement.setAttribute('data-theme', target.checked ? 'dark' : 'light')
+      window.sessionStorage.setItem(SESSION_STORAGE_SELECTED_THEME_KEY, target.checked ? 'dark' : 'light')
+      window.location.reload(false)
+    })
+  }
+  renderMarkdown(event.target.responseText)
+
   link.style.fontWeight = 600
   link.insertAdjacentHTML('afterend', generateSubmenu())
   loadTransform(transform => exec(queryAll('script', main), transform, onHash))
@@ -187,8 +328,9 @@ function renderPage (event) {
 if (link) {
   const pageTitle = link.textContent
   const siteTitle = document.querySelector('.docs-menu a').textContent
-
-  window.customElements.define('core-docs-tabs', CoreTabs)
+  if (!window.customElements.get('core-docs-tabs')) {
+    window.customElements.define('core-docs-tabs', CoreTabs)
+  }
   document.title = pageTitle === siteTitle ? pageTitle : `${pageTitle} - ${siteTitle}`
   document.addEventListener('click', preventScrollOnTabs)
   window.addEventListener('hashchange', onHash)
