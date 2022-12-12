@@ -104,11 +104,8 @@ const headingCount = {}
 
 viewport.name = 'viewport'
 viewport.content = 'width=device-width, initial-scale=1'
-favicon.rel = 'icon'
-favicon.href = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAADFBMVEVHcEwAAAAAAAAAAAALttw0AAAABHRSTlMAo072UomwAQAAACtJREFUeAFjwAlCVUNVGf6v/2/H8Dt3fQnD77f8JQyf7/LbMXy8x6+LUxcABsAM/pO2f6gAAAAASUVORK5CYII='
 
 head.appendChild(viewport)
-head.appendChild(favicon)
 
 const stripDemoFlag = (html) => html.replace(/<!--\s*demo\s*-->\n*/i, '')
 let parseHtml = (html) => stripDemoFlag(html)
