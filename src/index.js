@@ -99,7 +99,6 @@ const menu = document.querySelector('ul')
 const head = document.head || document.documentElement.appendChild(document.createElement('head'))
 const body = document.body || document.documentElement.appendChild(document.createElement('body'))
 const viewport = document.createElement('meta')
-const favicon = document.createElement('link')
 const headingCount = {}
 
 viewport.name = 'viewport'
