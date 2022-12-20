@@ -1,6 +1,7 @@
 @use 'sass:meta';
 
 :root {
+  color-scheme: var(--docs-color-scheme, normal);
   /* Values for light/default theme */
   --docs-color-background--light: #fff;
   --docs-color-background-code--light: #f4f4f4;
@@ -394,6 +395,8 @@ html[data-theme='light'] {
 }
 
 html[data-theme='dark'] {
+  --docs-color-scheme: dark;
+
   code {
     @include meta.load-css('~highlight.js/styles/a11y-dark');
   }
