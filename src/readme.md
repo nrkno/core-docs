@@ -71,19 +71,20 @@ You can write an inline demo in your markdown by prepending
 your `html` code block with `<!-- demo -->`. Demos supports HTML, CSS and JavaScript (ES5, ES6 and JSX) all the way back to IE9!
 Example:
 
-```
+````
+```html
 <!-- demo -->
 <style>
   #press-button { padding: .3em; font-size: inherit; }
 </style>
-<button id="press-button">Press me</button>
+<button id="press-button" type="button">Press me</button>
 <script>
   document.addEventListener('click', event => {
-    if (event.target.id === 'press-button')
-      alert('You pressed me')
+    if (event.target.id === 'press-button') alert('You pressed me')
   })
 </script>
 ```
+````
 
 becomes:
 
@@ -95,8 +96,8 @@ becomes:
     font-size: inherit;
   }
 </style>
-<button id="press-button">Press me</button>
-<script>
+<button id="press-button" type="button">Press me</button>
+<script type="text/javascript">
   document.addEventListener('click', event => {
     if (event.target.id === 'press-button') alert('You pressed me')
   })
@@ -217,15 +218,15 @@ Use theme conditioned classes `{{ 'button-light' : 'button-dark' }}` to apply cu
 ```html
 <!-- demo -->
 <style>
-  #press-button {
+  #demo-button {
     padding: 0.3em;
     font-size: inherit;
   }
 </style>
-<button type="button" id="press-button" class="{{ 'button-light' : 'button-dark' }}">Press me</button>
+<button type="button" id="demo-button" class="{{ 'button-light' : 'button-dark' }}">Press me</button>
 <script>
   document.addEventListener('click', event => {
-    if (event.target.id === 'press-button') alert('You pressed me')
+    if (event.target.id === 'demo-button') alert('You pressed me')
   })
 </script>
 ```
@@ -267,7 +268,6 @@ The following CSS Custom properties are used for core-docs look and feel:
 ```
 
 _Please note that overriding the `docs-code-background--light` or `docs-code-background--dark` colors will likely lead to contrast issues, and we do not recommend adjusting these. Minor adjustments to hljs theme [A 11 Y Light](https://highlightjs.org/static/demo/) was necessary to be WCAG compliant with `docs-code-background--light`. Thus hljs colors deviate from what is presented in native docs._
-
 
 ## Mermaid
 
