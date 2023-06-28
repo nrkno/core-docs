@@ -95,7 +95,6 @@ document.createElement('main')
 document.createElement('detail')
 document.createElement('summary')
 
-const menu = document.querySelector('ul')
 const head = document.head || document.documentElement.appendChild(document.createElement('head'))
 const body = document.body || document.documentElement.appendChild(document.createElement('body'))
 const viewport = document.createElement('meta')
@@ -108,11 +107,11 @@ head.appendChild(viewport)
 
 const stripDemoFlag = (html) => html.replace(/<!--\s*demo\s*-->\n*/i, '')
 let parseHtml = (html) => stripDemoFlag(html)
-let themeToggle = ''
+let themeToggleHTML = ''
 
 if (options.theme) {
   const isDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark'
-  themeToggle = `
+  themeToggleHTML = `
     <label class="docs-toggle-label" aria-label="${options.theme.label || DEFAULT_THEME_TOGGLE_LABEL}">
       <div class="docs-toggle-wrapper">
         <input type="checkbox" class="docs-toggle" id="core-docs-theme-toggle" ${isDarkMode ? 'checked' : ''}>
@@ -129,10 +128,12 @@ if (options.theme) {
   parseHtml = (html) => resolveThemeConditions(stripDemoFlag(html))
 }
 
+
+const navHTML = document.querySelector('nav') ? document.querySelector('nav').outerHTML : `<nav>${document.querySelector('ul').outerHTML}</nav>`
 body.innerHTML = `
-  ${themeToggle}
+  ${themeToggleHTML}
   <header class="docs-menu">
-    <nav>${menu.outerHTML}</nav>
+    ${navHTML}
   </header>
   <main class="docs-main"></main>
 `
