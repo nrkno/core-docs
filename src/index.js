@@ -52,15 +52,10 @@ const defaultThemeOptions = {
 const isBoolean = val => typeof val === 'boolean'
 
 const resolveOptions = () => ({
-  tabs: isBoolean(configuredOptions.tabs)
-    ? configuredOptions.tabs
-    : defaultOptions.tabs,
-  theme: (configuredOptions.theme
-    ? Object.assign(
-      defaultThemeOptions,
-      isBoolean(configuredOptions.theme) ? {} : configuredOptions.theme
-    )
-    : defaultOptions.theme)
+  tabs: isBoolean(configuredOptions.tabs) ? configuredOptions.tabs : defaultOptions.tabs,
+  theme: configuredOptions.theme
+    ? Object.assign(defaultThemeOptions, isBoolean(configuredOptions.theme) ? {} : configuredOptions.theme)
+    : defaultOptions.theme
 })
 
 /**
@@ -105,8 +100,8 @@ viewport.content = 'width=device-width, initial-scale=1'
 
 head.appendChild(viewport)
 
-const stripDemoFlag = (html) => html.replace(/<!--\s*demo\s*-->\n*/i, '')
-let parseHtml = (html) => stripDemoFlag(html)
+const stripDemoFlag = html => html.replace(/<!--\s*demo\s*-->\n*/i, '')
+let parseHtml = html => stripDemoFlag(html)
 let themeToggleHTML = ''
 
 if (options.theme) {
@@ -119,17 +114,21 @@ if (options.theme) {
     </label>
   `
   // Resolve custom core-docs html conditons based on current theme, e.g: class="{{ 'light' : 'dark' }}"
-  const resolveThemeConditions = (html) => {
-    const themeClassConditionRegex = /(?<condition>{{\s*['"](?<light>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*:\s*['"](?<dark>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*}})/ig
-    return html.replaceAll(themeClassConditionRegex, (classCondition) => classCondition.replace(themeClassConditionRegex, isDarkMode() ? '$<dark>' : '$<light>'))
+  const resolveThemeConditions = html => {
+    const themeClassConditionRegex =
+      /(?<condition>{{\s*['"](?<light>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*:\s*['"](?<dark>-?[_a-zA-Z\s]+[_a-zA-Z0-9-\s]*)['"]\s*}})/gi
+    return html.replaceAll(themeClassConditionRegex, classCondition =>
+      classCondition.replace(themeClassConditionRegex, isDarkMode() ? '$<dark>' : '$<light>')
+    )
   }
 
   // Inject theme resolve into parseHtml
-  parseHtml = (html) => resolveThemeConditions(stripDemoFlag(html))
+  parseHtml = html => resolveThemeConditions(stripDemoFlag(html))
 }
 
-
-const navHTML = document.querySelector('nav') ? document.querySelector('nav').outerHTML : `<nav>${document.querySelector('ul').outerHTML}</nav>`
+const navHTML = document.querySelector('nav')
+  ? document.querySelector('nav').outerHTML
+  : `<nav>${document.querySelector('ul').outerHTML}</nav>`
 body.innerHTML = `
   ${themeToggleHTML}
   <header class="docs-menu">
@@ -151,14 +150,16 @@ style.title = 'Core Docs'
 head.appendChild(style)
 
 mark.code = (raw, lang) => {
-  const applyHighlighting = (code, lang) => `<pre class="docs-code"><code>${(hljs.getLanguage(lang) ? hljs.highlight(code, { language: lang }) : hljs.highlightAuto(code)).value}</code></pre>`
-  const applyDemoBlock = (code, highlighted) => '<div class="docs-demo">' + code + '<details><summary>source</summary>' + highlighted + '</details></div>'
+  const applyHighlighting = (code, lang) =>
+    `<pre class="docs-code"><code>${
+      (hljs.getLanguage(lang) ? hljs.highlight(code, { language: lang }) : hljs.highlightAuto(code)).value
+    }</code></pre>`
+  const applyDemoBlock = (code, highlighted) =>
+    '<div class="docs-demo">' + code + '<details><summary>source</summary>' + highlighted + '</details></div>'
   switch (lang) {
     case 'html': {
       const code = parseHtml(raw)
-      return code === raw
-        ? applyHighlighting(code, lang)
-        : applyDemoBlock(code, applyHighlighting(code, lang))
+      return code === raw ? applyHighlighting(code, lang) : applyDemoBlock(code, applyHighlighting(code, lang))
     }
     case 'mermaid':
       return '<div class="mermaid">' + raw + '</div>'
@@ -175,11 +176,11 @@ mark.heading = function (text, level) {
 }
 mark.hr = () => '<hr class="docs-ruler" aria-hidden="true">'
 mark.table = (thead, tbody) => `<table class="docs-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table>`
-mark.blockquote = (text) => `<blockquote class="docs-quote">${text}</blockquote>`
-mark.paragraph = (text) => `<p class="docs-p">${text}</p>`
-mark.list = (body) => `<ul class="docs-list">${body}</ul>`
-mark.codespan = (text) => `<code class="docs-codespan">${text}</code>`
-mark.html = (raw) => parseHtml(raw)
+mark.blockquote = text => `<blockquote class="docs-quote">${text}</blockquote>`
+mark.paragraph = text => `<p class="docs-p">${text}</p>`
+mark.list = body => `<ul class="docs-list">${body}</ul>`
+mark.codespan = text => `<code class="docs-codespan">${text}</code>`
+mark.html = raw => parseHtml(raw)
 
 function queryAll (selector, context = document) {
   return [].slice.call(typeof selector === 'string' ? context.querySelectorAll(selector) : selector)
@@ -187,7 +188,7 @@ function queryAll (selector, context = document) {
 
 function loadTransform (done) {
   const script = document.createElement('script')
-  script.onload = () => done((code) => window.Babel.transform(code, { presets: ['es2015', 'react'] }).code)
+  script.onload = () => done(code => window.Babel.transform(code, { presets: ['es2015', 'react'] }).code)
   script.src = 'https://unpkg.com/@babel/standalone/babel.min.js'
   script.setAttribute('charset', 'utf-8')
   document.head.appendChild(script)
@@ -217,9 +218,9 @@ function exec (scripts, transform, callback) {
 }
 
 function generateSubmenu () {
-  return `<ul>${queryAll('.docs-heading--2 a').map((a) =>
-    `<li><a href="#${a.id}">${a.textContent}</a></li>`
-  ).join('')}</ul>`
+  return `<ul>${queryAll('.docs-heading--2 a')
+    .map(a => `<li><a href="#${a.id}">${a.textContent}</a></li>`)
+    .join('')}</ul>`
 }
 
 function generateTabs (html) {
@@ -230,7 +231,7 @@ function generateTabs (html) {
 
   dom.innerHTML = html
 
-  queryAll(dom.children).forEach((el) => {
+  queryAll(dom.children).forEach(el => {
     if (el.nodeName.match(groupby)) {
       tabs = null // Break out of group
       group = el.querySelector('a') || { id: Date.now().toString(36) }
@@ -240,7 +241,7 @@ function generateTabs (html) {
       const a = el.querySelector('a')
       const uuid = `${group.id}-${a.id}`
 
-      if (isFirst) dom.insertBefore(tabs = document.createElement('core-docs-tabs'), el).className = 'docs-tabs'
+      if (isFirst) dom.insertBefore((tabs = document.createElement('core-docs-tabs')), el).className = 'docs-tabs'
       tabs.insertAdjacentHTML('beforeend', `<a for="${uuid}" href="#${uuid}">${a.textContent}</a>`)
       tabs.insertAdjacentHTML('afterend', `<div id="${uuid}"${isFirst ? '' : ' hidden'}></div>`)
       dom.removeChild(el)
@@ -260,7 +261,7 @@ function isInViewport (elem) {
 function onHash (event) {
   const anchor = document.getElementById(window.location.hash.slice(1))
   if (anchor) {
-    queryAll('.docs-tabs > a').forEach((tab) => {
+    queryAll('.docs-tabs > a').forEach(tab => {
       const group = tab.parentElement
       const panel = document.getElementById(tab.hash.slice(1))
       const inside = tab === anchor || panel.contains(anchor)

@@ -64,28 +64,22 @@ video {
   display: block;
   background: 100% 50%/15px no-repeat;
 }
-html[data-theme='light']
-.docs-menu a[href*='github.com'] {
+html[data-theme='light'] .docs-menu a[href*='github.com'] {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#141517' viewBox='0 0 16 16' width='20'%3E%3Cpath d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z'%2F%3E%3C%2Fsvg%3E");
 }
-html[data-theme='dark']
-.docs-menu a[href*='github.com'] {
+html[data-theme='dark'] .docs-menu a[href*='github.com'] {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#f7f4f2' viewBox='0 0 16 16' width='20'%3E%3Cpath d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z'%2F%3E%3C%2Fsvg%3E");
 }
-html[data-theme='light']
-.docs-menu a[download] {
+html[data-theme='light'] .docs-menu a[download] {
   background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15'%3E%3Cpath stroke='#141517' fill='none' stroke-linecap='round' d='M1.5 13.5h12M3.5 8l4 4 4-4m-4-5.5v9'/%3E%3C/svg%3E");
 }
-html[data-theme='dark']
-.docs-menu a[download] {
+html[data-theme='dark'] .docs-menu a[download] {
   background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15'%3E%3Cpath stroke='#f7f4f2' fill='none' stroke-linecap='round' d='M1.5 13.5h12M3.5 8l4 4 4-4m-4-5.5v9'/%3E%3C/svg%3E");
 }
-html[data-theme='light']
-.docs-menu a[target] {
+html[data-theme='light'] .docs-menu a[target] {
   background-image: url('data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23141517%22%3E%3Cpath%20d%3D%22M17.4%2011a.6.6%200%200%200-.601.601V15.4c0%20.772-.628%201.4-1.399%201.4H4.599A1.401%201.401%200%200%201%203.2%2015.4V4.601c0-.773.628-1.401%201.399-1.401H8.4a.6.6%200%201%200%200-1.2H4.599A2.603%202.603%200%200%200%202%204.601V15.4C2%2016.834%203.166%2018%204.599%2018H15.4c1.434%200%202.6-1.166%202.6-2.6v-3.799a.6.6%200%200%200-.6-.601zm.6-9v7l-2.792-2.792-4.516%204.517-.008-.008a.99.99%200%200%201-1.138.177%201%201%200%200%201-.437-1.346c.046-.09.113-.157.18-.227l-.011-.01%204.516-4.517L11%202h7z%22%2F%3E%3C%2Fsvg%3E');
 }
-html[data-theme='dark']
-.docs-menu a[target] {
+html[data-theme='dark'] .docs-menu a[target] {
   background-image: url('data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%f7f4f2%22%3E%3Cpath%20d%3D%22M17.4%2011a.6.6%200%200%200-.601.601V15.4c0%20.772-.628%201.4-1.399%201.4H4.599A1.401%201.401%200%200%201%203.2%2015.4V4.601c0-.773.628-1.401%201.399-1.401H8.4a.6.6%200%201%200%200-1.2H4.599A2.603%202.603%200%200%200%202%204.601V15.4C2%2016.834%203.166%2018%204.599%2018H15.4c1.434%200%202.6-1.166%202.6-2.6v-3.799a.6.6%200%200%200-.6-.601zm.6-9v7l-2.792-2.792-4.516%204.517-.008-.008a.99.99%200%200%201-1.138.177%201%201%200%200%201-.437-1.346c.046-.09.113-.157.18-.227l-.011-.01%204.516-4.517L11%202h7z%22%2F%3E%3C%2Fsvg%3E');
 }
 
@@ -307,17 +301,19 @@ html[data-theme='dark']
       box-shadow: 0 0 0 3px hsla(var(--docs-toggle-shade--hsl), 0.2);
 
       &:hover {
-        box-shadow: 0 0 0 3px hsla(var(--docs-toggle-shade--hsl), 0.2), inset 0 0 0 6px hsla(var(--docs-toggle-shade--hsl), 0.1),
+        box-shadow: 0 0 0 3px hsla(var(--docs-toggle-shade--hsl), 0.2),
+          inset 0 0 0 6px hsla(var(--docs-toggle-shade--hsl), 0.1),
           inset 0 0 0 2px hsla(var(--docs-toggle-shade--hsl), 0.2);
       }
     }
 
     html[data-theme='dark'] & {
-      box-shadow: 0 0 0 1px hsla(var(--docs-toggle-shade--hsl), 0.4), 0 0 0 10px hsla(var(--docs-toggle-shade--hsl), 0.1);
+      box-shadow: 0 0 0 1px hsla(var(--docs-toggle-shade--hsl), 0.4),
+        0 0 0 10px hsla(var(--docs-toggle-shade--hsl), 0.1);
 
       &:hover {
-        box-shadow: 0 0 0 1px hsla(var(--docs-toggle-shade--hsl), 0.4), 0 0 0 10px hsla(var(--docs-toggle-shade--hsl), 0.1),
-          inset 0 0 0 2px hsla(208, 76%, 97%, 0.1);
+        box-shadow: 0 0 0 1px hsla(var(--docs-toggle-shade--hsl), 0.4),
+          0 0 0 10px hsla(var(--docs-toggle-shade--hsl), 0.1), inset 0 0 0 2px hsla(208, 76%, 97%, 0.1);
       }
     }
 
@@ -328,7 +324,8 @@ html[data-theme='dark']
     }
 
     &:hover {
-      box-shadow: inset 0 0 0 6px hsla(var(--docs-toggle-shade--hsl), 0.1), inset 0 0 0 2px hsla(var(--docs-toggle-shade--hsl), 0.3);
+      box-shadow: inset 0 0 0 6px hsla(var(--docs-toggle-shade--hsl), 0.1),
+        inset 0 0 0 2px hsla(var(--docs-toggle-shade--hsl), 0.3);
     }
   }
 
@@ -379,9 +376,9 @@ html[data-theme='light'] {
       */
       &-section,
       &-title {
-        color: #00779E;
+        color: #00779e;
       }
-      
+
       /* 
         color constrast adjustment for:
           --docs-color-background-code--light: #f4f4f4;
@@ -394,7 +391,7 @@ html[data-theme='light'] {
       &-number,
       &-params,
       &-type {
-        color: #A85D00;
+        color: #a85d00;
       }
     }
   }
