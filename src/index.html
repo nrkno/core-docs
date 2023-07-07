@@ -20,10 +20,4 @@
     const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'; 
     mermaid.initialize({ startOnLoad: true, theme }); 
   </script> 
-  <style>
-    /* Override theme properties after core-docs script tag */
-    :root {
-      --docs-color-background--dark: #36363b;
-    }
-  </style>
 </html>
