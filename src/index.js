@@ -318,7 +318,7 @@ function renderPage (event) {
   }
   renderMarkdown(event.target.responseText)
 
-  link.style.fontWeight = 600
+  link.setAttribute('aria-current', 'page')
   link.insertAdjacentHTML('afterend', generateSubmenu())
   loadTransform(transform => exec(queryAll('script', main), transform, onHash))
 }
