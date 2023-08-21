@@ -38,7 +38,7 @@
     "@rollup/plugin-node-resolve": "15.1.0",
     "@rollup/plugin-replace": "5.0.2",
     "@rollup/plugin-terser": "0.4.3",
-    "autoprefixer": "10.4.14",
+    "autoprefixer": "10.4.15",
     "postcss": "8.4.27",
     "rollup": "2.79.1",
     "rollup-plugin-copy": "3.4.0",
