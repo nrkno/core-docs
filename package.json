@@ -5,6 +5,7 @@
   "author": "NRK <opensource@nrk.no> (https://www.nrk.no/)",
   "version": "3.1.1",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "build": "rollup --config",
     "publish:patch": "npm version patch -m 'Release patch %s'",
@@ -20,7 +21,12 @@
     "type": "git",
     "url": "git+https://github.com/nrkno/core-docs.git"
   },
-  "browser": "lib/core-docs.min.js",
+  "exports": {
+    "browser": {
+      "require": "./lib/core-docs.min.js",
+      "default": "./lib/core-docs.min.js"
+    }
+  },
   "files": [
     "lib/core-docs.js",
     "lib/core-docs.min.js",
