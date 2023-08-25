@@ -22,7 +22,6 @@
   },
   "browser": "lib/core-docs.min.js",
   "files": [
-    ".github",
     "lib/core-docs.js",
     "lib/core-docs.min.js",
     "lib/core-docs.min.js.map",
