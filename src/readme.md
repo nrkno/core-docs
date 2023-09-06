@@ -235,19 +235,7 @@ Use theme conditioned classes `{{ 'button-light' : 'button-dark' }}` to apply cu
 
 ### Specify your own theme
 
-If you want to give your core-docs implementation a specific look and feel, you can override the CSS custom properties after the core-docs script-tag in your `index.html`-file similar to the example below:
-
-```html
-<script src="https://static.nrk.no/core-docs/latest/core-docs.min.js" charset="utf-8"></script>
-<style>
-  /* Override theme properties after core-docs script tag */
-  :root {
-    --docs-color-background--dark: #36363b;
-  }
-</style>
-```
-
-The following CSS Custom properties are used for core-docs look and feel:
+If you want to override core-docs default themes, you can override the default CSS color profile. The following CSS Custom properties controls core-docs `light` and ` dark` theme:
 
 ```CSS
 :root {
@@ -268,6 +256,8 @@ The following CSS Custom properties are used for core-docs look and feel:
   --docs-color-shadow--dark: hsla(210, 15%, 50%, 0.4);
 }
 ```
+
+Default styles for core docs are defined as `@layer core-docs` ([cascade layer](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_layers)). Any overriding un-layered styles have higher presidence independent of stylesheet order in the document.
 
 _Please note that overriding the `docs-code-background--light` or `docs-code-background--dark` colors will likely lead to contrast issues, and we do not recommend adjusting these. Minor adjustments to hljs theme [A 11 Y Light](https://highlightjs.org/static/demo/) was necessary to be WCAG compliant with `docs-code-background--light`. Thus hljs colors deviate from what is presented in native docs._
 
