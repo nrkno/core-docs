@@ -17,7 +17,7 @@ Core Docs can parse and render all markdown files you put in your directory. The
   <li><a href="https://github.com/nrkno/core-docs/releases">View changelog</a></li>
   <li><a href="#" download>Download example</a></li>
 </ul>
-<script src="https://static.nrk.no/core-docs/major/3/core-docs.min.js" charset="utf-8"></script>
+<script src="https://static.nrk.no/core-docs/major/4/core-docs.min.js" charset="utf-8"></script>
 ```
 
 A `<nav>` can also be used in place of `<ul>` in cases where more granular control over the side navigation is preferable.
