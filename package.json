@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@webcomponents/custom-elements": "1.6.0",
-    "core-js": "3.32.1",
+    "core-js": "3.32.2",
     "highlight.js": "11.8.0",
     "marked": "8.0.0",
     "prop-types": "15.8.1",
