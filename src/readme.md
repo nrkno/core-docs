@@ -197,7 +197,7 @@ To turn on theme switching, set the `theme` option to `true` or assign an object
 <script>
   window.coreDocs = {
     theme: {
-      label: 'Toggle color theme', // theme toggle label (default: 'Toggle color theme')
+      label: 'Dark theme', // theme input[type="checkbox"] label (default: 'Dark theme')
       prefers: true, // use system settings for light or dark mode (default: true)
     },
   }

@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 import styles from './index.scss'
 
 const SESSION_STORAGE_SELECTED_THEME_KEY = 'docs-theme-user-state'
-const DEFAULT_THEME_TOGGLE_LABEL = 'Toggle color theme'
+const DEFAULT_THEME_TOGGLE_LABEL = 'Dark theme'
 
 /**
  * @typedef {object} themeOptions
