@@ -36,7 +36,7 @@
   ],
   "devDependencies": {
     "@babel/core": "7.23.3",
-    "@babel/preset-env": "7.22.15",
+    "@babel/preset-env": "7.23.3",
     "@nrk/core-tabs": "2.2.1",
     "@rollup/plugin-babel": "6.0.3",
     "@rollup/plugin-commonjs": "25.0.4",
