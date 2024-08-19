@@ -44,7 +44,7 @@
     "@rollup/plugin-replace": "5.0.5",
     "@rollup/plugin-terser": "0.4.4",
     "autoprefixer": "10.4.16",
-    "postcss": "8.4.32",
+    "postcss": "8.4.41",
     "rollup": "4.8.0",
     "rollup-plugin-copy": "3.5.0",
     "rollup-plugin-postcss": "4.0.2",
