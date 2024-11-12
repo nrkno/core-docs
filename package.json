@@ -50,7 +50,7 @@
     "rollup-plugin-postcss": "4.0.2",
     "rollup-plugin-serve": "2.0.2",
     "sass": "1.80.6",
-    "standard": "17.1.0"
+    "standard": "17.1.2"
   },
   "dependencies": {
     "@webcomponents/custom-elements": "1.6.0",
